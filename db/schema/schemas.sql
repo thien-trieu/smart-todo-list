@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE todo_items (
   id SERIAL PRIMARY KEY NOT NULL,
-  memo_details TEXT,
+  memo_details TEXT NOT NULL,
   date_added TIMESTAMP NOT NULL,
   completion_status BOOLEAN NOT NULL DEFAULT FALSE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -21,5 +21,6 @@ CREATE TABLE todo_items (
 
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255)
+  name VARCHAR(255) NOT NULL,
+  action VARCHAR (255) NOT NULL
 );
