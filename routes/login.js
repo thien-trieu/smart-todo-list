@@ -1,8 +1,10 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
-const { getUserByEmail, getUserById } = require('../db/queries/users');
+const { getUserByEmail } = require('../db/queries/users');
+const cookieSession = require('cookie-session');
 
 router.get('/', (req, res) => {
 
@@ -20,7 +22,13 @@ router.get('/', (req, res) => {
   });
 });
 
-let user;
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ["justOneRandomString"]
+}));
+
+let user ;
 
 // express validotor
 const validator = [
@@ -28,11 +36,12 @@ const validator = [
   body("password")
     .custom((value, { req }) => {
       const email = req.body.email;
-      const result = getUserByEmail(email).then((data)=>{
-        user = data[0];
-        if (user === undefined) {
-          throw new Error("The user does not exist.");
-        }
+      console.log('password', value)
+      console.log(email)
+      // need to implement a call to db to get user
+
+      user = getUserByEmail(email).then((user)=>{
+      console.log('obj', user[0])
 
         const passwordMatch = bcrypt.compareSync(value, user.password);
         if (!passwordMatch) {
@@ -41,7 +50,7 @@ const validator = [
 
         return Promise.resolve(true);
       });
-      
+
       return result;
     })
 ];
@@ -58,7 +67,6 @@ router.post('/', validator, (req, res) => {
   }
 
   req.session.userID = user.id;
-
 
   res.redirect('/');
 });
