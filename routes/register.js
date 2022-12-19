@@ -1,6 +1,8 @@
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcryptjs')
 const { body, check, validationResult } = require("express-validator");
+const { addUser } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
 
@@ -8,15 +10,45 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', [
+  body('name')
+    .trim()
+    .notEmpty().withMessage("The email field cannot be empty!"),
+  body('email')
+    .trim()
+    .notEmpty()
+    .withMessage("The email field cannot be empty!")
+    .normalizeEmail()
+    .toLowerCase(),
+  body('password')
+    .trim()
+    .notEmpty()
+    .withMessage("The password field cannot be empty!")
+], (req, res) => {
 
-  const {name, email, password} = req.body
+  const errors = validationResult(req)
 
-  const userName = req.body.name
-  const userEmail = req.body.email
-  const userPassword = req.body.password
+  if (!errors.isEmpty()){
+    console.log(errors)
+    // display the errors
 
-  console.log(req.body)
+    const templateVars = {
+      errors: errors.array()
+    }
+
+    res.render('register', templateVars)
+    return
+  }
+
+
+  const newUser = {
+    name: req.body.name,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 10)
+  }
+
+  // If registration is successful, add user info to
+  addUser(newUser)
 
   res.redirect('/')
 })
