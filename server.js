@@ -5,8 +5,9 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-const cookieSession = require('cookie-session')
-const bcrypt = require('bcryptjs')
+const cookieSession = require('cookie-session');
+const bcrypt = require('bcryptjs');
+const { getUserById } = require('./db/queries/users');
 
 
 const PORT = process.env.PORT || 8080;
@@ -57,7 +58,17 @@ app.use('/register', registerRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const userId = req.session.userID;
+  console.log('USER ID', req.session.userID);
+
+  getUserById(userId).then((user)=>{
+    console.log('USER', user);
+    const templateVars = {
+      user,
+      errors: null
+    };
+    res.render('index', templateVars);
+  });
 });
 
 

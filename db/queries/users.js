@@ -9,12 +9,18 @@ const getUsers = () => {
 };
 
 const getUserByEmail = (email) => {
-
   return db.query('SELECT * FROM users WHERE email = $1;', [email])
     .then(data => {
       return data.rows;
     });
 
+};
+
+const getUserById = (id) => {
+  return db.query('SELECT * FROM users WHERE id = $1;', [id])
+    .then(data => {
+      return data.rows[0];
+    });
 };
 
 const addUser = function(user) {
@@ -39,4 +45,4 @@ const addUser = function(user) {
 
 };
 
-module.exports = { getUsers, getUserByEmail, addUser };
+module.exports = { getUsers, getUserByEmail, addUser, getUserById };
