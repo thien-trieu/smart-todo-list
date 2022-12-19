@@ -3,20 +3,25 @@ const app = express();
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
-const { getUserByEmail } = require('../db/queries/users');
-const cookieSession = require('cookie-session');
+const { getUserByEmail, getUserById } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
-  res.render('login');
+
+  const userId = req.session.userID;
+  if (userId) return res.redirect("/");
+  console.log('USER ID', req.session.userID);
+
+  getUserById(userId).then((user)=>{
+    console.log('USER', user);
+    const templateVars = {
+      user,
+      errors: null
+    };
+    res.render('login', templateVars);
+  });
 });
 
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ["justOneRandomString"]
-}));
-
-let user ;
+let user;
 
 // express validotor
 const validator = [
@@ -24,42 +29,33 @@ const validator = [
   body("password")
     .custom((value, { req }) => {
       const email = req.body.email;
-      console.log('password', value)
-      console.log(email)
-      // need to implement a call to db to get user
-
-      user = getUserByEmail(email).then((user)=>{
-      console.log('obj', user[0])
-
-      //  if (user.email === null) {
-      //    throw new Error("The email entered does not exist.");
-      //  }
-       // check the password in to db
-      //  const passwordMatch = bcrypt.compareSync(value, user.password);
-
-      //  if (!passwordMatch) {
-      //    throw new Error("Passwords do not match.");
-      //  }
-
-       return true;
-     })
+      const result = getUserByEmail(email).then((data)=>{
+        user = data[0];
+        if (user === undefined) {
+          throw new Error("The user does not exist.");
+        }
+        const passwordMatch = bcrypt.compareSync(value, user.password);
+        if (!passwordMatch) {
+          throw new Error("Passwords do not match.");
+        }
+        return Promise.resolve(true);
+      });
+      return result;
     })
 ];
 
 router.post('/', validator, (req, res) => {
   const errors = validationResult(req);
-  console.log('error', errors)
   if (!errors.isEmpty()) {
     const templateVars = {
-      user: user[req.session.userID],
+      // user: user[req.session.userID],
       errors: errors.array()
     };
     res.status(403);
     return res.render("login", templateVars);
   }
 
-  const email = req.body.email;
-    req.session.userID = user.id;
+  req.session.userID = user.id;
 
   res.redirect('/');
 });
