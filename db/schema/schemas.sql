@@ -10,12 +10,6 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE categories (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  action VARCHAR (255) NOT NULL
-);
-
 CREATE TABLE todo_items (
   id SERIAL PRIMARY KEY NOT NULL,
   memo_details TEXT NOT NULL,
@@ -25,3 +19,8 @@ CREATE TABLE todo_items (
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  action VARCHAR (255) NOT NULL
+);
