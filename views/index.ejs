@@ -12,9 +12,18 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="/styles/header.css" />
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/todos.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,14 +34,40 @@
 
   <!-- Font Awesome Icon -->
   <script src="https://kit.fontawesome.com/c33116664a.js" crossorigin="anonymous"></script>
+  <style>
+    section {
+      width: 70%;
+      margin: 0 2em;
+    }
 
+    article.todo {
+      display: flex;
+      width: 100%;
+      /* justify-content: space-between; */
+      align-items: center;
+      border-bottom: 1px solid;
+      margin: 1.5em 0;
+      padding: 0.5em 0;
+    }
+
+    article.todo .todo-status {
+      align-self: flex-start;
+    }
+
+    .todo-memo {
+      padding: 0 1em;
+    }
+
+    article.todo .todo-options {
+      margin-left: auto;
+    }
+  </style>
 </head>
 
 <body>
   <%- include('partials/_header') %>
-    <h1>Have fun! 🥔🥔🥔🥔🥔🥔🥔🥔🥔🥔</h1>
-    <h1>Icons/Links Stored for Later Use Here: <i class="fa-solid fa-utensils"></i> <i class="fa-solid fa-book"></i> <i
-        class="fa-solid fa-film"></i> <i class="fa-solid fa-basket-shopping"></i></h1>
+    <%- include('todos') %>
+
 
 </body>
 

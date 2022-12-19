@@ -10,6 +10,7 @@ const router  = express.Router();
 const db = require('../db/connection');
 
 router.get('/', (req, res) => {
+  console.log('widgets-api');
   const query = `SELECT * FROM widgets`;
   console.log(query);
   db.query(query)
