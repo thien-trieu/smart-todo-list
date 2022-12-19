@@ -1,12 +1,20 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
-const bcrypt = require('bcrypt')
-const { getUserByEmail } = require('../db/queries/users')
+const bcrypt = require('bcryptjs');
+const { getUserByEmail } = require('../db/queries/users');
+const cookieSession = require('cookie-session');
 
 router.get('/', (req, res) => {
   res.render('login');
 });
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ["justOneRandomString"]
+}));
 
 let user ;
 
@@ -20,7 +28,7 @@ const validator = [
       console.log(email)
       // need to implement a call to db to get user
 
-     user = getUserByEmail(email).then((user)=>{
+      user = getUserByEmail(email).then((user)=>{
       console.log('obj', user[0])
 
       //  if (user.email === null) {
@@ -52,7 +60,6 @@ router.post('/', validator, (req, res) => {
 
   const email = req.body.email;
     req.session.userID = user.id;
-
 
   res.redirect('/');
 });
