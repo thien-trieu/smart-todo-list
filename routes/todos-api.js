@@ -5,15 +5,17 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
+const todoQueries = require('../db/queries/todos');
 
 router.get('/', (req, res) => {
-  console.log('Users API');
-  userQueries.getUsers()
-    .then(users => {
-      res.json({ users });
+  console.log('TODOS API');
+  todoQueries.getTodos()
+    .then(todos => {
+      console.log('TODOS API');
+      res.json({ todos });
     })
     .catch(err => {
       res
@@ -21,5 +23,7 @@ router.get('/', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+router.post
 
 module.exports = router;
