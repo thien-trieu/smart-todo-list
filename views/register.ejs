@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Register</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -28,8 +28,35 @@
 <%- include('partials/_header') %>
 
 <body>
-  <h1>Have fun! 🥔🥔🥔🥔🥔🥔🥔🥔🥔🥔</h1>
-  <h1>Icons/Links Stored for Later Use Here: <i class="fa-solid fa-utensils"></i> <i class="fa-solid fa-book"></i> <i class="fa-solid fa-film"></i> <i class="fa-solid fa-basket-shopping"></i></h1>
+
+  <main class="container">
+
+  <h1>New Account</h1>
+
+  <form method="POST"  action="/register">
+    <div>
+      <label>Your Name:</label>
+      <br>
+      <input type="text" name="name">
+    </div>
+    <div>
+      <label>Email:</label>
+      <br>
+      <input type="email" name="email">
+    </div>
+    <div>
+      <label>Password:</label>
+      <br>
+      <input type="password" name="password">
+    </div>
+      <button type="submit">Submit</button>
+  </form>
+
+  <p>
+  Already have an account? Click <a href="/login">HERE</a>
+  </p>
+
+  </main>
 
 </body>
 
