@@ -54,7 +54,7 @@ main.container:hover {
 
 // Error message handling (toggles on and off)
 .errMessageOff {
-  display: none;
+  display: flex;
   border: 3px solid rgb(154, 13, 41);
   border-radius: 10px;
   padding: .25em;

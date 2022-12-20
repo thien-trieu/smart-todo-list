@@ -19,10 +19,11 @@
 
   <!-- Error handling test -->
   <% if(errors) { %>
-    <% for (let error in errors) { %>
-      <p class="newError" id="nameMsg">
-        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
 
+    <% for (let error in errors) { %>
+
+      <p class="errMessageOff" id="errMsg">
+        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
       </p>
       </div>
       <% } %>
@@ -53,20 +54,6 @@
 
   <p class="menulabels">
   Already have an account? <a href="/login">Click here</a>
-  </p>
-
-  <!-- Error Message popups -->
-
-  <p class="errMessageOff" id="nameMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your name <i class="fa-solid fa-triangle-exclamation"></i>
-  </p>
-
-  <p class="errMessageOff" id="emailMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your email <i class="fa-solid fa-triangle-exclamation"></i>
-  </p>
-
-  <p class="errMessageOff" id="pwdMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please create a strong password <i class="fa-solid fa-triangle-exclamation"></i>
   </p>
 
   </main>
