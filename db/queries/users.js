@@ -1,4 +1,3 @@
-
 const db = require('../connection');
 
 const getUsers = () => {
