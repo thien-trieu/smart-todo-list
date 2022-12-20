@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 
 let user;
 
-// express validotor
+// express validator
 const validator = [
   check("email").notEmpty().withMessage("The email field cannot be empty!"),
   body("password")
@@ -44,6 +44,8 @@ const validator = [
       return result;
     })
 ];
+
+
 
 router.post('/', validator, (req, res) => {
   const errors = validationResult(req);

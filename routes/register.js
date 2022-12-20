@@ -23,17 +23,18 @@ router.get('/', (req, res) => {
 router.post('/', [
   body('name')
     .trim()
-    .notEmpty().withMessage("The email field cannot be empty!"),
+    .notEmpty().withMessage(" Please enter your name "),
   body('email')
     .trim()
     .notEmpty()
-    .withMessage("The email field cannot be empty!")
+    .withMessage(" Please enter your email ")
     .normalizeEmail()
     .toLowerCase(),
   body('password')
     .trim()
     .notEmpty()
-    .withMessage("The password field cannot be empty!")
+    .withMessage(" Please create a strong password ")
+
 ], (req, res) => {
   const errors = validationResult(req)
 
