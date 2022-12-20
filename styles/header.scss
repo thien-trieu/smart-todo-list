@@ -11,11 +11,6 @@ header {
   align-items: center;
 }
 
-// div.logoSection {
-//   display: flex;
-//   align-items: center;
-// }
-
 a.logo {
   text-decoration: none;
   color: #FFFFFF;
@@ -23,12 +18,13 @@ a.logo {
 
 h1.logo {
   font-family: 'Bungee', cursive;
+  color: #d6cdf2;
 }
 
 i.fa-clipboard {
   margin: 0.5em;
   font-size: 1em;
-  color: rgb(163, 208, 219);
+  color: #d6cdf2;
 }
 
 a.navLinks {

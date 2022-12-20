@@ -18,6 +18,7 @@ body {
 
 }
 
+// Styling for main container
 main.container {
   background-color: white;
   padding: 1.5em;
@@ -25,4 +26,9 @@ main.container {
   align-items: center;
   flex-direction: column;
   opacity: 0.7;
+}
+
+// Styling for login form
+.login_form {
+
 }
