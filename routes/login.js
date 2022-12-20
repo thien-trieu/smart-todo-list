@@ -33,12 +33,15 @@ const validator = [
         if (user === undefined) {
           throw new Error("The user does not exist.");
         }
+
         const passwordMatch = bcrypt.compareSync(value, user.password);
         if (!passwordMatch) {
           throw new Error("Passwords do not match.");
         }
+
         return Promise.resolve(true);
       });
+      
       return result;
     })
 ];
