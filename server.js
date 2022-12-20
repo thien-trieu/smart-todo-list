@@ -5,6 +5,10 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
+const bcrypt = require('bcryptjs');
+const { getUserById } = require('./db/queries/users');
+
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -26,12 +30,19 @@ app.use(
 );
 app.use(express.static('public'));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['whatismysecretkeygoingtobe', 'imnotsurewhatitsgoingtobe']
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
 const todoApiRoutes = require('./routes/todos-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -40,6 +51,8 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/todos', todoApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/login', loginRoutes);
+app.use('/register', registerRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -47,8 +60,20 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const userId = req.session.userID;
+  console.log('USER ID', req.session.userID);
+
+  getUserById(userId).then((user)=>{
+    console.log('USER', user);
+    const templateVars = {
+      user,
+      errors: null
+    };
+    res.render('index', templateVars);
+  });
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
