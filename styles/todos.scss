@@ -1,0 +1,29 @@
+section {
+  width: 70%;
+  margin: 0 2em;
+}
+
+article.todo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid;
+  margin: 1.5em 0;
+  padding: 0.5em 0;
+}
+
+article.todo .todo-status {
+  align-self: flex-start;
+}
+
+.todo-memo {
+  padding: 0 1em;
+}
+
+.todo-options {
+  margin-left: auto;
+}
+
+.todo-category {
+  margin-left: auto;
+}

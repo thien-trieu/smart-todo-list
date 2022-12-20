@@ -1,11 +1,11 @@
 <form onsubmit="event.preventDefault()">
-  <input id="search-tb" type="text" placeholder="Search">
+  <input id="searchBox" type="text" placeholder="Search">
 </form>
 <br>
 <br>
 <form id="todo-form">
   <i class="fa-solid fa-plus"></i>
-  <input id="new-item" type="text" placeholder="Add task">
+  <input id="newTodo" name="newTodo" type="text" placeholder="Add task">
   <input type="submit" hidden />
 </form>
 <br>
@@ -13,7 +13,7 @@
 <h2>Films / Series</h2>
 <section id="todos-container">
 
-  <article class="todo">
+  <!-- <article class="todo">
     <div class="todo-status">
       <i class="fa-regular fa-circle"></i>
       <i class="fa-regular fa-circle-check"></i>
@@ -30,9 +30,9 @@
     <div class="todo-options">
       <i class="fa-solid fa-pen"></i>
       <i class="fa-solid fa-trash-can"></i>
-      <!-- <i class="fa-solid fa-ellipsis"></i> -->
+      <i class="fa-solid fa-ellipsis"></i>
     </div>
-  </article>
+  </article> -->
 
 
 </section>
@@ -40,7 +40,7 @@
 
 <table id="eat-table" class="display"></table>
 
-<script>
+<!-- <script>
 
   $.extend(true, $.fn.DataTable.defaults, {
     ordering: false,
@@ -67,7 +67,7 @@
     { data: 'user_id' }
   ]
 
-  console.log(data)
+
 
   // Films
   $(document).ready(function () {
@@ -116,4 +116,4 @@
   //   });
   // });
 
-</script>
+</script> -->
