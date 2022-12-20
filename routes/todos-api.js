@@ -11,8 +11,10 @@ const router  = express.Router();
 const todoQueries = require('../db/queries/todos');
 
 router.get('/', (req, res) => {
-  console.log('TODOS API');
-  todoQueries.getTodos()
+  const userId = req.session.userID;
+  if (!userId) return res.redirect("/login");
+
+  todoQueries.getTodos(userId)
     .then(todos => {
       console.log('TODOS API');
       res.json({ todos });
@@ -24,6 +26,6 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post
+router.post();
 
 module.exports = router;

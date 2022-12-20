@@ -6,7 +6,7 @@
 $(document).ready(function() {
   const renderTodos = function(todos) {
     // const sortedData = Todos.sort((a, b) => b.created_at - a.created_at);
-    $("#todos-container").empty().show("slow");
+    // $("#todos-container").empty().show("slow");
     console.log('LOADED TODOS:', todos);
 
     for (const index in todos) {
@@ -16,7 +16,6 @@ $(document).ready(function() {
         status,
         memo
       };
-
 
       const todoElement = createTodo(todo);
       $("#todos-container").append(todoElement);
@@ -35,9 +34,19 @@ $(document).ready(function() {
       ${ status }
       </div>
       <div class="todo-memo">${ todo.memo }</div>
-      <div class="todo-options">
-        <i class="fa-solid fa-ellipsis"></i>
-      </div>
+      <div class="todo-category">
+      <select name="" id="categories-dropdown">
+        <option value="1">to watch</option>
+        <option value="2">to eat</option>
+        <option value="3">to read</option>
+        <option value="4">to buy</option>
+      </select>
+    </div>
+    <div class="todo-options">
+      <i class="fa-solid fa-pen"></i>
+      <i class="fa-solid fa-trash-can"></i>
+      <!-- <i class="fa-solid fa-ellipsis"></i> -->
+    </div>
     </article>
   `;
     return $todo;
