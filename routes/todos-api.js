@@ -26,9 +26,6 @@ router.get('/', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-
-=======
 router.post('/', (req, res) => {
 
   //** Use APIs HERE to get the category name */
@@ -57,6 +54,5 @@ router.post('/', (req, res) => {
       return;
     });
 });
->>>>>>> bff630fc5d218135493f7bdb787d9574d8af01b4
 
 module.exports = router;

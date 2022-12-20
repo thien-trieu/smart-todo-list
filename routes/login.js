@@ -49,8 +49,9 @@ router.post('/', validator, (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const templateVars = {
-      // user: user[req.session.userID],
-      errors: errors.array()
+
+      errors: errors.array(),
+      user: undefined
     };
     res.status(403);
     return res.render("login", templateVars);
