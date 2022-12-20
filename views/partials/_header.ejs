@@ -1,15 +1,14 @@
 <header>
   <div class="logoSection">
     <a class="logo" href="/">
-      <h1 class="logo">Smart To Do</h1>
+      <h1 class="logo"><i class="fa-solid fa-clipboard"> Smart To Do</i></h1>
     </a>
-    <i class="fa-solid fa-clipboard"></i>
   </div>
-  <nav>
+    <nav>
     <% if(!user){ %>
       <a class="navLinks" href="/login">Login</a>
           <a class="navLinks" href="/register">Register</a>
-      <% } else{ %>
+      <% } else { %>
         <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
           <div class="form-group d-inline-flex">
             <span class="text-light font-weight-normal mr-4">
