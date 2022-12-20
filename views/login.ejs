@@ -33,8 +33,8 @@
 
     <main class="container">
 
-      <h1>Login</h1>
-
+      <h1 class="loginlabel">Please Log In</h1>
+      <br>
       <% if(errors) { %>
         <% for (let error in errors) { %>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -49,20 +49,22 @@
 
               <form method="POST" action="/login" class="login_form">
                 <div>
-                  <label for="email">Email:</label>
+                  <label for="email" class="menulabels">Email:</label>
                   <br>
                   <input type="email" name="email">
                 </div>
+                <br>
                 <div>
-                  <label for="password">Password:</label>
+                  <label for="password" class="menulabels">Password:</label>
                   <br>
                   <input type="password" name="password">
                 </div>
-                <button type="submit">Submit</button>
+                <br>
+                <button type="submit" class="loginbutton">Login</button>
               </form>
 
-              <p>
-                Don't have an account yet? <a href="/register">Click Here</a>
+              <p class="menulabels">
+                Not a member? <a href="/register">Click Here</a>
               </p>
     </main>
 

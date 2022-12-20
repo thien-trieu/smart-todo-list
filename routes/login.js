@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
@@ -56,7 +57,6 @@ router.post('/', validator, (req, res) => {
   }
 
   req.session.userID = user.id;
-
 
   res.redirect('/');
 });
