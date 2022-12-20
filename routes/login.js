@@ -51,6 +51,7 @@ router.post('/', validator, (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const templateVars = {
+
       errors: errors.array(),
       user: undefined
     };
