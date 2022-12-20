@@ -37,8 +37,8 @@
       <br>
       <% if(errors) { %>
         <% for (let error in errors) { %>
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <%= errors[error].msg %>
+          <div class="errMessageOff">
+            <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
               <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button> -->
