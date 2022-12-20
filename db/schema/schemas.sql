@@ -19,7 +19,7 @@ CREATE TABLE categories (
 CREATE TABLE todo_items (
   id SERIAL PRIMARY KEY NOT NULL,
   memo_details TEXT NOT NULL,
-  date_added TIMESTAMP NOT NULL,
+  date_added TIMESTAMP DEFAULT NOW(),
   completion_status BOOLEAN NOT NULL DEFAULT FALSE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE

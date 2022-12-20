@@ -2,91 +2,55 @@
 <html lang="en">
 
 <head>
-  <title>Register</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/header.css" />
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome Icon -->
-  <script src="https://kit.fontawesome.com/c33116664a.js" crossorigin="anonymous"></script>
-
+  <%- include('partials/_meta_tags') %>
+    <%- include('partials/_styles') %>
+      <%- include('partials/_scripts') %>
+        <title>Register</title>
 </head>
-<%- include('partials/_header') %>
 
 <body>
+  <%- include('partials/_header') %>
 
-  <main class="container">
+    <main class="container">
 
-  <h1 class="signup">Sign Up <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
+      <h1>New Account</h1>
 
+      <% if(errors) { %>
+        <% for (let error in errors) { %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= errors[error].msg %>
+              <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+          </div>
+          <% } %>
+            <% } %>
 
-  <!-- Error handling test -->
-  <% if(errors) { %>
-    <% for (let error in errors) { %>
-      <p class="newError" id="nameMsg">
-        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
+              <form method="POST" action="/register">
+                <div>
+                  <label>Your Name:</label>
+                  <br>
+                  <input type="text" name="name">
+                </div>
+                <div>
+                  <label>Email:</label>
+                  <br>
+                  <input type="email" name="email">
+                </div>
+                <div>
+                  <label>Password:</label>
+                  <br>
+                  <input type="password" name="password">
+                </div>
+                <button type="submit">Submit</button>
+              </form>
 
-      </p>
-      </div>
-      <% } %>
-        <% } %>
+              <p>
+                Already have an account? Click <a href="/login">HERE</a>
+              </p>
 
-
-  <form method="POST"  action="/register">
-    <div>
-      <label class="menulabels">Your Name:</label>
-      <br>
-      <input type="text" name="name" class="inputfield">
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Email:</label>
-      <br>
-      <input type="email" name="email" class="inputfield">
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Password:</label>
-      <br>
-      <input type="password" name="password" class="inputfield">
-    </div>
-    <br>
-      <button type="submit">Submit</button>
-  </form>
-
-  <p class="menulabels">
-  Already have an account? <a href="/login">Click here</a>
-  </p>
-
-  <!-- Error Message popups -->
-
-  <p class="errMessageOff" id="nameMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your name <i class="fa-solid fa-triangle-exclamation"></i>
-  </p>
-
-  <p class="errMessageOff" id="emailMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your email <i class="fa-solid fa-triangle-exclamation"></i>
-  </p>
-
-  <p class="errMessageOff" id="pwdMsg">
-    <i class="fa-solid fa-triangle-exclamation"></i> Please create a strong password <i class="fa-solid fa-triangle-exclamation"></i>
-  </p>
-
-  </main>
+    </main>
 
 </body>
 
