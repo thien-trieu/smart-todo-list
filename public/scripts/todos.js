@@ -57,9 +57,10 @@ $(document).ready(function() {
     if (!memo) return;
 
     const data = $("#todo-form").serialize();
-    
+
     $.post("/api/todos", data,
       function(data) {
+        console.log(data)
         $("#newTodo").val('');
         renderTodos([data]);
       }

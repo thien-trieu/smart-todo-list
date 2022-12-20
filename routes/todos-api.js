@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
   //** Use APIs HERE to get the category name */
-
+  console.log(req.body.newTodo)
   const userId = req.session.userID;
   const catname = 'Film / Series'; //**** Category name from API helper functions ***/
 
