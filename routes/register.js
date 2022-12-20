@@ -1,6 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-const bcrypt = require('bcryptjs')
 const { body, check, validationResult } = require("express-validator");
 
 const { addUser, getUserByEmail, getUserById } = require('../db/queries/users');
