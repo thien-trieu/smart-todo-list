@@ -1,119 +1,31 @@
-<form onsubmit="event.preventDefault()">
-  <input id="searchBox" type="text" placeholder="Search">
-</form>
-<br>
-<br>
-<form id="todo-form">
-  <i class="fa-solid fa-plus"></i>
-  <input id="newTodo" name="newTodo" type="text" placeholder="Add task">
-  <input type="submit" hidden />
-</form>
-<br>
-<i class="fa-solid fa-film"></i>
-<h2>Films / Series</h2>
-<section id="todos-container">
-
-  <!-- <article class="todo">
-    <div class="todo-status">
-      <i class="fa-regular fa-circle"></i>
-      <i class="fa-regular fa-circle-check"></i>
+<main>
+  <!-- Todos page - Navigation bar -->
+  <section class="todo-view-nav">
+    <div class="todo-view-nav-left">
+      <i class="fa-solid fa-inbox"></i>
+      <p>Inbox</p>
     </div>
-    <div class="todo-memo">The Hobbit</div>
-    <div class="todo-category">
-      <select name="" id="categories-dropdown">
-        <option value="1">to watch</option>
-        <option value="2">to eat</option>
-        <option value="3">to read</option>
-        <option value="4">to buy</option>
-      </select>
+    <form onsubmit="event.preventDefault()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="searchBox" type="text" placeholder="Search">
+    </form>
+    <div class="todo-view-nav-right">
+      <i class="fa-solid fa-utensils"></i>
+      <i class="fa-solid fa-book"></i>
+      <i class="fa-solid fa-film"></i>
+      <i class="fa-solid fa-basket-shopping"></i>
     </div>
-    <div class="todo-options">
-      <i class="fa-solid fa-pen"></i>
-      <i class="fa-solid fa-trash-can"></i>
-      <i class="fa-solid fa-ellipsis"></i>
-    </div>
-  </article> -->
+  </section>
 
+  <!-- Todos page - Add new task input field -->
+  <section class="todo-addTask">
+    <form id="todo-form">
+      <i class="fa-solid fa-plus"></i>
+      <input id="newTodo" name="newTodo" type="text" placeholder="Add task">
+      <input type="submit" hidden />
+    </form>
+  </section>
 
-</section>
-
-
-<table id="eat-table" class="display"></table>
-
-<!-- <script>
-
-  $.extend(true, $.fn.DataTable.defaults, {
-    ordering: false,
-    info: false,
-    bPaginate: false,
-    sDom: 'ltipr',
-    // deferRender: true,
-    // bLengthChange: false,
-    // processing: false,
-    // destroy: true
-  });
-
-  const columns = [
-    // { data: 'completion_status' },
-    {
-      data: null,
-      defaultContent: '',
-      className: 'select-checkbox',
-      orderable: false
-    },
-    { data: 'memo_details' },
-    // { data: 'date_added' },
-    { data: 'category_id' },
-    { data: 'user_id' }
-  ]
-
-
-
-  // Films
-  $(document).ready(function () {
-    const watchTable = $('#watch-table').DataTable({
-      data: data,
-      columns: columns
-    });
-
-
-
-
-    $("#search-tb").keyup(function () {
-      console.log(this.value)
-      watchTable.search(this.value).draw();
-    });
-
-    $("#todo-form").submit(function () {
-      console.log('Values:', $("#new-item").val().trim())
-      const memo = $("#new-item").val().trim();
-      watchTable.row.add({
-        "completion_status": "false",
-        "memo_details": `${memo}`,
-        // "date_added": "2022-12-17 12: 30: 55",
-        "category_id": "3",
-        "user_id": "5"
-      }).draw();
-
-      $("#new-item").val('')
-    });
-
-  });
-
-
-  // Restaurants
-  // $(document).ready(function () {
-  //   $('#eat-table').DataTable({
-  //     ajax: 'data/todos.js',
-  //     columns: [
-  //       { data: 'name' },
-  //       { data: 'position' },
-  //       { data: 'office' },
-  //       { data: 'extn' },
-  //       { data: 'start_date' },
-  //       { data: 'salary' },
-  //     ],
-  //   });
-  // });
-
-</script> -->
+  <!-- Todos page - Todos container -->
+  <section id="todos-container"></section>
+</main>
