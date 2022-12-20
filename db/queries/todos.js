@@ -1,44 +1,52 @@
 const db = require('../connection');
 
-const getTodos = (userId) => {
+const getTodos = (searchStr, userId) => {
+  const queryParams = [userId];
+  let queryString = `
+    SELECT todo_items.*, categories.name AS category_name
+    FROM todo_items
+    JOIN categories ON categories.id = category_id
+    JOIN users ON users.id = user_id
+    WHERE users.id = $1
+  `;
 
-  // return new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     resolve(
-  //       [
-  //         {
-  //           "memo_details": "The Hobbit",
-  //           "date_added": "2022-12-17 12: 30: 55",
-  //           "category_id": 3,
-  //           "user_id": 5,
-  //           "completion_status": false
-  //         },
-  //         {
-  //           "memo_details": "Fellowship of the Ring",
-  //           "date_added": "2022-12-17 12: 30: 55",
-  //           "category_id": 3,
-  //           "user_id": 5,
-  //           "completion_status": false
-  //         },
-  //         {
-  //           "memo_details": "The Notebook",
-  //           "date_added": "2022-12-17 12: 30: 55",
-  //           "category_id": 3,
-  //           "user_id": 5,
-  //           "completion_status": true
-  //         }
-  //       ]
-  //     );
-  //   }, 300);
-  // });
+  if (searchStr) {
+    queryParams.push(searchStr.toLowerCase());
+    queryString += `
+      AND LOWER(memo_details) LIKE '%' || $${queryParams.length} || '%'
+      OR LOWER(categories.name) LIKE '%' || $${queryParams.length} || '%'`;
+  }
 
-
-  return db.query('SELECT * FROM todo_items;', [userId])
+  return db.query(queryString, queryParams)
     .then(data => {
-      console.log('DATA HERE');
       return data.rows;
-
+    })
+    .catch((err) => {
+      console.log(err.message);
     });
 };
 
-module.exports = { getTodos };
+const addTodo = (newTask) => {
+  const values = [
+    newTask.memo_details,
+    newTask.userId,
+    newTask.categoryId
+  ];
+
+  const queryString = `
+    INSERT INTO todo_items (memo_details, user_id, category_id)
+    VALUES ($1, $2, $3)
+    RETURNING *;`;
+
+  return db
+    .query(queryString, values)
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
+};
+
+module.exports = { getTodos, addTodo };
