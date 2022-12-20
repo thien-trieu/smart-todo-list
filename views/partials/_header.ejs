@@ -7,8 +7,8 @@
     <nav>
     <% if(!user){ %>
       <a class="navLinks" href="/login">Login</a>
-          <a class="navLinks" href="/register">Register</a>
-      <% } else { %>
+      <a class="navLinks" href="/register">Register</a>
+      <% } else{ %>
         <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
           <div class="form-group d-inline-flex">
               <span class="welcometext">
