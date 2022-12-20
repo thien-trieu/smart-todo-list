@@ -51,3 +51,16 @@ main.container:hover {
 .loginlabel {
   color:#635197;
 }
+
+// Error message handling (toggles on and off)
+.errMessageOff {
+  display: none;
+  border: 3px solid rgb(154, 13, 41);
+  border-radius: 10px;
+  padding: .25em;
+  justify-content:space-around;
+  text-align: center;
+  color: rgb(154, 13, 41);
+  font-weight: bold;
+  background-color:rgb(224, 133, 133);
+}

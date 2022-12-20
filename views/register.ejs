@@ -33,13 +33,14 @@
 
   <h1 class="signup">Sign Up <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
 
+
+  <!-- Error handling test -->
   <% if(errors) { %>
     <% for (let error in errors) { %>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <%= errors[error].msg %>
-          <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button> -->
+      <p class="newError" id="nameMsg">
+        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
+
+      </p>
       </div>
       <% } %>
         <% } %>
@@ -69,6 +70,20 @@
 
   <p class="menulabels">
   Already have an account? <a href="/login">Click here</a>
+  </p>
+
+  <!-- Error Message popups -->
+
+  <p class="errMessageOff" id="nameMsg">
+    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your name <i class="fa-solid fa-triangle-exclamation"></i>
+  </p>
+
+  <p class="errMessageOff" id="emailMsg">
+    <i class="fa-solid fa-triangle-exclamation"></i> Please enter your email <i class="fa-solid fa-triangle-exclamation"></i>
+  </p>
+
+  <p class="errMessageOff" id="pwdMsg">
+    <i class="fa-solid fa-triangle-exclamation"></i> Please create a strong password <i class="fa-solid fa-triangle-exclamation"></i>
   </p>
 
   </main>
