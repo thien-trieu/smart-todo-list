@@ -72,6 +72,12 @@ app.get('/', (req, res) => {
   });
 });
 
+// Logout functionality which clears cookies and redirects to login page
+app.post("/logout", (req,res) =>  {
+  req.session = null;
+  res.redirect(`/login`);
+})
+
 
 
 app.listen(PORT, () => {
