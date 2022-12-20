@@ -7,12 +7,14 @@ header {
   padding: 1.5em;
   display: flex;
   justify-content: space-between;
-}
-
-div.logoSection {
   display: flex;
   align-items: center;
 }
+
+// div.logoSection {
+//   display: flex;
+//   align-items: center;
+// }
 
 a.logo {
   text-decoration: none;
@@ -25,7 +27,7 @@ h1.logo {
 
 i.fa-clipboard {
   margin: 0.5em;
-  font-size: 2em;
+  font-size: 1em;
   color: rgb(163, 208, 219);
 }
 
