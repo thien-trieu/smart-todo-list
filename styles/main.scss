@@ -4,15 +4,15 @@ body {
   align-items: center;
   min-height: 100vh;
 
-  background: #C9BBF2;
+  background: rgb(163, 208, 219);
   background: linear-gradient(
-    180deg,
-    #F2BBCF 0%,
-    #C9BBF2 12%,
-    #DEBDE6 26%,
-    #E1C2FC 50%,
-    #C9BBF2 74%,
-    #E1C2FC 100%
+    227deg,
+    rgba(163, 208, 219, 1) 0%,
+    rgba(163, 176, 219, 1) 20%,
+    rgba(163, 173, 219, 1) 34%,
+    rgba(163, 219, 208, 1) 59%,
+    rgba(163, 208, 219, 1) 74%,
+    rgba(163, 208, 219, 1) 100%
   );
 
 
