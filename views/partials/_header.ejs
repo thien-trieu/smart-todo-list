@@ -7,8 +7,8 @@
   </div>
   <nav>
     <% if(!user){ %>
-      <a class="btn btn-light mr-2 my-sm-0" href="/login" role="button">Login</a>
-      <a class="btn btn-light my-2 my-sm-0" href="/register" role="button">Register</a>
+      <a class="navLinks" href="/login">Login</a>
+      <a class="navLinks" href="/register">Register</a>
       <% } else{ %>
         <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
           <div class="form-group d-inline-flex">
@@ -23,8 +23,6 @@
         </form>
         <% } %>
 
-          <a class="navLinks" href="/login">Login</a>
-          <a class="navLinks" href="/register">Register</a>
   </nav>
 
 </header>
