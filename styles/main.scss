@@ -22,13 +22,32 @@ body {
 main.container {
   background-color: white;
   padding: 1.5em;
+  padding-right: 2em;
+  padding-left: 2em;
   display: flex;
   align-items: center;
   flex-direction: column;
   opacity: 0.7;
+  border-radius: 25px;
+}
+
+main.container:hover {
+  box-shadow: 6px 4px 9px #635197;
 }
 
 // Styling for login form
 .login_form {
+  display: flex;
+  flex-direction: column;
 
+}
+
+// Signup and Login header styling
+.signup {
+  padding-bottom: 0.5em;
+  color:#635197;
+}
+
+.loginlabel {
+  color:#635197;
 }

@@ -31,7 +31,7 @@
 
   <main class="container">
 
-  <h1>New Account</h1>
+  <h1 class="signup">Sign Up <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
 
   <% if(errors) { %>
     <% for (let error in errors) { %>
@@ -47,25 +47,28 @@
 
   <form method="POST"  action="/register">
     <div>
-      <label>Your Name:</label>
+      <label class="menulabels">Your Name:</label>
       <br>
-      <input type="text" name="name">
+      <input type="text" name="name" class="inputfield">
     </div>
+    <br>
     <div>
-      <label>Email:</label>
+      <label class="menulabels">Email:</label>
       <br>
-      <input type="email" name="email">
+      <input type="email" name="email" class="inputfield">
     </div>
+    <br>
     <div>
-      <label>Password:</label>
+      <label class="menulabels">Password:</label>
       <br>
-      <input type="password" name="password">
+      <input type="password" name="password" class="inputfield">
     </div>
+    <br>
       <button type="submit">Submit</button>
   </form>
 
   <p>
-  Already have an account? Click <a href="/login">HERE</a>
+  Already have an account? <a href="/login">Click here</a>
   </p>
 
   </main>
