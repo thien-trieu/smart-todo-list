@@ -14,8 +14,6 @@ body {
     #C9BBF2 74%,
     #E1C2FC 100%
   );
-
-
 }
 
 // Styling for main container
@@ -39,7 +37,6 @@ main.container:hover {
 .login_form {
   display: flex;
   flex-direction: column;
-
 }
 
 // Signup and Login header styling
@@ -63,4 +60,14 @@ main.container:hover {
   color: rgb(154, 13, 41);
   font-weight: bold;
   background-color:rgb(224, 133, 133);
+}
+
+// set register block width as an ID so that it is not affected by main width container
+#registerblock {
+  width: 30%;
+}
+
+// Spacing for login inputs
+.logininput {
+  margin-top: 0.2em;
 }
