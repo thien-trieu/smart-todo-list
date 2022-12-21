@@ -9,6 +9,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getTodos, addTodo } = require('../db/queries/todos');
+const { callWolfram } = require('../services/apis/wolfram');
 
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
@@ -32,6 +33,13 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
   //** Use APIs HERE to get the category name */
+
+  const wolframRes = callWolfram(req.body.newTodo)
+    .then(response => {
+
+      console.log('JSON FROM WOLFRAM', response);
+    });
+
   console.log(req.body.newTodo);
   const userId = req.session.userID;
   const catname = 'Film / Series'; //**** Category name from API helper functions ***/
