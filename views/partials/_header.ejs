@@ -4,23 +4,23 @@
       <h1 class="logo"><i class="fa-solid fa-clipboard fa-bounce"></i> Smart To-Do</h1>
     </a>
   </div>
-    <nav>
+  <nav>
     <% if(!user){ %>
-      <a class="navLinks" href="/login">Login</a>
-          <a class="navLinks" href="/register">Register</a>
-      <% } else { %>
-        <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
-          <div class="form-group d-inline-flex">
-              <span class="welcometext">
-              Welcome,
-              <span class="text-light font-weight-bold">
-                <%= user.name %>!
-              </span>
-            </span>
-            <button class="logoutbutton" type="submit">Logout</button>
-          </div>
-        </form>
-        <% } %>
+    <a class="navLinks" href="/login">Login</a>
+    <a class="navLinks" href="/register">Register</a>
+    <% } else { %>
+    <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
+      <div class="form-group d-inline-flex">
+        <span class="welcometext">
+          Welcome,
+          <span class="text-light font-weight-bold">
+            <%= user.name %>!
+          </span>
+        </span>
+        <button class="logoutbutton" type="submit">Logout</button>
+      </div>
+    </form>
+    <% } %>
 
   </nav>
 

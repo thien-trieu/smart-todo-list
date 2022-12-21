@@ -2,7 +2,7 @@ $(document).ready(function() {
   let timeoutID = null;
 
   const searchTodos = function(string) {
-    const data = {string};
+    const data = {search: string};
     $.get("/api/todos", data,
       function(data) {
         $("#todos-container").empty().show("slow");

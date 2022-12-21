@@ -60,8 +60,6 @@ app.use('/register', registerRoutes);
 
 app.get('/', (req, res) => {
   const userId = req.session.userID;
-  console.log('USER ID', req.session.userID);
-
   getUserById(userId).then((user)=>{
     console.log('USER', user);
     const templateVars = {
@@ -76,7 +74,7 @@ app.get('/', (req, res) => {
 app.post("/logout", (req,res) =>  {
   req.session = null;
   res.redirect(`/login`);
-})
+});
 
 
 

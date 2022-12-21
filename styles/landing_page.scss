@@ -1,0 +1,19 @@
+// Update this file as needed
+
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+  }
+
+  i {
+    color: rgb(130, 93, 145);
+    font-size: 10em;
+  }
+}

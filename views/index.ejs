@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <%- include('partials/_meta_tags') %>
-    <%- include('partials/_styles') %>
-      <%- include('partials/_scripts') %>
+  <%- include('partials/_styles') %>
+  <%- include('partials/_scripts') %>
 
-        <title>Home Page</title>
+  <title>Home Page</title>
 
 </head>
-
 <body>
 
   <%- include('partials/_header') %>
 
-  <%- include('todos') %>
+  <main>
+
+    <% if(!user){ %>
+    <%- include('partials/_landing_page') %>
+    <% } else { %>
+    <%- include('partials/_todos_page_header') %>
+    <section id="todos-container"></section>
+    <% } %>
+
+  </main>
 
 </body>
-
 </html>
