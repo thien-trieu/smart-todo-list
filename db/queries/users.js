@@ -24,11 +24,11 @@ const getUserById = (id) => {
 
 const addUser = function(user) {
 
-  const values = [user.name, user.email, user.password];
+  const values = [user.name, user.email, user.password, user.location];
 
   const queryString = `
-    INSERT INTO users (name, email, password)
-    VALUES ($1, $2, $3)
+    INSERT INTO users (name, email, password, location)
+    VALUES ($1, $2, $3, $4)
     RETURNING *;`;
 
   return db

@@ -4,7 +4,6 @@ const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const { getUserByEmail, getUserById } = require('../db/queries/users');
-const cookieSession = require('cookie-session');
 
 router.get('/', (req, res) => {
 

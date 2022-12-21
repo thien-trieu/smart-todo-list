@@ -48,8 +48,12 @@ router.post('/', [
   check('password')
     .trim()
     .notEmpty()
-    .withMessage(" Please create a strong password ")
-
+    .withMessage(" Please create a strong password "),
+  check('location')
+  .trim()
+  .notEmpty()
+  .withMessage(" Please enter your city ")
+  .toLowerCase()
 ], (req, res) => {
 
   const errors = validationResult(req);
@@ -70,7 +74,8 @@ router.post('/', [
   const newUser = {
     name: req.body.name,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10)
+    password: bcrypt.hashSync(req.body.password, 10),
+    location: req.body.location
   };
 
   // if registration is successful, add user info to db
