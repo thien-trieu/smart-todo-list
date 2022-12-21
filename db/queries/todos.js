@@ -1,6 +1,7 @@
 const db = require('../connection');
 
-const getTodos = (searchStr, userId) => {
+const getTodos = (options, userId) => {
+  console.log('OPTIONS', options)
   const queryParams = [userId];
   let queryString = `
     SELECT todo_items.*, categories.name AS category_name
@@ -10,12 +11,23 @@ const getTodos = (searchStr, userId) => {
     WHERE users.id = $1
   `;
 
-  if (searchStr) {
-    queryParams.push(searchStr.toLowerCase());
+  if (options.searchStr) {
+    queryParams.push(options.searchStr.toLowerCase());
     queryString += `
       AND LOWER(memo_details) LIKE '%' || $${queryParams.length} || '%'
-      OR LOWER(categories.name) LIKE '%' || $${queryParams.length} || '%'`;
+      OR LOWER(categories.name) LIKE '%' || $${queryParams.length} || '%'
+      `;
   }
+
+  if (options.categoryId) {
+    queryParams.push(options.categoryId);
+    queryString += `
+      AND categories.id = $${queryParams.length}
+      `;
+  }
+
+  console.log('queryParams', queryParams)
+  console.log('queryString', queryString)
 
   return db.query(queryString, queryParams)
     .then(data => {
@@ -24,6 +36,7 @@ const getTodos = (searchStr, userId) => {
     .catch((err) => {
       console.log(err.message);
     });
+
 };
 
 const addTodo = (newTask) => {

@@ -11,11 +11,14 @@ const router  = express.Router();
 const { getTodos, addTodo } = require('../db/queries/todos');
 
 router.get('/', (req, res) => {
-  const searchStr = req.query.string;
+  const searchStr = req.query.search;
+  const categoryId = req.query.categoryId;
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  getTodos(searchStr, userId)
+  const options = {searchStr, categoryId};
+
+  getTodos(options, userId)
     .then(todos => {
       res.json({ todos });
     })
@@ -29,7 +32,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
   //** Use APIs HERE to get the category name */
-  console.log(req.body.newTodo)
+  console.log(req.body.newTodo);
   const userId = req.session.userID;
   const catname = 'Film / Series'; //**** Category name from API helper functions ***/
 

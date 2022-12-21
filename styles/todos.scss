@@ -85,6 +85,20 @@ main {
       padding: 0.3em;
     }
   }
+
+  $elements: 4;
+
+
+  .todo-view-nav-right {
+
+    @for $i from 0 to $elements {
+      i:nth-child(#{$i + 1}) {
+        cursor: pointer;
+      }
+    }
+
+    
+  }
 }
 
 .searchbar {
