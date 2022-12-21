@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { body, check, validationResult } = require("express-validator");
 
-const { addUser, getUserByEmail, getUserById } = require('../db/queries/users');
+const { addUser, getUserByEmail } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
   const userId = req.session.userID;
@@ -12,15 +12,13 @@ router.get('/', (req, res) => {
     return res.redirect("/");
   }
 
-  // getUserById(userId).then((user) => {
+  const templateVars = {
+    user: undefined,
+    errors: null
+  };
 
-    const templateVars = {
-      user: undefined,
-      errors: null
-    };
+  res.render('register', templateVars);
 
-    res.render('register', templateVars);
-  // });
 });
 
 router.post('/', [
@@ -74,13 +72,11 @@ router.post('/', [
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 10)
   };
+
   // if registration is successful, add user info to db
   addUser(newUser)
     .then(getUserByEmail(req.body.email))
     .then((user) => {
-      console.log('user object', user);
-      console.log('user.id', user.id);
-
 
       req.session.userID = user.id;
       res.redirect('/');
