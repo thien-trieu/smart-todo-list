@@ -51,7 +51,7 @@ router.post('/', [
   if (!errors.isEmpty()) {
 
     getUserById(userId).then((result) => {
-      console.log('RESULTS', result);
+      // console.log('RESULTS', result);
 
       return result;
     }).then((user) => {
