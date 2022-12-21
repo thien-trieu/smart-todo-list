@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
@@ -43,8 +42,6 @@ const validator = [
       return result;
     })
 ];
-
-
 
 router.post('/', validator, (req, res) => {
   const errors = validationResult(req);
