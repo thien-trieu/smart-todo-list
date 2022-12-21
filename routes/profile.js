@@ -31,7 +31,9 @@ router.post('/', [
     .custom((value) => {
       const result = getUserByEmail(value)
         .then((data) => {
-          user = data[0];
+          const user = data[0];
+
+          console.log('USER EXIST?', user);
 
           if (user) {
             throw new Error("The email already exist.");
@@ -51,7 +53,6 @@ router.post('/', [
   if (!errors.isEmpty()) {
 
     getUserById(userId).then((result) => {
-      console.log('RESULTS', result);
 
       return result;
     }).then((user) => {
@@ -61,6 +62,9 @@ router.post('/', [
         errors: errors.array()
       };
 
+      // ensure correct errors and user info is passed through to template vars after checking for errors
+      console.log('TEMPLATE', templateVars);
+
       res.render('profile', templateVars);
     });
 
@@ -69,7 +73,7 @@ router.post('/', [
 
     // if no errors we can edit user's email in db
     editUserEmail(newEmail, userId).then(() => {
-      console.log(user);
+
       res.redirect('profile');
     });
   }

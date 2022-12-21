@@ -4,7 +4,7 @@
       <h1 class="logo"><i class="fa-solid fa-clipboard fa-bounce"></i> Smart To-Do</h1>
     </a>
   </div>
-    <nav>
+  <nav>
     <% if(!user){ %>
       <a class="navLinks" href="/login">Login</a>
           <a class="navLinks" href="/register">Register</a>
@@ -17,6 +17,7 @@
                 <%= user.name %>!
               </span>
             </span>
+            <a class="navLinks" href="/profile">My Profile</a>
             <button class="logoutbutton" type="submit">Logout</button>
           </div>
         </form>

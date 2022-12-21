@@ -19,10 +19,11 @@
 
   <!-- Error handling test -->
   <% if(errors) { %>
-    <% for (let error in errors) { %>
-      <p class="newError" id="nameMsg">
-        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
 
+    <% for (let error in errors) { %>
+
+      <p class="errMessageOff" id="errMsg">
+        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
       </p>
       </div>
       <% } %>
