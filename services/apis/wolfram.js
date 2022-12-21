@@ -18,8 +18,6 @@ const callWolfram = (taskString) => {
     });
 };
 
-const yelp = () => {
-  
-}
+
 
 module.exports = {  callWolfram };
