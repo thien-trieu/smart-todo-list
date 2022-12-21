@@ -39,9 +39,33 @@ const addUser = function(user) {
     .catch((err) => {
       console.log(err.message);
       return null;
-    }); 
+    });
 
 
 };
 
-module.exports = { getUsers, getUserByEmail, addUser, getUserById };
+const editUserEmail = (newEmail, userID) => {
+
+  const queryString = `
+     UPDATE users
+     SET email = $1
+     WHERE ID = $2
+     RETURNING *;
+    `
+
+    return db
+    .query(queryString, [newEmail, userID])
+    .then((result) => {
+
+      console.log('result rows', result.rows)
+
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
+
+}
+
+module.exports = { getUsers, getUserByEmail, addUser, getUserById, editUserEmail };

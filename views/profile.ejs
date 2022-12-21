@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <%- include('partials/_meta_tags') %>
+    <%- include('partials/_styles') %>
+      <%- include('partials/_scripts') %>
+        <title>Register</title>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+
+    <main class="container">
+
+  <h1 class="signup">My Profile</h1>
+
+
+  <!-- Error handling test -->
+  <% if(errors) { %>
+    <% for (let error in errors) { %>
+      <p class="newError" id="nameMsg">
+        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
+
+      </p>
+      </div>
+      <% } %>
+        <% } %>
+
+
+  <form method="POST"  action="/profile">
+    <div>
+      <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
+      <!-- <br> -->
+      <!-- <input type="text" name="name" class="inputfield"> -->
+    </div>
+    <br>
+    <div>
+      <label class="menulabels profile_email">Email: <%= user.email %></label>
+      <!-- <br>
+      <input type="email" name="email" class="inputfield"> -->
+    </div>
+    <br>
+    <div>
+      <label class="menulabels">Update email:</label>
+
+      <input type="email" name="email" class="inputfield">
+    </div>
+    <br>
+      <button type="submit">Submit</button>
+  </form>
+
+
+
+  </main>
+
+</body>
+
+</html>
