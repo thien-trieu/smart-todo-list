@@ -22,6 +22,7 @@ const selectCategory = (taskString) => {
     input.includes('dinner') ||
     input.includes('breakfast') ||
     input.includes('sushi') ||
+    input.includes('cafes') ||
     input.includes('brunch')
   ) {
     category = 'to_eat'
@@ -44,5 +45,8 @@ const selectCategory = (taskString) => {
   ) {
     category = 'to_buy'
   }
+  console.log(category)
   return category
 }
+
+selectCategory('go for some sushi')

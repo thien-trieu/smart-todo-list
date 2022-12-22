@@ -4,8 +4,6 @@ const axios = require('axios');
 const callYelp = (taskString, user) => {
   const queryString = taskString.split(' ').join('%20');
 
-  console.log('QUERY STRING', queryString);
-
   axios.get(`https://api.yelp.com/v3/businesses/search?location=${user.location}&term=${taskString}&radius=40000&&sort_by=best_match&limit=20`,
     {
       headers: {
@@ -32,6 +30,6 @@ const user = {
   location: 'vancouver'
 };
 
-callYelp('egg', user);
+callYelp("dominos", user);
 
 module.exports = { callYelp };
