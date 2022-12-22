@@ -12,9 +12,10 @@ main {
     border-bottom: 2.5px solid;
     border-right: 2.5px solid;
     margin: 1em 0;
-    padding: .5em;
+    padding-top: .5em;
     padding-right: 1.5em;
-    padding-left: 1.5em;
+    padding-left: 1em;
+    padding-bottom: .35em;
     background-color: white;
     border-radius: 25px;
     opacity: 0.7;
@@ -36,6 +37,15 @@ main {
 
   .todo-category {
     margin-left: auto;
+  }
+
+  // todo checkmark styling, before and after checked off list
+  .fa-circle {
+    font-size: 1.1em;
+  }
+
+  .fa-circle-check {
+    font-size: 1.1em;
   }
 }
 
