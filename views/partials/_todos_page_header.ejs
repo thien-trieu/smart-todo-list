@@ -6,7 +6,7 @@
   </div>
   <form onsubmit="event.preventDefault()">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input id="searchBox" type="text" placeholder="Search">
+    <input id="searchBox" type="text" placeholder="Search existing Smart To-Do tasks here">
   </form>
   <div id="nav-categories" class="todo-view-nav-right">
     <i id="to-eat" class="fa-solid fa-utensils"></i>
@@ -17,10 +17,14 @@
 </section>
 
 <!-- Todos page - Add new task input field -->
-<section class="todo-addTask">
-  <form id="todo-form">
-    <i class="fa-solid fa-plus"></i>
-    <input id="newTodo" name="newTodo" type="text" placeholder="Add task">
-    <input type="submit" hidden />
-  </form>
+<section class="todolist">
+  <section class="todo-addTask">
+    <form id="todo-form">
+      <i class="fa-solid fa-plus"></i>
+      <input id="newTodo" name="newTodo" type="text" placeholder="Write a new Smart To-Do task here">
+      <input type="submit" hidden />
+    </form>
+  </section>
+  <section id="todos-container"></section>
 </section>
+

@@ -79,51 +79,33 @@ main {
   form {
     display: flex;
     align-items: center;
+    background-color: white;
+    padding: 0.5em 1em 0.5em 1em;
+    opacity: 0.7;
+    border-radius: 25px;
+    width: 70%;
+
+    #searchBox {
+      width: 60vw;
+      border: none;
+      padding: 0.3em 0 0.3em 1.5em;
+    }
 
     i {
       position: absolute;
       padding: 0.3em;
     }
   }
-
-  $elements: 4;
-
-
-  .todo-view-nav-right {
-
-    @for $i from 0 to $elements {
-      i:nth-child(#{$i + 1}) {
-        cursor: pointer;
-      }
-    }
-
-    
-  }
 }
-
-.searchbar {
-  background-color: white;
-  padding: 0.5em;
-  padding-right: 1em;
-  padding-left: 1em;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0.7;
-  border-radius: 25px;
-  width: 70%;
-}
-
 
 .searchbar:hover {
   box-shadow: 6px 4px 9px #635197;
 }
 
-#searchBox {
-  width: 60vw;
-  border: none;
-  padding: 0.3em 0 0.3em 1.5em;
-}
+
+
+
+
 
 .todo-view-nav-left:hover {
   box-shadow: 6px 4px 9px #635197;
@@ -148,4 +130,37 @@ main {
 
     }
   }
+}
+
+.todo-view-nav-right {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1em;
+    padding-right: 1em;
+    padding-left: 1em;
+    opacity: 0.7;
+    border-radius: 25px;
+}
+
+.todo-view-nav-right:hover {
+  box-shadow: 6px 4px 9px #635197;
+}
+
+.fa-utensils {
+  margin-right: 0.4em;
+}
+
+.fa-book {
+  margin-right: 0.4em;
+}
+
+.fa-film {
+  margin-right: 0.4em;
+}
+
+.fa-inbox {
+  margin-right: 0.4em;
 }
