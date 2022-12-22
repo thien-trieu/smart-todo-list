@@ -10,7 +10,7 @@ const selectCategory = (taskString) => {
     input.includes('tv') ||
     input.includes('episode')
   ) {
-    category = 'to_watch'
+    category = 'watch'
   } else if (
     input.includes('eat') ||
     input.includes('resturant') ||
@@ -23,9 +23,11 @@ const selectCategory = (taskString) => {
     input.includes('breakfast') ||
     input.includes('sushi') ||
     input.includes('cafes') ||
+    input.includes('bakery') ||
+    input.includes('bakeries') ||
     input.includes('brunch')
   ) {
-    category = 'to_eat'
+    category = 'eat'
   } else if (
     input.includes('read') ||
     input.includes('book') ||
@@ -34,19 +36,24 @@ const selectCategory = (taskString) => {
     input.includes('report') ||
     input.includes('textbook')
   ) {
-    category = 'to_read'
+    category = 'read'
   } else if (
     input.includes('buy') ||
+    input.includes('get') ||
     input.includes('purchase') ||
     input.includes('shopping') ||
+    input.includes('grocery') ||
+    input.includes('groceries') ||
     input.includes('store') ||
-    input.includes('report') ||
-    input.includes('textbook')
+    input.includes('market')
   ) {
-    category = 'to_buy'
+    category = 'buy'
   }
-  console.log(category)
+
   return category
 }
 
-selectCategory('go for some sushi')
+console.log(selectCategory('pick up things at the market'))
+
+
+module.exports = {  selectCategory };
