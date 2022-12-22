@@ -24,7 +24,10 @@ a.logo {
 
 h1.logo {
   font-family: 'Bungee', cursive;
-  color: #d6cdf2;
+  color: linear-gradient( 86deg,
+  #c74fef 0%,
+  #7f3fff 45%,
+  #448dfa 95%);
 }
 
 i.fa-clipboard {
