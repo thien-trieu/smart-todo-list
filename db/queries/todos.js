@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 const getTodos = (options, userId) => {
-  console.log('OPTIONS', options)
+  console.log('OPTIONS', options);
   const queryParams = [userId];
   let queryString = `
     SELECT todo_items.*, categories.name AS category_name
@@ -26,8 +26,8 @@ const getTodos = (options, userId) => {
       `;
   }
 
-  console.log('queryParams', queryParams)
-  console.log('queryString', queryString)
+  console.log('queryParams', queryParams);
+  console.log('queryString', queryString);
 
   return db.query(queryString, queryParams)
     .then(data => {
@@ -62,4 +62,48 @@ const addTodo = (newTask) => {
     });
 };
 
-module.exports = { getTodos, addTodo };
+const updateTodoItem = (options) => {
+//{ completion_status: 'true', todoId: '3' }
+
+  const queryParams = [];
+  //get userId from the cookie
+  let queryString = `
+     UPDATE todo_items
+     `;
+
+  if (options.memo_details) {
+    queryParams.push(options.memo_details);
+    queryString += `
+        SET memo_details = $${queryParams.length}
+        `;
+  }
+
+  if (options.completion_status) {
+    queryParams.push(options.completion_status);
+    queryString += `
+      SET completion_status = $${queryParams.length}
+    `;
+  }
+
+  queryParams.push(options.todoId);
+  queryString += `
+  WHERE id = $${queryParams.length}
+  RETURNING *;
+  `;
+
+  return db
+    .query(queryString, queryParams)
+    .then((result) => {
+
+      console.log('result rows', result.rows);
+
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
+
+};
+
+module.exports = { getTodos, addTodo, updateTodoItem };
