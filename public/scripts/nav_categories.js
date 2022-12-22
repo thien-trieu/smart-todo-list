@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     $(".todo-view-nav-left").html(
       `<i class="${childClass}"></i>
-       <p>${categoryName}</p>
+      <p>${categoryName}</p>
       `
     );
 
