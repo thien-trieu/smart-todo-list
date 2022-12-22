@@ -21,6 +21,7 @@ const selectCategory = (taskString) => {
     input.includes('meal') ||
     input.includes('dinner') ||
     input.includes('breakfast') ||
+    input.includes('sushi') ||
     input.includes('brunch')
   ) {
     category = 'to_eat'

@@ -1,28 +1,29 @@
+require('dotenv').config();
 const axios = require('axios');
 
 const callYelp = (taskString, user) => {
   const queryString = taskString.split(' ').join('%20');
 
-
   console.log('QUERY STRING', queryString);
 
-  // const options = {
-  //   headers: {
-  //     accept: 'application/json',
-  //     Authorization: 'jI8tcWkGvSze503qbpZDTTcX03EOu_WQQTM6_szO8eItEuBqCdSr-Y8Mu51KSkjqElalp0EqHcKxRA6Zs_cwUsCvK6Ww0tkr9lANZcGqvOfflxtbPPbrRe0hkUKjY3Yx'
-  //   }
-  // };
-
-  // https://api.yelp.com/v3/businesses/search?latitude=51.04553&longitude=-114.073129&term=Bridgette%20Bar&sort_by=best_match&limit=20
-
-  axios.get(`https://api.yelp.com/v3/businesses/search?location=${user.location}&term=${taskString}&sort_by=best_match&limit=20`,
+  axios.get(`https://api.yelp.com/v3/businesses/search?location=${user.location}&term=${taskString}&radius=40000&&sort_by=best_match&limit=20`,
     {
       headers: {
+        accept: 'application/json',
         Authorization: `BEARER ${process.env.YPAPPKEY}`,
-        'Content-Type': 'application/json'
       }
     })
-    .then(response => console.log('RESPONSE', response))
+    .then(response => {
+      const businessName = response.data.businesses[0].name.toLowerCase()
+
+      if (businessName.includes(taskString)){
+        console.log('YES')
+      }
+
+      console.log('RESPONSE BUSINESS NAME', response.data.businesses[0].name.toLowerCase());
+      console.log('RESPONSE CATEGORIES', response.data.businesses[0].categories)
+
+    })
     .catch(err => console.error(err));
 
 };
@@ -31,6 +32,6 @@ const user = {
   location: 'vancouver'
 };
 
-callYelp('miku', user);
+callYelp('egg', user);
 
 module.exports = { callYelp };
