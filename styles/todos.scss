@@ -10,12 +10,10 @@ main {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    border-width: 1px 2px 2px 1px;
+    border-width: 1px 2.5px 2.5px 1px;
     border-style: solid;
     margin: 1em 0;
-    padding: .5em;
-    padding-right: 1.5em;
-    padding-left: 1.5em;
+    padding: .5em 1em .35em 1em;
     background-color: white;
     border-radius: 25px;
     opacity: 0.7;
@@ -34,7 +32,7 @@ main {
       }
 
       .todo-memo {
-        padding: 0 1em;
+        padding: 0 .5em;
       }
     }
 
@@ -56,6 +54,16 @@ main {
         }
       }
     }
+
+    // todo checkmark styling, before and after checked off list
+    .fa-circle {
+      font-size: 1.1em;
+    }
+
+    .fa-circle-check {
+      font-size: 1.1em;
+    }
+
 
   }
 }
