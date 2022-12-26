@@ -8,7 +8,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getTodos, addTodo } = require('../db/queries/todos');
+const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
 const { callWolfram } = require('../services/apis/wolfram');
 
 router.get('/', (req, res) => {
@@ -30,8 +30,19 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/update', (req, res) => {
+  console.log('TODO UPDATED 1', req.body);
 
+  updateTodoItem(req.body)
+    .then((task)=> {
+      console.log('UPDATED TASK', task);
+      res.json(task);
+      return;
+    });
+});
+
+router.post('/', (req, res) => {
+  console.log('called too');
   //** Use APIs HERE to get the category name */
 
   const wolframRes = callWolfram(req.body.newTodo)
@@ -65,5 +76,7 @@ router.post('/', (req, res) => {
       return;
     });
 });
+
+
 
 module.exports = router;
