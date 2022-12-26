@@ -34,6 +34,7 @@ main {
       .todo-memo {
         padding: 0 .5em;
       }
+
     }
 
     .right-side {
@@ -77,6 +78,8 @@ main {
   border-radius: 25px;
 }
 
+
+
 .todolist:hover {
   box-shadow: 6px 4px 9px #635197;
 }
@@ -114,10 +117,18 @@ main {
       padding: 0.3em 0 0.3em 1.5em;
     }
 
+    #searchBox {
+      outline: none;
+    }
+
     i {
       position: absolute;
       padding: 0.3em;
     }
+  }
+
+  form:hover {
+    box-shadow: 6px 4px 9px #635197;
   }
 }
 
@@ -150,10 +161,17 @@ main {
       width: 100%;
       padding: 0.3em 0 0.3em 2em;
       border: none;
-
     }
+
+    // Removes outline of new memo bar when adding a new to do note
+    #newTodo:focus {
+      outline: none;
+    }
+
   }
 }
+
+
 
 .todo-view-nav-right {
 
