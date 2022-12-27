@@ -67,6 +67,7 @@ const addTodo = (newTask) => {
     });
 };
 
+
 const updateTodoItem = (options) => {
 //{ completion_status: 'true', todoId: '3' }
 
