@@ -31,11 +31,11 @@ const validator = [
       const result = getUserByEmail(email).then((data)=>{
         user = data[0];
         if (user === undefined) {
-          throw new Error("The user does not exist.");
+          throw new Error("Invalid credentials.");
         }
         const passwordMatch = bcrypt.compareSync(value, user.password);
         if (!passwordMatch) {
-          throw new Error("Passwords do not match.");
+          throw new Error("Invalid credentials.");
         }
         return Promise.resolve(true);
       });

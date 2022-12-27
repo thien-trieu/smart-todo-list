@@ -47,7 +47,6 @@ $(document).ready(function() {
     const updateDatabase = function(value, dbColumn) {
 
       if (todoClass === 'todo-category') dbColumn = 'categories.name';
-
       console.log('DB COLUMN', dbColumn);
 
       const data = {
