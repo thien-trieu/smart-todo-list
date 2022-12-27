@@ -1,5 +1,6 @@
 const db = require('../connection');
 
+// This pulls all of the existing todo memo data
 const getTodos = (options, userId) => {
   console.log('OPTIONS', options);
   const queryParams = [userId];
@@ -11,6 +12,7 @@ const getTodos = (options, userId) => {
     WHERE users.id = $1
   `;
 
+  // This reveals only todos matching search bar strings
   if (options.searchStr) {
     queryParams.push(options.searchStr.toLowerCase());
     queryString += `
@@ -19,6 +21,7 @@ const getTodos = (options, userId) => {
       `;
   }
 
+  // This filters memo items by category type
   if (options.categoryId) {
     queryParams.push(options.categoryId);
     queryString += `
@@ -39,6 +42,7 @@ const getTodos = (options, userId) => {
 
 };
 
+// This creates variables to store what's being added into the query string below
 const addTodo = (newTask) => {
   const values = [
     newTask.memo_details,
@@ -46,6 +50,7 @@ const addTodo = (newTask) => {
     newTask.categoryId
   ];
 
+  // Inserts updated todo memo data into the database
   const queryString = `
     INSERT INTO todo_items (memo_details, user_id, category_id)
     VALUES ($1, $2, $3)
@@ -68,8 +73,8 @@ const updateTodoItem = (options) => {
   const queryParams = [];
   //get userId from the cookie
   let queryString = `
-     UPDATE todo_items
-     `;
+    UPDATE todo_items
+    `;
 
   if (options.memo_details) {
     queryParams.push(options.memo_details);

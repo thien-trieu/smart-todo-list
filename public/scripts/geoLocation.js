@@ -1,36 +1,61 @@
-// function script to find user's general location
-const findUserLocation = () => {
+$(document).ready(function()  {
 
-  const locationStatus = document.querySelector('.locationStatus');
+  // const locationStatus = $('.locationStatus');
 
-
-  // After user allows location data to be shared, this pulls the latitude and longitude from the userPosition and stores them in their own variables
-  const success = (userPosition) => {
+  navigator.geolocation.getCurrentPosition((userPosition) => {
     console.log(userPosition);
     const latitude = userPosition.coords.latitude;
     const longitude = userPosition.coords.longitude;
     console.log(`Latitude is ${latitude} and Longitude is ${longitude}`);
 
-  // uses "Big Data Cloud" free location API and passes in the user's latitude and longitude
-  const geolocationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+    const geolocationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-// Fetches the geo data using the API URL above in JSON format
-fetch(geolocationUrl)
-  .then(res => res.json())
-  .then(data => {
-    locationStatus.textContent = data.city;
+    $.get(geolocationUrl, (data) => {
+      $('.locationStatus').text(data.city);
+      console.log(`Your current city is ${data.city}`);
+    }, 'json')
+
+  }, ()  =>  {
+    $('.locationStatus').text("Unable to automatically update your location.")
   });
 
-  };
+
+
+
+  })
+
+//   // function script to find user's general location
+// const findUserLocation = () => {
+
+//   // const locationStatus = document.querySelector('.locationStatus');
 
 
 
 
-const error = ()  =>  {
-  locationStatus.textContent = "Unable to locate your location.";
-}
+//   // uses "Big Data Cloud" free location API and passes in the user's latitude and longitude
+//   const geolocationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-  navigator.geolocation.getCurrentPosition(success, error);
-}
+// // Fetches the geo data using the API URL above in JSON format
+  // fetch(geolocationUrl)
+  // .then(res => res.json())
+  // .then(data => {
+  //   locationStatus.textContent = data.city;
+  //   console.log(`Your current city is ${data.city}`);
+  // });
 
-document.querySelector('.find-city').addEventListener('click', findUserLocation);
+//   };
+
+
+
+// const error = ()  =>  {
+//   locationStatus.textContent = "Unable to locate your location.";
+// }
+
+
+// }
+
+// document.querySelector('.find-city').addEventListener('click', findUserLocation);
+
+// })
+
+
