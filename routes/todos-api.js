@@ -7,8 +7,8 @@
 
 
 const express = require('express');
-const router  = express.Router();
-const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
+const router = express.Router();
+const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
 const { callWolfram } = require('../services/apis/wolfram');
 
 router.get('/', (req, res) => {
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  const options = {searchStr, categoryId};
+  const options = { searchStr, categoryId };
 
   getTodos(options, userId)
     .then(todos => {
@@ -34,10 +34,17 @@ router.post('/update', (req, res) => {
   console.log('TODO UPDATED 1', req.body);
 
   updateTodoItem(req.body)
-    .then((task)=> {
+    .then((task) => {
       console.log('UPDATED TASK', task);
       res.json(task);
       return;
+    });
+});
+
+router.post('/delete', (req, res) => {
+
+  deleteToDo(req.body.todoId).then(() => {
+      res.redirect('/');
     });
 });
 
@@ -70,7 +77,7 @@ router.post('/', (req, res) => {
   };
 
   addTodo(newTask)
-    .then((task)=> {
+    .then((task) => {
       console.log('NEW TASK', task);
       res.json(task);
       return;

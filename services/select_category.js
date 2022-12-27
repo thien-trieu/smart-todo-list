@@ -53,7 +53,7 @@ const selectCategory = (taskString) => {
   return category
 }
 
-console.log(selectCategory('pick up things at the market'))
+// console.log(selectCategory('pick up things at the market'))
 
 
 module.exports = {  selectCategory };
