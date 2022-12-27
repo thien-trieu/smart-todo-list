@@ -106,4 +106,26 @@ const updateTodoItem = (options) => {
 
 };
 
-module.exports = { getTodos, addTodo, updateTodoItem };
+
+const deleteToDo = (todoId) => {
+
+  console.log('TODO TASK ID', todoId)
+  const queryString = `DELETE FROM todo_items
+  WHERE ID = $1;`
+
+  return db
+  .query(queryString, [todoId])
+  .then((result) => {
+
+    console.log('result rows', result.rows);
+
+    return result.rows[0];
+  })
+  .catch((err) => {
+    console.log(err.message);
+    return null;
+  });
+
+
+}
+module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };

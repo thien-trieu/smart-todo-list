@@ -81,5 +81,33 @@ $(document).ready(function() {
         $(this).next().attr("value", originalText).show().focus();
 
       });
-  };
+
+    $('.fa-trash-can').click(function() {
+      todoId = $(this).closest('article').attr("id");
+     
+      $.post('/api/todos/delete', {todoId});
+      console.log(todoId)
+
+    });
+    };
+
+
+
+
+
+
+    // $('.fa-trash-can').on('click', () => {
+    //   console.log($('.fa-trash-can'));
+    //   const values = {
+    //     todoId: 1
+    //   }
+    //   console.log('TODO ID', values)
+    //   $.post('/api/todos/delete', values,
+    //     function(data) {
+    //       console.log('Got this back!!!!!!!', data);
+    //     }
+    //   );
+    // });
+
+
 });
