@@ -1,3 +1,4 @@
+
 $(document).ready(function()  {
 
   // const locationStatus = $('.locationStatus');
@@ -13,10 +14,11 @@ $(document).ready(function()  {
     $.get(geolocationUrl, (data) => {
       $('.locationStatus').text(data.city);
       console.log(`Your current city is ${data.city}`);
-    })
+      $('#locationField').val(data.city);
+    }, 'json')
 
   }, ()  =>  {
-    $('.locationStatus').text("Unable to automatically update your location.")
+    $('#locationField').attr("placeholder", "Type your City here")
   });
 
 
