@@ -81,6 +81,7 @@ $(document).ready(function() {
 
       });
 
+    // delete request will hide todo item and send a post request to update database
     $('.fa-trash-can').click(function() {
       todoId = $(this).closest('article').attr("id");
 
@@ -89,24 +90,5 @@ $(document).ready(function() {
 
     });
     };
-
-
-
-
-
-
-    // $('.fa-trash-can').on('click', () => {
-    //   console.log($('.fa-trash-can'));
-    //   const values = {
-    //     todoId: 1
-    //   }
-    //   console.log('TODO ID', values)
-    //   $.post('/api/todos/delete', values,
-    //     function(data) {
-    //       console.log('Got this back!!!!!!!', data);
-    //     }
-    //   );
-    // });
-
 
 });

@@ -42,10 +42,8 @@ router.post('/update', (req, res) => {
 });
 
 router.post('/delete', (req, res) => {
-
-  deleteToDo(req.body.todoId).then(() => {
-      res.redirect('/');
-    });
+  // sends delete query to database
+  deleteToDo(req.body.todoId)
 });
 
 router.post('/', (req, res) => {
