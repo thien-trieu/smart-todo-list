@@ -8,17 +8,17 @@
 
 const express = require('express');
 const router = express.Router();
-const { getUserById } = require('../db/queries/users');
 const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
 const { selectCategoryWithApi } = require('../services/select_category');
 
+
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
-  const categoryId = req.query.categoryId;
+  const categoryName = req.query.categoryName;
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  const options = { searchStr, categoryId };
+  const options = {searchStr, categoryName};
 
   getTodos(options, userId)
     .then(todos => {
@@ -35,8 +35,7 @@ router.post('/update', (req, res) => {
   console.log('TODO UPDATED 1', req.body);
 
   updateTodoItem(req.body)
-    .then((task) => {
-      console.log('UPDATED TASK', task);
+    .then((task)=> {
       res.json(task);
       return;
     });
@@ -50,40 +49,20 @@ router.post('/delete', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.session.userID;
+  const results = selectCategoryWithApi(req.body.newTodo, userId);
+  results.then(categoryName => {
+    const newTask = {
+      'memo_details': req.body.newTodo,
+      userId,
+      categoryName
+    };
 
-  getUserById(userId)
-    .then(user => {
-
-      async function task() {
-        const categoryName = await selectCategoryWithApi(req.body.newTodo, user);
-        const newTask = {
-          memo_details: req.body.newTodo,
-          userId,
-          categoryName
-        };
-        console.log(categoryName);
-        return newTask;
-
-      }
-
-      task()
-        .then(newTask => addTodo(newTask))
-        .then((task) => {
-          console.log('NEW TASK', task);
-          res.json(task);
-          return;
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-
+    addTodo(newTask)
+      .then((task)=> {
+        res.json(task);
+        return;
+      });
+  });
 });
-
-
 
 module.exports = router;

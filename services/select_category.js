@@ -1,5 +1,6 @@
 const { callWolfram } = require('./apis/wolfram');
 const { callYelp } = require('./apis/yelp');
+const { getUserById } = require('../db/queries/users');
 
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();
@@ -37,6 +38,7 @@ const selectCategory = (taskString) => {
     input.includes('cafes') ||
     input.includes('bakery') ||
     input.includes('bakeries') ||
+    input.includes('lunch') ||
     input.includes('brunch') ||
     input.includes('pizza') ||
     input.includes('burgers')
@@ -64,7 +66,7 @@ const selectCategory = (taskString) => {
   return category;
 };
 
-const selectCategoryWithApi = (taskString, user) => {
+const selectCategoryWithApi = (taskString, userId) => {
   const input = taskString.toLowerCase();
 
   let category = selectCategory(input);
@@ -120,33 +122,34 @@ const selectCategoryWithApi = (taskString, user) => {
 
           console.log('DONE WITH Wolfram - Current category:', category);
 
-          console.log('Passing user to yelp', user);
+          console.log('Passing user to yelp', userId);
 
           console.log('Time to call yelp...');
 
-          return callYelp(input, user)
-            .then(res => {
-              console.log('Got back the yelp categories object: ', res);
+          return getUserFromDB(userId)
+            .then(user => {
+              return callYelp(input, user)
+                .then(res => {
 
+                  console.log('Got back the yelp categories object: ', res);
+                  for (const result of res) {
+                    console.log('Yelp, Before running through selectCategory function..', category);
+                    console.log('Yelp alias:', result.alias);
 
+                    category = selectCategory(result.alias);
 
-              for (const result of res) {
-                console.log('Yelp, Before running through selectCategory function..', category);
-                console.log('Yelp alias:', result.alias);
+                    console.log('After:', category);
 
-                category = selectCategory(result.alias);
+                    if (category) {
 
-                console.log('After:', category);
+                      console.log('Got a category: ', category);
+                      return category;
+                    }
 
-                if (category) {
-
-                  console.log('Got a category: ', category);
+                  }
+                  console.log('End of Yelp loop....', category);
                   return category;
-                }
-
-              }
-              console.log('End of Yelp loop....', category);
-              return category;
+                });
             });
         }
         return category;
@@ -154,5 +157,28 @@ const selectCategoryWithApi = (taskString, user) => {
 
   }
 };
+
+const getUserFromDB = (userId) => {
+  return getUserById(userId)
+    .then(user => {
+      console.log('USER:', user);
+      return user;
+    });
+};
+
+//     async function task() {
+//       const categoryName = await selectCategoryWithApi(req.body.newTodo, user);
+
+//       const newTask = {
+//         memo_details: req.body.newTodo,
+//         userId,
+//         categoryName
+//       };
+//       console.log(categoryName);
+//       return newTask;
+
+//     }
+//   }
+// };
 
 module.exports = { selectCategory, selectCategoryWithApi };

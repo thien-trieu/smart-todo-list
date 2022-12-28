@@ -3,11 +3,11 @@ const axios = require('axios');
 // const { selectCategory } = require('../select_category');
 
 const callYelp = (taskString, user) => {
-
-  console.log('Got the user info!', user)
+  console.log('taskString', taskString);
+  console.log('Got the user info!', user);
   const queryString = taskString.split(' ').join('%20');
   const location = user.location.split(' ').join('%20');
-
+  
   return axios.get(`https://api.yelp.com/v3/businesses/search?location=${location}&term=${queryString}&radius=40000&&sort_by=best_match&limit=20`,
     {
       headers: {
@@ -22,7 +22,7 @@ const callYelp = (taskString, user) => {
       console.log('RESPONSE BUSINESS NAME', res.data.businesses[0].name.toLowerCase());
       console.log('RESPONSE CATEGORIES', res.data.businesses[0].categories);
 
-      return categories
+      return categories;
 
       // let category = null;
 
