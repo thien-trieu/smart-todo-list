@@ -11,17 +11,18 @@ $(document).ready(function() {
       const status = todos[index].completion_status;
       const memo = todos[index].memo_details;
       const categoryName = todos[index].category_name;
+      const categoryId = todos[index].category_id;
       const todo = {
         id,
         status,
         memo,
-        categoryName
+        categoryName,
+        categoryId
       };
       const todoElement = createTodo(todo);
       $("#todos-container").prepend(todoElement);
     }
 
-    // $('.todo-id').hide();
     todoEdits();
   };
 
@@ -43,13 +44,13 @@ $(document).ready(function() {
       </div>
       <div class="right-side">
         <div class="todo-category">
-        <select name="" id="categories-dropdown">
-          <option value="" selected>${todo.categoryName}</option>
-          <option value="1">to watch</option>
-          <option value="2">to eat</option>
-          <option value="3">to read</option>
-          <option value="4">to buy</option>
-        </select>
+          <select name="" class="categories-dropdown">
+            <option catid="${todo.categoryId}" value="${todo.categoryName}" selected>${todo.categoryName}</option>
+            <option value="watch">watch</option>
+            <option value="eat">eat</option>
+            <option value="read">read</option>
+            <option value="buy">buy</option>
+          </select>
         </div>
         <div class="todo-options">
           <i class="fa-solid fa-pen"></i>

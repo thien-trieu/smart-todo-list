@@ -3,23 +3,25 @@ $(document).ready(function() {
   $('#nav-categories').click(function(e) {
     const categoryName = e.target.id;
     const childClass = $(e.target).attr('class');
+    console.log(categoryName, childClass);
 
-    const categoriesId = {
-      'to-watch': 1,
-      'to-eat': 2,
-      'to-read': 3,
-      'to-buy': 4
-    };
+    if (categoryName === 'nav-categories') return;
 
-    const data = {
-      categoryId: categoriesId[categoryName]
-    };
+    const upperCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).toLowerCase();
+    const actionLabel = categoryName !== 'inbox' ? 'To' : '';
 
-    $(".todo-view-nav-left").html(
+    $(".todo-nav-left").html(
       `<i class="${childClass}"></i>
-      <p>${categoryName}</p>
-      `
+      <span> ${actionLabel} ${upperCategoryName}</span>`
     );
+
+    let data;
+
+    if (categoryName !== 'inbox') {
+      data = {
+        categoryName
+      };
+    }
 
     $.get("/api/todos", data,
       function(data) {

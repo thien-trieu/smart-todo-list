@@ -8,16 +8,16 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
+const { getTodos, addTodo,  updateTodoItem, deleteToDo} = require('../db/queries/todos');
 const { selectCategory } = require('../services/select_category');
 
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
-  const categoryId = req.query.categoryId;
+  const categoryName = req.query.categoryName;
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  const options = {searchStr, categoryId};
+  const options = {searchStr, categoryName};
 
   getTodos(options, userId)
     .then(todos => {
@@ -39,6 +39,13 @@ router.post('/update', (req, res) => {
       res.json(task);
       return;
     });
+});
+
+router.post('/delete', (req, res) => {
+
+  deleteToDo(req.body.todoId).then(() => {
+    res.redirect('/');
+  });
 });
 
 router.post('/', (req, res) => {

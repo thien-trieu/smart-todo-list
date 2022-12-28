@@ -27,6 +27,7 @@ const selectCategory = (taskString) => {
     input.includes('cafes') ||
     input.includes('bakery') ||
     input.includes('bakeries') ||
+    input.includes('lunch') ||
     input.includes('brunch')
   ) {
     category = 'eat';

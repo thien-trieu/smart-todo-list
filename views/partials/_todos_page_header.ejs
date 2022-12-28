@@ -1,18 +1,19 @@
 <!-- Todos page - Navigation bar -->
-<section class="todo-view-nav">
-  <div class="todo-view-nav-left">
+<section class="todo-nav">
+  <div class="todo-nav-left">
     <i class="fa-solid fa-inbox"></i>
-    <p>Inbox</p>
+    <span>Inbox</span>
   </div>
-  <form onsubmit="event.preventDefault()">
+  <form>
     <i class="fa-solid fa-magnifying-glass"></i>
     <input id="searchBox" type="text" placeholder="Search existing Smart To-Do tasks here">
   </form>
-  <div id="nav-categories" class="todo-view-nav-right">
-    <i id="to-eat" class="fa-solid fa-utensils"></i>
-    <i id="to-read" class="fa-solid fa-book"></i>
-    <i id="to-watch" class="fa-solid fa-film"></i>
-    <i id="to-buy" class="fa-solid fa-basket-shopping"></i>
+  <div id="nav-categories" class="todo-nav-right">
+    <i id="inbox" class="fa-solid fa-inbox"></i>
+    <i id="eat" class="fa-solid fa-utensils"></i>
+    <i id="read" class="fa-solid fa-book"></i>
+    <i id="watch" class="fa-solid fa-film"></i>
+    <i id="buy" class="fa-solid fa-basket-shopping"></i>
   </div>
 </section>
 
@@ -27,4 +28,3 @@
   </section>
   <section id="todos-container"></section>
 </section>
-
