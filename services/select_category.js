@@ -1,5 +1,7 @@
+const callWolfram = require('./apis/wolfram');
+
 const selectCategory = (taskString) => {
-  const input = taskString.toLowerCase()
+  const input = taskString.toLowerCase();
 
   let category = null;
 
@@ -10,7 +12,7 @@ const selectCategory = (taskString) => {
     input.includes('tv') ||
     input.includes('episode')
   ) {
-    category = 'watch'
+    category = 'watch';
   } else if (
     input.includes('eat') ||
     input.includes('resturant') ||
@@ -27,7 +29,7 @@ const selectCategory = (taskString) => {
     input.includes('bakeries') ||
     input.includes('brunch')
   ) {
-    category = 'eat'
+    category = 'eat';
   } else if (
     input.includes('read') ||
     input.includes('book') ||
@@ -36,7 +38,7 @@ const selectCategory = (taskString) => {
     input.includes('report') ||
     input.includes('textbook')
   ) {
-    category = 'read'
+    category = 'read';
   } else if (
     input.includes('buy') ||
     input.includes('get') ||
@@ -47,18 +49,29 @@ const selectCategory = (taskString) => {
     input.includes('store') ||
     input.includes('market')
   ) {
-    category = 'buy'
+    category = 'buy';
   }
 
-  return category
-}
+  if (!category) {
+    callWolfram(input)
+      .then(response => {
 
-// console.log(selectCategory('pick up things at the market'))
+        // ExpandedFood
+        // ConsumerProductsPTE
+        // Book
+        // Financial
 
 // const wolframRes = callWolfram(req.body.newTodo)
 // .then(response => {
 //   console.log('JSON FROM WOLFRAM', response);
 // });
 
+
+
+        console.log('JSON FROM WOLFRAM', response);
+      });
+  }
+  return category;
+};
 
 module.exports = {  selectCategory };

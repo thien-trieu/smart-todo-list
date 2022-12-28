@@ -9,7 +9,6 @@
 const express = require('express');
 const router  = express.Router();
 const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
-const { callWolfram } = require('../services/apis/wolfram');
 const { selectCategory } = require('../services/select_category');
 
 router.get('/', (req, res) => {
@@ -46,22 +45,12 @@ router.post('/', (req, res) => {
   console.log('called too');
   //** Use APIs HERE to get the category name */
 
-const categoryName = selectCategory(req.body.newTodo);
+  const categoryName = selectCategory(req.body.newTodo);
   console.log(`Category Name is ${categoryName}`);
 
 
   console.log(req.body.newTodo);
   const userId = req.session.userID;
-  // const catname = 'Film / Series'; //**** Category name from API helper functions ***/
-
-  // const categoriesId = {
-  //   'Film / Series': 1,
-  //   'Restaurants, cafes, etc.': 2,
-  //   'Books': 3,
-  //   'Products': 4
-  // };
-
-  // const catId = categoriesId[catname];
   const newTask = {
     memo_details: req.body.newTodo,
     userId,

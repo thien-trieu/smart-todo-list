@@ -42,7 +42,7 @@ const getTodos = (options, userId) => {
 
 };
 
-const categoryCall = function (catName) {
+const categoryCall = function(catName) {
 
   console.log(`catName is ${catName}`);
 
@@ -50,22 +50,22 @@ const categoryCall = function (catName) {
   SELECT *
   FROM categories
   WHERE name = $1;
-  `
+  `;
 
   console.log(`querystring is ${queryString}`);
 
   return db
     .query(queryString, [catName])
     .then((result) => {
-      console.log(`Result is ${json.stringify(result)}`)
-      console.log(`Result.rows is ${result.rows}`)
-      return result.rows[0];
+      console.log(`Result is ${JSON.stringify(result.rows)}`);
+      console.log(`Result.rows is ${result.rows[0].id}`);
+      return result.rows[0].id;
     })
     .catch((err) => {
       console.log(err.message);
       return null;
     });
-}
+};
 
 
 
@@ -74,61 +74,40 @@ const categoryCall = function (catName) {
 const addTodo = (newTask) => {
   const values = [
     newTask.memo_details,
-    newTask.userId,
-    newTask.categoryName,
+    newTask.userId
   ];
 
-  categoryCall(newTask.categoryName)
+  return categoryCall(newTask.categoryName)
     .then((catID) => {
+      values.push(catID);
 
-      console.log(`CatID is ${catID}`)
-  values[2] = catID;
-  console.log(`Values after addTodo is run is ${values}`)
+      // Inserts updated todo memo data into the database
+      const queryString = `
+      INSERT INTO todo_items (memo_details, user_id, category_id)
+      VALUES ($1, $2, $3)
+      RETURNING *;`;
+
+      return db
+        .query(queryString, values)
+        .then((result) => {
+          console.log("RESULT FROM DB", result.rows[0]);
 
 
 
 
-  // Inserts updated todo memo data into the database
-  const queryString = `
-    INSERT INTO todo_items (memo_details, user_id, category_id)
-    VALUES ($1, $2, $3)
-    RETURNING *;`;
+          const newTodo = result.rows[0];
+          newTodo['category_name'] = newTask.categoryName;
 
-  return db
-    .query(queryString, values)
-    .then((result) => {
-      return result.rows[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
-      return null;
+
+          return newTodo;
+        })
+        .catch((err) => {
+          console.log(err.message);
+          return null;
+        });
     });
-  })
 };
 
-//   console.log(`Category ID is ${categoryId}`)
-//   values[2] = categoryId;
-//   console.log(`Values after addTodo is run is ${values}`)
-
-
-
-
-//   // Inserts updated todo memo data into the database
-//   const queryString = `
-//     INSERT INTO todo_items (memo_details, user_id, category_id)
-//     VALUES ($1, $2, $3)
-//     RETURNING *;`;
-
-//   return db
-//     .query(queryString, values)
-//     .then((result) => {
-//       return result.rows[0];
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//       return null;
-//     });
-// };
 
 
 const updateTodoItem = (options) => {
@@ -178,23 +157,23 @@ const updateTodoItem = (options) => {
 
 const deleteToDo = (todoId) => {
 
-  console.log('TODO TASK ID', todoId)
+  console.log('TODO TASK ID', todoId);
   const queryString = `DELETE FROM todo_items
-  WHERE ID = $1;`
+  WHERE ID = $1;`;
 
   return db
-  .query(queryString, [todoId])
-  .then((result) => {
+    .query(queryString, [todoId])
+    .then((result) => {
 
-    console.log('result rows', result.rows);
+      console.log('result rows', result.rows);
 
-    return result.rows[0];
-  })
-  .catch((err) => {
-    console.log(err.message);
-    return null;
-  });
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
 
 
-}
+};
 module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };
