@@ -7,9 +7,10 @@
 
 
 const express = require('express');
-const router  = express.Router();
-const { getTodos, addTodo,  updateTodoItem, deleteToDo } = require('../db/queries/todos');
-const { selectCategory } = require('../services/select_category');
+const router = express.Router();
+const { getUserById } = require('../db/queries/users');
+const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
+const { selectCategory, selectCategoryWithApi } = require('../services/select_category');
 
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  const options = {searchStr, categoryId};
+  const options = { searchStr, categoryId };
 
   getTodos(options, userId)
     .then(todos => {
@@ -34,7 +35,7 @@ router.post('/update', (req, res) => {
   console.log('TODO UPDATED 1', req.body);
 
   updateTodoItem(req.body)
-    .then((task)=> {
+    .then((task) => {
       console.log('UPDATED TASK', task);
       res.json(task);
       return;
@@ -43,31 +44,49 @@ router.post('/update', (req, res) => {
 
 router.post('/delete', (req, res) => {
   // sends delete query to database
-  deleteToDo(req.body.todoId)
+  deleteToDo(req.body.todoId);
 });
 
+
 router.post('/', (req, res) => {
-  console.log('called too');
-  //** Use APIs HERE to get the category name */
-
-  const categoryName = selectCategory(req.body.newTodo);
-  console.log(`Category Name is ${categoryName}`);
-
-
-  console.log(req.body.newTodo);
   const userId = req.session.userID;
-  const newTask = {
-    memo_details: req.body.newTodo,
-    userId,
-    categoryName
-  };
 
-  addTodo(newTask)
-    .then((task)=> {
-      console.log('NEW TASK', task);
-      res.json(task);
-      return;
+  getUserById(userId)
+    .then(user => {
+      
+      async function task() {
+        const categoryName = await selectCategoryWithApi(req.body.newTodo, user);
+        const newTask = {
+          memo_details: req.body.newTodo,
+          userId,
+          categoryName
+        };
+        console.log(categoryName);
+        return newTask;
+
+      }
+
+      task()
+        .then(newTask => addTodo(newTask))
+        .then((task) => {
+          console.log('NEW TASK', task);
+          res.json(task);
+          return;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+    })
+    .catch((err) => {
+      console.error(err);
     });
+
+
+
+
+
+
 });
 
 

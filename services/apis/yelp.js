@@ -1,48 +1,64 @@
 require('dotenv').config();
 const axios = require('axios');
-const { selectCategory } = require('../select_category')
+// const { selectCategory } = require('../select_category');
 
 const callYelp = (taskString, user) => {
+
+  console.log('Got the user info!', user)
   const queryString = taskString.split(' ').join('%20');
-  const location = user.location.split(' ').join('%20')
+  const location = user.location.split(' ').join('%20');
 
-  console.log('QUERY STRING', queryString);
-
-  axios.get(`https://api.yelp.com/v3/businesses/search?location=${location}&term=${queryString}&radius=40000&&sort_by=best_match&limit=20`,
+  return axios.get(`https://api.yelp.com/v3/businesses/search?location=${location}&term=${queryString}&radius=40000&&sort_by=best_match&limit=20`,
     {
       headers: {
         accept: 'application/json',
         Authorization: `BEARER ${process.env.YPAPPKEY}`,
       }
     })
-    .then(response => {
-      const businessName = response.data.businesses[0].name.toLowerCase();
-      const categories = response.data.businesses[0].categories
+    .then(res => {
+      const businessName = res.data.businesses[0].name.toLowerCase();
+      const categories = res.data.businesses[0].categories;
 
-      if (businessName.includes(taskString)) {
-        console.log('YES');
-      }
+      console.log('RESPONSE BUSINESS NAME', res.data.businesses[0].name.toLowerCase());
+      console.log('RESPONSE CATEGORIES', res.data.businesses[0].categories);
 
-      console.log('RESPONSE BUSINESS NAME', response.data.businesses[0].name.toLowerCase());
-      console.log('RESPONSE CATEGORIES', response.data.businesses[0].categories);
+      return categories
 
+      // let category = null;
 
-      let result = ""
-      for (const category of categories){
+      // check for business name match
+      // if (taskString.includes(businessName)) {
+      //   console.log('YES name matches!');
 
-        result = selectCategory(category.alias)
+      //   category = 'eat'
 
-      }
-      console.log('SELECT CAT RESULT', result)
+      //   console.log('Results if business name matches:', category)
+      //   return category
+      // }
+
+      // for (const cat of categories) {
+      //   console.log('Yelp, Before running through selectCategory function..', category)
+      //   console.log('Yelp alias:', cat.alias)
+
+      //   category = selectCategory(cat.alias);
+
+      //   console.log('After:', category);
+
+      //   if (category) {
+      //     return category;
+      //   }
+      // }
+
+      // return category;
     })
     .catch(err => console.error(err));
 
 };
 
-const user = {
-  location: 'las vegas'
-};
+// const user = {
+//   location: 'vancouver'
+// };
 
-callYelp("get bananas", user);
+// callYelp("keyboard", user);
 
 module.exports = { callYelp };

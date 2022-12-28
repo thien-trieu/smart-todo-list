@@ -2,7 +2,7 @@ const db = require('../connection');
 
 // This pulls all of the existing todo memo data
 const getTodos = (options, userId) => {
-  console.log('OPTIONS', options);
+  // console.log('OPTIONS', options);
   const queryParams = [userId];
   let queryString = `
     SELECT todo_items.*, categories.name AS category_name
@@ -29,8 +29,8 @@ const getTodos = (options, userId) => {
       `;
   }
 
-  console.log('queryParams', queryParams);
-  console.log('queryString', queryString);
+  // console.log('queryParams', queryParams);
+  // console.log('queryString', queryString);
 
   return db.query(queryString, queryParams)
     .then(data => {
@@ -44,7 +44,7 @@ const getTodos = (options, userId) => {
 
 const categoryCall = function(catName) {
 
-  console.log(`catName is ${catName}`);
+  // console.log(`catName is ${catName}`);
 
   const queryString = `
   SELECT *
@@ -52,7 +52,7 @@ const categoryCall = function(catName) {
   WHERE name = $1;
   `;
 
-  console.log(`querystring is ${queryString}`);
+  // console.log(`querystring is ${queryString}`);
 
   return db
     .query(queryString, [catName])
