@@ -42,30 +42,73 @@ const getTodos = (options, userId) => {
 
 };
 
-// This creates variables to store what's being added into the query string below
-const addTodo = (newTask) => {
-  const values = [
-    newTask.memo_details,
-    newTask.userId,
-    newTask.categoryId
-  ];
+const categoryCall = function(catName) {
 
-  // Inserts updated todo memo data into the database
+  console.log(`catName is ${catName}`);
+
   const queryString = `
-    INSERT INTO todo_items (memo_details, user_id, category_id)
-    VALUES ($1, $2, $3)
-    RETURNING *;`;
+  SELECT *
+  FROM categories
+  WHERE name = $1;
+  `;
+
+  console.log(`querystring is ${queryString}`);
 
   return db
-    .query(queryString, values)
+    .query(queryString, [catName])
     .then((result) => {
-      return result.rows[0];
+      console.log(`Result is ${JSON.stringify(result.rows)}`);
+      console.log(`Result.rows is ${result.rows[0].id}`);
+      return result.rows[0].id;
     })
     .catch((err) => {
       console.log(err.message);
       return null;
     });
 };
+
+
+
+
+// This creates variables to store what's being added into the query string below
+const addTodo = (newTask) => {
+  const values = [
+    newTask.memo_details,
+    newTask.userId
+  ];
+
+  return categoryCall(newTask.categoryName)
+    .then((catID) => {
+      values.push(catID);
+
+      // Inserts updated todo memo data into the database
+      const queryString = `
+      INSERT INTO todo_items (memo_details, user_id, category_id)
+      VALUES ($1, $2, $3)
+      RETURNING *;`;
+
+      return db
+        .query(queryString, values)
+        .then((result) => {
+          console.log("RESULT FROM DB", result.rows[0]);
+
+
+
+
+          const newTodo = result.rows[0];
+          newTodo['category_name'] = newTask.categoryName;
+
+
+          return newTodo;
+        })
+        .catch((err) => {
+          console.log(err.message);
+          return null;
+        });
+    });
+};
+
+
 
 const updateTodoItem = (options) => {
 //{ completion_status: 'true', todoId: '3' }
@@ -114,23 +157,23 @@ const updateTodoItem = (options) => {
 
 const deleteToDo = (todoId) => {
 
-  console.log('TODO TASK ID', todoId)
+  console.log('TODO TASK ID', todoId);
   const queryString = `DELETE FROM todo_items
-  WHERE ID = $1;`
+  WHERE ID = $1;`;
 
   return db
-  .query(queryString, [todoId])
-  .then((result) => {
+    .query(queryString, [todoId])
+    .then((result) => {
 
-    console.log('result rows', result.rows);
+      console.log('result rows', result.rows);
 
-    return result.rows[0];
-  })
-  .catch((err) => {
-    console.log(err.message);
-    return null;
-  });
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
 
 
-}
+};
 module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };
