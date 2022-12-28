@@ -7,15 +7,15 @@ $(document).ready(function() {
   //
   window.todoEdits = function() {
     $('.memo-text, .todo-status').click(function() {
+
       todoClass = $(this).attr("class");
       todoId = $(this).closest('article').attr("id");
       if (todoClass === 'todo-status') {
         todoClass = $(this).children().attr("class");
-        updateTodoStatus();
+        updateTodoStatus($(this));
       }
 
       if (todoClass === 'categories-dropdown') {
-
         todoClass = $(this).children().attr("class");
       }
 
@@ -50,11 +50,23 @@ $(document).ready(function() {
     });
   };
 
-  const updateTodoStatus = function() {
+  const updateTodoStatus = function($this) {
+    console.log('this', $this.children());
     const dbColumn = 'completion_status';
-    let status = false;
-    console.log(todoClass);
-    if (todoClass === 'fa-regular fa-circle') status = true;
+    let status;
+    // if (todoClass === 'fa-regular fa-circle') status = true;
+    if (todoClass === 'fa-regular fa-circle') {
+      status = true;
+      $this.children().removeClass('fa-circle').addClass('fa-circle-check');
+      $this.next().addClass('completed-todo');
+    }
+
+    if (todoClass === 'fa-regular fa-circle-check') {
+      status = false;
+      $this.children().removeClass('fa-circle-check').addClass('fa-circle');
+      $this.next().removeClass('completed-todo');
+    }
+
     updateDatabase(status, dbColumn);
   };
 
@@ -72,12 +84,11 @@ $(document).ready(function() {
 
   const updateDatabase = function(value, dbColumn) {
     if (todoClass === 'todo-category') dbColumn = 'categories.name';
-    console.log('DB COLUMN', dbColumn);
     const data = {
       [dbColumn]: value,
       todoId,
     };
-    console.log(data);
+
     $.post('/api/todos/update', data,
       function(data) {
         console.log('Got this back:', data);

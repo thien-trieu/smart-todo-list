@@ -35,38 +35,28 @@ router.post('/update', (req, res) => {
 
   updateTodoItem(req.body)
     .then((task)=> {
-      console.log('UPDATED TASK', task);
       res.json(task);
       return;
     });
 });
 
 router.post('/delete', (req, res) => {
-
   deleteToDo(req.body.todoId).then(() => {
     res.redirect('/');
   });
 });
 
 router.post('/', (req, res) => {
-  console.log('called too');
-  //** Use APIs HERE to get the category name */
-
   const categoryName = selectCategory(req.body.newTodo);
-  console.log(`Category Name is ${categoryName}`);
-
-
-  console.log(req.body.newTodo);
   const userId = req.session.userID;
   const newTask = {
-    memo_details: req.body.newTodo,
+    'memo_details': req.body.newTodo,
     userId,
     categoryName
   };
 
   addTodo(newTask)
     .then((task)=> {
-      console.log('NEW TASK', task);
       res.json(task);
       return;
     });

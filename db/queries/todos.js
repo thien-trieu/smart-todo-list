@@ -29,8 +29,7 @@ const getTodos = (options, userId) => {
       `;
   }
 
-  console.log('queryParams', queryParams);
-  console.log('queryString', queryString);
+  queryString += ` ORDER BY date_added`;
 
   return db.query(queryString, queryParams)
     .then(data => {
@@ -41,31 +40,6 @@ const getTodos = (options, userId) => {
     });
 
 };
-
-// const getCategoryIdFromName = (catName) => {
-
-//   console.log(`catName is ${catName}`);
-
-//   const queryString = `
-//   SELECT *
-//   FROM categories
-//   WHERE name = $1;
-//   `;
-
-//   console.log(`querystring is ${queryString}`);
-
-//   return db
-//     .query(queryString, [catName])
-//     .then((result) => {
-//       console.log(`Result is ${JSON.stringify(result.rows)}`);
-//       console.log(`Result.rows is ${result.rows[0].id}`);
-//       return result.rows[0].id;
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//       return null;
-//     });
-// };
 
 // This creates variables to store what's being added into the query string below
 const addTodo = (newTask) => {
@@ -94,18 +68,10 @@ const addTodo = (newTask) => {
       console.log(err.message);
       return null;
     });
-
-
-
 };
 
-
-
 const updateTodoItem = (options) => {
-//{ completion_status: 'true', todoId: '3' }
-
   const queryParams = [];
-  //get userId from the cookie
   let queryString = `
     UPDATE todo_items
     `;
@@ -124,8 +90,8 @@ const updateTodoItem = (options) => {
     `;
   }
 
-  if (options.category_id) {
-    queryParams.push(options.category_id);
+  if (options.category_name) {
+    queryParams.push(options.category_name);
     queryString += `
       SET category_id = (SELECT id FROM categories WHERE name = $${queryParams.length})
     `;
@@ -152,7 +118,6 @@ const updateTodoItem = (options) => {
 
 };
 
-
 const deleteToDo = (todoId) => {
 
   console.log('TODO TASK ID', todoId);
@@ -175,7 +140,4 @@ const deleteToDo = (todoId) => {
 
 };
 
-// const getCategoryIdFromName = () => {
-
-// }
 module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };

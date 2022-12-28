@@ -3,7 +3,6 @@ $(document).ready(function() {
   $('#nav-categories').click(function(e) {
     const categoryName = e.target.id;
     const childClass = $(e.target).attr('class');
-    console.log(categoryName, childClass);
 
     if (categoryName === 'nav-categories') return;
 

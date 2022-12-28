@@ -6,6 +6,7 @@
 $(document).ready(function() {
 
   window.renderTodos = function(todos) {
+
     for (const index in todos) {
       const id = todos[index].id;
       const status = todos[index].completion_status;
@@ -30,6 +31,7 @@ $(document).ready(function() {
     const complete = `<i class="fa-regular fa-circle"></i>`;
     const pending = `<i class="fa-regular fa-circle-check"></i>`;
     const status = todo.status ? pending : complete;
+    const statusClass = todo.status ? 'completed-todo' : '';
 
     let $todo = `
     <article id="${todo.id}" class="todo">
@@ -37,7 +39,7 @@ $(document).ready(function() {
         <div class="todo-status">
           ${ status }
         </div>
-        <div class="todo-memo">
+        <div class="todo-memo ${statusClass}">
           <label class="memo-text">${ todo.memo }</label>
           <input class="clickedit" type="text" />
         </div>
