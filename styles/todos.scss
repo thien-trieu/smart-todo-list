@@ -188,13 +188,13 @@ main {
 
       // TODO Category dropdown
       .todo-category {
-        padding: 0 1em;
+        padding: 0 .3em;
 
         select {
           padding: 0 0.5em;
           border: none;
           appearance: none;
-          color: grey;
+          color: rgb(63, 63, 63);
         }
       }
 
@@ -204,7 +204,7 @@ main {
 
         // Edit and Delete icons
         i {
-          color: grey;
+          color: rgb(63, 63, 63);
           cursor: pointer;
 
           &:hover {
