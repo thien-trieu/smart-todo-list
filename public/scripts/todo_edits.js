@@ -24,9 +24,25 @@ $(document).ready(function() {
       const dbColumn = 'completion_status';
       let status = false;
       console.log(todoClass);
-      if (todoClass === 'fa-regular fa-circle') status = true;
+      // if (todoClass === 'fa-regular fa-circle') status = true;
 
-      updateDatabase(status, dbColumn);
+      if (todoClass === 'fa-regular fa-circle') {
+        status = true;
+        console.log(`this is ${$(this)}`);
+        $(this).removeClass("fa-circle");
+        $(this).addClass("fa-circle-check");
+        $(".memo-text").addClass("completed-todo");
+
+      }
+
+        // Updates class to include strikethrough text on completion status true
+  // if (options.completion_status === true) {
+
+  // } else if (options.completion_status === false) {
+  //   $(".memo-text").removeClass()
+  // }
+  updateDatabase(status, dbColumn);
+
 
     };
 
@@ -83,7 +99,7 @@ $(document).ready(function() {
 
     $('.fa-trash-can').click(function() {
       todoId = $(this).closest('article').attr("id");
-     
+
       $.post('/api/todos/delete', {todoId});
       console.log(todoId)
 

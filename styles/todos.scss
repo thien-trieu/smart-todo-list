@@ -137,7 +137,11 @@ main {
 }
 
 
-
+// Text styling for completed to-do memos
+.completed-todo {
+    text-decoration: line-through;
+    color: rgb(140 135 144);
+}
 
 
 

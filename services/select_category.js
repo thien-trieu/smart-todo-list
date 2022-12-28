@@ -1,4 +1,4 @@
-const callWolfram = require('./apis/wolfram');
+const { callWolfram } = require('./apis/wolfram');
 
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();

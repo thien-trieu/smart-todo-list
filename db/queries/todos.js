@@ -139,6 +139,13 @@ const updateTodoItem = (options) => {
   RETURNING *;
   `;
 
+  // Updates class to include strikethrough text on completion status true
+  if (options.completion_status === true) {
+    $(".memo-text").addClass("completed-todo")
+  } else if (options.completion_status === false) {
+    $(".memo-text").removeClass()
+  }
+
   return db
     .query(queryString, queryParams)
     .then((result) => {
@@ -151,6 +158,7 @@ const updateTodoItem = (options) => {
       console.log(err.message);
       return null;
     });
+
 
 };
 
