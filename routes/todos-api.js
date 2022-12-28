@@ -8,7 +8,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
+const { getTodos, addTodo,  updateTodoItem, deleteToDo } = require('../db/queries/todos');
 const { selectCategory } = require('../services/select_category');
 
 router.get('/', (req, res) => {
@@ -38,6 +38,13 @@ router.post('/update', (req, res) => {
       console.log('UPDATED TASK', task);
       res.json(task);
       return;
+    });
+});
+
+router.post('/delete', (req, res) => {
+
+  deleteToDo(req.body.todoId).then(() => {
+      res.redirect('/');
     });
 });
 
