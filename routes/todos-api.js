@@ -10,7 +10,7 @@ const express = require('express');
 const router = express.Router();
 const { getUserById } = require('../db/queries/users');
 const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
-const { selectCategory, selectCategoryWithApi } = require('../services/select_category');
+const { selectCategoryWithApi } = require('../services/select_category');
 
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
 
   getUserById(userId)
     .then(user => {
-      
+
       async function task() {
         const categoryName = await selectCategoryWithApi(req.body.newTodo, user);
         const newTask = {
@@ -81,11 +81,6 @@ router.post('/', (req, res) => {
     .catch((err) => {
       console.error(err);
     });
-
-
-
-
-
 
 });
 
