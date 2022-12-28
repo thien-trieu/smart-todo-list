@@ -83,9 +83,9 @@ $(document).ready(function() {
 
     $('.fa-trash-can').click(function() {
       todoId = $(this).closest('article').attr("id");
-     
+
       $.post('/api/todos/delete', {todoId});
-      console.log(todoId)
+      $(this).closest('article').hide()
 
     });
     };
