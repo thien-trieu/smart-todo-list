@@ -13,7 +13,7 @@ $(document).ready(function()  {
     $.get(geolocationUrl, (data) => {
       $('.locationStatus').text(data.city);
       console.log(`Your current city is ${data.city}`);
-    }, 'json')
+    })
 
   }, ()  =>  {
     $('.locationStatus').text("Unable to automatically update your location.")
