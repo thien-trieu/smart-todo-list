@@ -7,9 +7,10 @@
 
 
 const express = require('express');
-const router = express.Router();
-const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
+const router  = express.Router();
+const { getTodos, addTodo,  updateTodoItem} = require('../db/queries/todos');
 const { callWolfram } = require('../services/apis/wolfram');
+const { selectCategory } = require('../services/select_category');
 
 router.get('/', (req, res) => {
   const searchStr = req.query.search;
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userID;
   if (!userId) return res.redirect("/login");
 
-  const options = { searchStr, categoryId };
+  const options = {searchStr, categoryId};
 
   getTodos(options, userId)
     .then(todos => {
@@ -34,17 +35,10 @@ router.post('/update', (req, res) => {
   console.log('TODO UPDATED 1', req.body);
 
   updateTodoItem(req.body)
-    .then((task) => {
+    .then((task)=> {
       console.log('UPDATED TASK', task);
       res.json(task);
       return;
-    });
-});
-
-router.post('/delete', (req, res) => {
-
-  deleteToDo(req.body.todoId).then(() => {
-      res.redirect('/');
     });
 });
 
@@ -52,32 +46,30 @@ router.post('/', (req, res) => {
   console.log('called too');
   //** Use APIs HERE to get the category name */
 
-  const wolframRes = callWolfram(req.body.newTodo)
-    .then(response => {
+const categoryName = selectCategory(req.body.newTodo);
+  console.log(`Category Name is ${categoryName}`);
 
-      console.log('JSON FROM WOLFRAM', response);
-    });
 
   console.log(req.body.newTodo);
   const userId = req.session.userID;
-  const catname = 'Film / Series'; //**** Category name from API helper functions ***/
+  // const catname = 'Film / Series'; //**** Category name from API helper functions ***/
 
-  const categoriesId = {
-    'Film / Series': 1,
-    'Restaurants, cafes, etc.': 2,
-    'Books': 3,
-    'Products': 4
-  };
+  // const categoriesId = {
+  //   'Film / Series': 1,
+  //   'Restaurants, cafes, etc.': 2,
+  //   'Books': 3,
+  //   'Products': 4
+  // };
 
-  const catId = categoriesId[catname];
+  // const catId = categoriesId[catname];
   const newTask = {
     memo_details: req.body.newTodo,
     userId,
-    categoryId: catId
+    categoryName
   };
 
   addTodo(newTask)
-    .then((task) => {
+    .then((task)=> {
       console.log('NEW TASK', task);
       res.json(task);
       return;

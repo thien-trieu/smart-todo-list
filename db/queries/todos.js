@@ -42,13 +42,51 @@ const getTodos = (options, userId) => {
 
 };
 
+const categoryCall = function (catName) {
+
+  console.log(`catName is ${catName}`);
+
+  const queryString = `
+  SELECT *
+  FROM categories
+  WHERE name = $1;
+  `
+
+  console.log(`querystring is ${queryString}`);
+
+  return db
+    .query(queryString, [catName])
+    .then((result) => {
+      console.log(`Result is ${json.stringify(result)}`)
+      console.log(`Result.rows is ${result.rows}`)
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return null;
+    });
+}
+
+
+
+
 // This creates variables to store what's being added into the query string below
 const addTodo = (newTask) => {
   const values = [
     newTask.memo_details,
     newTask.userId,
-    newTask.categoryId
+    newTask.categoryName,
   ];
+
+  categoryCall(newTask.categoryName)
+    .then((catID) => {
+
+      console.log(`CatID is ${catID}`)
+  values[2] = catID;
+  console.log(`Values after addTodo is run is ${values}`)
+
+
+
 
   // Inserts updated todo memo data into the database
   const queryString = `
@@ -65,7 +103,32 @@ const addTodo = (newTask) => {
       console.log(err.message);
       return null;
     });
+  })
 };
+
+//   console.log(`Category ID is ${categoryId}`)
+//   values[2] = categoryId;
+//   console.log(`Values after addTodo is run is ${values}`)
+
+
+
+
+//   // Inserts updated todo memo data into the database
+//   const queryString = `
+//     INSERT INTO todo_items (memo_details, user_id, category_id)
+//     VALUES ($1, $2, $3)
+//     RETURNING *;`;
+
+//   return db
+//     .query(queryString, values)
+//     .then((result) => {
+//       return result.rows[0];
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//       return null;
+//     });
+// };
 
 
 const updateTodoItem = (options) => {

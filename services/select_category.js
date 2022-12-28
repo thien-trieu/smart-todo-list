@@ -55,5 +55,10 @@ const selectCategory = (taskString) => {
 
 // console.log(selectCategory('pick up things at the market'))
 
+// const wolframRes = callWolfram(req.body.newTodo)
+// .then(response => {
+//   console.log('JSON FROM WOLFRAM', response);
+// });
+
 
 module.exports = {  selectCategory };
