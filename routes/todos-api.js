@@ -52,8 +52,9 @@ router.post('/', (req, res) => {
   const results = selectCategoryWithApi(req.body.newTodo, userId);
 
   console.log('RESULTS: ', results)
-  
+
   results.then(categoryName => {
+    console.log('Got the category name back from the selectCategoryWithApi:', categoryName)
     const newTask = {
       'memo_details': req.body.newTodo,
       userId,
