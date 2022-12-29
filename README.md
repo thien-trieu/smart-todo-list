@@ -5,6 +5,8 @@ When you are recommended something it's not always easy to jot it down for later
 
 The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
+![VIDEO OF CATEGORY BROWSING](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
 ## Collaborators
 
 This project was created by:
@@ -58,6 +60,26 @@ This project was created by:
 - xml-js": 1.6.11
 
 ## Features
+
+### The Landing Page
+
+The primary use of the Smart To Do app is simply to add, browse, and complete items on a to do list via a simple user interface. As to-do lists are often personalized and private, Smart To-Do utilizes an encrypted **bcryptjs** user login experience. When a user first visits our site, the following landing page will appear:
+
+![The Landing Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
+Visitors may click on the Start Here button, or the Login or Register buttons on the navigation bar's right hand side. 
+
+### The Registration Page
+
+Upon clicking Start Here or Register, users are prompted to share their name and email address, create a strong password, and to update their city. By default, if the user has allowed their location data to be collected, the city should auto-populate based on the latitude and longitude of their IP address. This utilizes the free API **"Big Data Cloud"** to return the city to the system, and the main purpose of this API is to pass the city into the Yelp API which searches local restaurant names in order to better categorize to do memos.
+
+***NOTE: Location browser data does not need to be shared and users may update their city to any location manually on this page or the Profile Edit page.***
+
+![The Registration Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
+### The Smart To-Do List
+
+
 
 
 
