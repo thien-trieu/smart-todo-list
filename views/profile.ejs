@@ -18,11 +18,9 @@
   <h1 class="signup">My Profile</h1>
 
 
-  <!-- Error handling test -->
+  <!-- Error handling -->
   <% if(errors) { %>
-
     <% for (let error in errors) { %>
-
       <p class="errMessageOff" id="errMsg">
         <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
       </p>
@@ -30,32 +28,24 @@
       <% } %>
         <% } %>
 
-
+<!-- This form allows users to edit their email or city location manually -->
   <form method="POST"  action="/profile">
     <div>
       <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
-      <!-- <br> -->
-      <!-- <input type="text" name="name" class="inputfield"> -->
     </div>
     <br>
     <div>
       <label class="menulabels profile_email">Current Email: <%= user.email %></label>
-      <!-- <br>
-      <input type="email" name="email" class="inputfield"> -->
     </div>
     <br>
     <div>
       <label class="menulabels">Change email:</label>
       <input type="email" name="email" class="inputfield" placeholder="Type new email here">
     </div>
-    <!-- TEST CODE for LOCATION BUTTON -->
     <br>
     <div>
       <label class="menulabels profile_city">Current City: <%= user.location %></label>
-      <!-- <br>
-      <input type="email" name="email" class="inputfield"> -->
     </div>
-    <!-- END OF TEST CODE -->
     <div>
       <br>
       <label class="menulabels">Change City:</label>
@@ -64,11 +54,7 @@
     <br>
       <button type="submit">Submit</button>
   </form>
-
-
-
   </main>
 
 </body>
-
 </html>
