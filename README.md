@@ -93,7 +93,7 @@ Once a user has registered or logged in, the Smart To-Do main page appears. This
 - search through existing items
 - browse to-do items by category
 - update existing items text or category
-- delete items off of their list completely
+- delete existing items from list completely
 
 Here is a detailed outline of each of these features:
 
