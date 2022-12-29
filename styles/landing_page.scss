@@ -17,9 +17,9 @@
   }
 
   .landingimg {
-    width: 30vw;
+    width: 35vw;
     position:relative;
-    top: 4.5vw;
+    top: 3.5vw;
   }
 
   h1 {
@@ -56,4 +56,8 @@
   display:flex;
   flex-direction: column;
   color:darkslategray
+}
+
+.imglicense {
+  align-self: center;
 }
