@@ -5,11 +5,8 @@ When you are recommended something it's not always easy to jot it down for later
 
 The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
-![Video of Category Browsing](
-
 https://user-images.githubusercontent.com/116989045/210008663-a0d009e3-75d9-4b09-845e-dcfc719629e0.mov
 
-)
 
 ## Collaborators
 
@@ -69,7 +66,7 @@ This project was created by:
 
 The primary use of the Smart To Do app is simply to add, browse, and complete items on a to do list via a simple user interface. As to-do lists are often personalized and private, Smart To-Do utilizes an encrypted **bcryptjs** user login experience. When a user first visits our site, the following landing page will appear:
 
-![The Landing Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+![Landing Page](https://user-images.githubusercontent.com/116989045/210008775-0b7508bd-1810-40b8-812d-3ce3d10f9abe.png)
 
 Visitors may click on the Start Here button, or the Login or Register buttons on the navigation bar's right hand side. 
 
@@ -79,13 +76,14 @@ Upon clicking Start Here or Register, users are prompted to share their name and
 
 ***NOTE: Location browser data does not need to be shared and users may update their city to any location manually on this page or the [Profile Edit](#editing-user-profiles) page.***
 
-![The Registration Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+![Registration](https://user-images.githubusercontent.com/116989045/210008819-7c955bf0-12ea-43c3-b73c-28c65a88a162.png)
+
 
 ### The Login Page
 
 Existing users may log in via the login portal using their email and password as shown below:
 
-![The Login Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+(TO ADD)
 
 ### The Smart To-Do List
 
@@ -114,19 +112,23 @@ As the task is created, the keywords within are run through included API's "Wolf
 
 Users may [edit a category](#changing-the-text-or-category-of-an-existing-smart-to-do-item) of any Smart To-Do task at any time while logged in. 
 
-![Video of Adding a New Task](VID URL GOES HERE ONCE UPLOAD COMPLETE)
+https://user-images.githubusercontent.com/116989045/210008899-30b7c2e3-ccda-4f3b-9b76-53a994d76468.mov
+
 
 #### Searching through existing Smart To-Do items
 
 Life can be busy, and as such it is normal to accumulate many To-Do items on a user's list over time. To search for existing Smart To-Do items, click on and type into the search bar. Results will automatically populate. Further sorting may be done via [browsing by category](#browsing-existing-smart-to-do-items-by-category)
 
-![Video of Searchbar](VID URL GOES HERE ONCE UPLOAD COMPLETE)
+https://user-images.githubusercontent.com/116989045/210008940-99cda943-6fd9-45b8-a6b2-d7b3810cbab8.mov
+
 
 #### Browsing existing Smart To-Do items by category
 
 Users may also browse existing Smart To-Do items by category using the navigation icons to the right of the searchbar. The leftmost icon is the inbox icon which will reveal all categorized tasks, followed by the food icon, book icon, film icon and products/buy icon respectively. Each of those icons when clicked will only show the tasks within those categories, filtering out the rest. 
 
-![Video of Category Browsing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+https://user-images.githubusercontent.com/116989045/210008967-d027aa62-d3cb-44d4-8d27-0eb5b552b994.mov
+
+
 
 #### Changing the text or category of an existing Smart To-Do item
 
@@ -134,7 +136,8 @@ If a category is assigned incorrectly or to change the category assigned to a sp
 
 To edit an existing Smart To-Do task's text, click on the text and add or remove the required changes, then press enter to save.
 
-![Video of Category changing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+https://user-images.githubusercontent.com/116989045/210009015-d8af477a-c6be-4af8-b5c6-b67311d36b96.mov
+
 
 #### Deleting a Smart To-Do item
 
@@ -144,7 +147,8 @@ To delete an item altogether, click on the trash bin icon on the rightmost side 
 
 To edit an existing user profile, a user must first be logged in to that profile. Click on the "My Profile" button in the top navigation bar. The following page will appear where the user email and location may be updated. Click "Submit" to save preferences.
 
-![Photo of Profile Edit Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+![Profile Edit Page](https://user-images.githubusercontent.com/116989045/210009042-23056760-fea1-4d97-819f-a21e8d83f816.png)
+
 
 
 
