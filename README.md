@@ -83,7 +83,7 @@ Upon clicking Start Here or Register, users are prompted to share their name and
 
 Existing users may log in via the login portal using their email and password as shown below:
 
-(TO ADD)
+![Login Page](https://user-images.githubusercontent.com/116989045/210020925-14c720d4-6788-4182-af28-6276aafe8cc7.png)
 
 ### The Smart To-Do List
 
