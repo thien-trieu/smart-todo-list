@@ -5,7 +5,11 @@ When you are recommended something it's not always easy to jot it down for later
 
 The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
-![Video of Category Browsing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+![Video of Category Browsing](
+
+https://user-images.githubusercontent.com/116989045/210008663-a0d009e3-75d9-4b09-845e-dcfc719629e0.mov
+
+)
 
 ## Collaborators
 
