@@ -50,6 +50,9 @@ router.post('/delete', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.session.userID;
   const results = selectCategoryWithApi(req.body.newTodo, userId);
+
+  console.log('RESULTS: ', results)
+  
   results.then(categoryName => {
     const newTask = {
       'memo_details': req.body.newTodo,
