@@ -77,9 +77,35 @@ Upon clicking Start Here or Register, users are prompted to share their name and
 
 ![The Registration Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
 
+### The Login Page
+
+Existing users may log in via the login portal using their email and password as shown below:
+
+![The Login Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
 ### The Smart To-Do List
 
+Once a user has registered or logged in, the Smart To-Do main page appears. This is where a user can:
 
+- create new to-do memo items
+- search through existing items
+- browse to-do items by category
+- update existing items text or category
+- delete items off of their list completely
+
+Here is a detailed outline of each of these features:
+
+#### Adding a new Smart To-Do memo item
+
+The user can create 
+
+#### Searching through existing Smart To-Do items
+
+#### Browsing existing Smart To-Do items by category
+
+#### Changing the text or category of an existing Smart To-Do item
+
+#### Deleting a Smart To-Do item
 
 
 
