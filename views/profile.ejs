@@ -39,22 +39,26 @@
     </div>
     <br>
     <div>
-      <label class="menulabels profile_email">Email: <%= user.email %></label>
+      <label class="menulabels profile_email">Current Email: <%= user.email %></label>
       <!-- <br>
       <input type="email" name="email" class="inputfield"> -->
     </div>
     <br>
     <div>
-      <label class="menulabels">Update email:</label>
-
+      <label class="menulabels">Change email:</label>
       <input type="email" name="email" class="inputfield">
     </div>
                         <!-- TEST CODE for LOCATION BUTTON -->
                         <br>
                         <div class="container">
-                          <p>Your current City is: <span class="locationStatus">(loading...)</span></p>
+                          <p class="menulabels">Current City: <span class="locationStatus">(loading...)</span></p>
                         </div>
                         <!-- END OF TEST CODE -->
+    <div>
+      <br>
+      <label class="menulabels">Change City:</label>
+      <input type="text" name="city" class="inputfield">
+    </div>
     <br>
       <button type="submit">Submit</button>
   </form>
