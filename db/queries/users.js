@@ -1,3 +1,4 @@
+const { query } = require('express');
 const db = require('../connection');
 
 const getUsers = () => {
@@ -44,17 +45,64 @@ const addUser = function(user) {
 
 };
 
-const editUserEmail = (newEmail, userID) => {
+// const editUserEmail = (newEmail, userID) => {
 
-  const queryString = `
-     UPDATE users
-     SET email = $1
-     WHERE ID = $2
-     RETURNING *;
+//   const queryString = `
+//     UPDATE users
+//     SET email = $1
+//     WHERE ID = $2
+//     RETURNING *;
+//     `
+
+//     return db
+//     .query(queryString, [newEmail, userID])
+//     .then((result) => {
+
+//       console.log('result rows', result.rows)
+
+//       return result.rows[0];
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//       return null;
+//     });
+
+// }
+
+const editUser = (options, userID)  =>  {
+
+  const values = [];
+
+  let queryString = `
+  UPDATE users
+  SET
+  `;
+
+  if (options.email)  {
+    values.push(options.email);
+    queryString += `
+    email = $${values.length}
     `
+  }
 
-    return db
-    .query(queryString, [newEmail, userID])
+  if (options.city) {
+    if (values.length === 1)  {
+      queryString += `, `;
+    }
+    values.push(options.city);
+    queryString += `
+    location = $${values.length}
+    `
+  }
+
+  values.push(userID);
+  queryString += `
+  WHERE ID = $${values.length}
+  RETURNING *;`;
+
+  // This returns the fresh provided data back into the database to be saved
+  return db
+    .query(queryString, values)
     .then((result) => {
 
       console.log('result rows', result.rows)
@@ -65,7 +113,7 @@ const editUserEmail = (newEmail, userID) => {
       console.log(err.message);
       return null;
     });
+};
 
-}
 
-module.exports = { getUsers, getUserByEmail, addUser, getUserById, editUserEmail };
+module.exports = { getUsers, getUserByEmail, addUser, getUserById, editUser };

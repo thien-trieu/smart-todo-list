@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { body, check, validationResult } = require("express-validator");
-const { getUserByEmail, getUserById, editUserEmail } = require('../db/queries/users');
+const { getUserByEmail, getUserById, editUser } = require('../db/queries/users');
 
 
 router.get('/', (req, res) => {
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 // update profile email
 router.post('/', [
-  check("email").notEmpty().withMessage("The email field cannot be empty!"),
+  // check("email").notEmpty().withMessage("The email field cannot be empty!"),
   body("email")
     .custom((value) => {
       const result = getUserByEmail(value)
@@ -42,11 +42,20 @@ router.post('/', [
           return Promise.resolve(true);
         });
       return result;
-    })
+    }),
+  body("city").trim().toLowerCase()
+
 ], (req, res) => {
 
   const userId = req.session.userID;
   const newEmail = req.body.email;
+
+  const newCity = req.body.city;
+
+  const userUpdates = {
+    email: req.body.email,
+    city: req.body.city
+  };
 
   const errors = validationResult(req);
 
@@ -73,10 +82,18 @@ router.post('/', [
 
 
     // if no errors we can edit user's email in db
-    editUserEmail(newEmail, userId).then(() => {
+    // editUserEmail(newEmail, userId).then(() => {
+
+    //   res.redirect('profile');
+    // });
+
+    // editUserEmail()
+
+    editUser(userUpdates, userId).then(() =>  {
 
       res.redirect('profile');
     });
+
   }
 
 });
