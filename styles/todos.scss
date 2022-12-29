@@ -24,7 +24,7 @@ main {
 
   .todo-nav-left {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: white;
     padding: 1em;
@@ -32,7 +32,8 @@ main {
     padding-left: 1em;
     opacity: 0.7;
     border-radius: 25px;
-    gap: 1em;
+    gap: .5em;
+
 
     &:hover {
       box-shadow: 6px 4px 9px #635197;
@@ -77,7 +78,8 @@ main {
   padding-left: 1em;
   opacity: 0.7;
   border-radius: 25px;
-  gap: 1em;
+  gap: .56em;
+
 
   &:hover {
     box-shadow: 6px 4px 9px #635197;
@@ -88,7 +90,7 @@ main {
     cursor: pointer;
 
     &:hover {
-      color: rgb(192, 23, 226);
+      color: #722dfc;
     }
   }
 }
@@ -188,13 +190,13 @@ main {
 
       // TODO Category dropdown
       .todo-category {
-        padding: 0 1em;
+        padding: 0 .3em;
 
         select {
           padding: 0 0.5em;
           border: none;
           appearance: none;
-          color: grey;
+          color: rgb(63, 63, 63);
         }
       }
 
@@ -204,7 +206,7 @@ main {
 
         // Edit and Delete icons
         i {
-          color: grey;
+          color: rgb(63, 63, 63);
           cursor: pointer;
 
           &:hover {
@@ -220,4 +222,8 @@ main {
 .completed-todo {
   text-decoration: line-through;
   color: rgb(140 135 144);
+}
+
+.categories-dropdown {
+  text-align: right;
 }
