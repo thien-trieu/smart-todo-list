@@ -80,15 +80,6 @@ router.post('/', [
 
   } else {
 
-
-    // if no errors we can edit user's email in db
-    // editUserEmail(newEmail, userId).then(() => {
-
-    //   res.redirect('profile');
-    // });
-
-    // editUserEmail()
-
     editUser(userUpdates, userId).then(() =>  {
 
       res.redirect('profile');
