@@ -5,7 +5,7 @@ When you are recommended something it's not always easy to jot it down for later
 
 The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
-![VIDEO OF CATEGORY BROWSING](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+![Video of Category Browsing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
 
 ## Collaborators
 
@@ -73,7 +73,7 @@ Visitors may click on the Start Here button, or the Login or Register buttons on
 
 Upon clicking Start Here or Register, users are prompted to share their name and email address, create a strong password, and to update their city. By default, if the user has allowed their location data to be collected, the city should auto-populate based on the latitude and longitude of their IP address. This utilizes the free API **"Big Data Cloud"** to return the city to the system, and the main purpose of this API is to pass the city into the Yelp API which searches local restaurant names in order to better categorize to do memos.
 
-***NOTE: Location browser data does not need to be shared and users may update their city to any location manually on this page or the Profile Edit page.***
+***NOTE: Location browser data does not need to be shared and users may update their city to any location manually on this page or the [Profile Edit](#editing-user-profiles) page.***
 
 ![The Registration Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
 
@@ -95,17 +95,54 @@ Once a user has registered or logged in, the Smart To-Do main page appears. This
 
 Here is a detailed outline of each of these features:
 
-#### Adding a new Smart To-Do memo item
+#### Adding a new Smart To-Do task
 
-The user can create 
+To create a new Smart To-Do task, simply click to the right of the + icon on the placeholder text "Write a new Smart To-Do task here" and then write anything to log it as a task. Once done writing, pressing enter will save the task prepended to the top of the current To-Do list. As of the time of writing, there is no limit to the character count in a task, nor on the number of Smart To-Do tasks a user may have.
+
+##### A Note on Smart Categorization
+
+As the task is created, the keywords within are run through included API's "Wolfram Alpha" and "Yelp", further assisted by the provided user location data. These are compared against built in measurements which help determine with relative accuracy what type of category the Smart To-Do task should fall under, and automatically assigned a category on the right hand side of the list as one of the following:
+
+- Eat (for nearby restaurants, food items mentioned in the task, and other meal based keywords)
+- Watch (for film, television series and other related content detected in keywords)
+- Read (for books and stories detected in keywords)
+- Buy (for products and services detected in keywords)
+
+Users may [edit a category](#changing-the-text-or-category-of-an-existing-smart-to-do-item) of any Smart To-Do task at any time while logged in. 
+
+![Video of Adding a New Task](VID URL GOES HERE ONCE UPLOAD COMPLETE)
 
 #### Searching through existing Smart To-Do items
 
+Life can be busy, and as such it is normal to accumulate many To-Do items on a user's list over time. To search for existing Smart To-Do items, click on and type into the search bar. Results will automatically populate. Further sorting may be done via [browsing by category](#browsing-existing-smart-to-do-items-by-category)
+
+![Video of Searchbar](VID URL GOES HERE ONCE UPLOAD COMPLETE)
+
 #### Browsing existing Smart To-Do items by category
+
+Users may also browse existing Smart To-Do items by category using the navigation icons to the right of the searchbar. The leftmost icon is the inbox icon which will reveal all categorized tasks, followed by the food icon, book icon, film icon and products/buy icon respectively. Each of those icons when clicked will only show the tasks within those categories, filtering out the rest. 
+
+![Video of Category Browsing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
 
 #### Changing the text or category of an existing Smart To-Do item
 
+If a category is assigned incorrectly or to change the category assigned to a specific task, simply click on the current category which will reveal a drop down allowing adjustment to a new category.
+
+To edit an existing Smart To-Do task's text, click on the text and add or remove the required changes, then press enter to save.
+
+![Video of Category changing](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
 #### Deleting a Smart To-Do item
+
+To delete an item altogether, click on the trash bin icon on the rightmost side of the Smart To-Do task. It will be removed from all views.
+
+### Editing User Profiles
+
+To edit an existing user profile, a user must first be logged in to that profile. Click on the "My Profile" button in the top navigation bar. The following page will appear where the user email and location may be updated. Click "Submit" to save preferences.
+
+![Photo of Profile Edit Page](IMG URL GOES HERE ONCE UPLOAD COMPLETE)
+
+
 
 
 
