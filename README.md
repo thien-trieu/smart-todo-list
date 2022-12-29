@@ -42,3 +42,17 @@ The following steps are only for _one_ of the group members to perform.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- express 4.17.1
+- express-validator 6.14.2
+- bcryptjs 2.4.3
+- cookie-session 2.0
+- morgan 1.9.1
+- pg 8.5
+- ejs 2.6.2
+- axios 1.2.1
+- chalk 2.4.2
+- dotenv 2.0
+- sass 1.35.1
+- xml-js": 1.6.11
+
+
