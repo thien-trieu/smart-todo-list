@@ -34,21 +34,18 @@
     <form method="POST" action="/profile">
       <div>
         <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
-        <!-- <br> -->
-        <!-- <input type="text" name="name" class="inputfield"> -->
+
       </div>
       <br>
       <div>
         <label class="menulabels profile_email">Current Email: <%= user.email %></label>
-        <!-- <br>
-      <input type="email" name="email" class="inputfield"> -->
+
       </div>
       <br>
       <div>
         <label class="menulabels">Change email:</label>
         <input type="email" name="email" class="inputfield" placeholder="Type new email here">
       </div>
-      <!-- TEST CODE for LOCATION BUTTON -->
       <br>
       <div>
         <% const city = []; %>
@@ -57,10 +54,8 @@
         <% }) %>
         <% const cityString = city.join(" ") %>
         <label class="menulabels profile_city">Current City: <%= cityString %> </label>
-        <!-- <br>
-      <input type="email" name="email" class="inputfield"> -->
       </div>
-      <!-- END OF TEST CODE -->
+
       <div>
         <br>
         <label class="menulabels">Change City:</label>

@@ -21,6 +21,6 @@ const callWolfram = (taskString) => {
     });
 };
 
-// callWolfram('eggs').then(res => console.log('RES', res))
+
 
 module.exports = {  callWolfram };
