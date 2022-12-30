@@ -1,3 +1,4 @@
+// This script handles search bar functionality
 $(document).ready(function() {
   let timeoutID = null;
 

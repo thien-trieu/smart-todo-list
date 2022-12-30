@@ -70,6 +70,7 @@ const addTodo = (newTask) => {
     });
 };
 
+// This handles any editing of an existing to do memo text
 const updateTodoItem = (options) => {
   const queryParams = [];
   let queryString = `
@@ -123,9 +124,9 @@ const updateTodoItem = (options) => {
       return null;
     });
 
-
 };
 
+// This handles deletion of existing tasks when the trash can button is clicked
 const deleteToDo = (todoId) => {
 
   console.log('TODO TASK ID', todoId);
