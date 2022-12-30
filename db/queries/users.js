@@ -45,6 +45,7 @@ const addUser = function(user) {
 
 };
 
+// This handles the profile editing options on the My Profile page
 const editUser = (options, userID)  =>  {
 
   const values = [];
