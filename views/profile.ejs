@@ -1,61 +1,72 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
   <%- include('partials/_meta_tags') %>
-    <%- include('partials/_styles') %>
-      <%- include('partials/_scripts') %>
-        <title>Register</title>
+  <%- include('partials/_styles') %>
+  <%- include('partials/_scripts') %>
+  <title>Register</title>
 </head>
 
 <body>
   <%- include('partials/_header') %>
 
-    <main class="profilecontainer">
+  <main class="profilecontainer">
 
-  <h1 class="signup">My Profile</h1>
+    <h1 class="signup">My Profile</h1>
 
 
-  <!-- Error handling -->
-  <% if(errors) { %>
+    <!-- Error handling test -->
+    <% if(errors) { %>
+
     <% for (let error in errors) { %>
-      <p class="errMessageOff" id="errMsg">
-        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
-      </p>
+
+    <p class="errMessageOff" id="errMsg">
+      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
+        class="fa-solid fa-triangle-exclamation"></i>
+    </p>
+    </div>
+    <% } %>
+    <% } %>
+
+
+    <form method="POST" action="/profile">
+      <div>
+        <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
+
       </div>
-      <% } %>
-        <% } %>
-
-<!-- This form allows users to edit their email or city location manually -->
-  <form method="POST"  action="/profile">
-    <div>
-      <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
-    </div>
-    <br>
-    <div>
-      <label class="menulabels profile_email">Current Email: <%= user.email %></label>
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Change email:</label>
-      <input type="email" name="email" class="inputfield" placeholder="Type new email here">
-    </div>
-    <br>
-    <div>
-
-
-      <label class="menulabels profile_city">Current City: <%= user.location %></label>
-    </div>
-    <div>
       <br>
-      <label class="menulabels">Change City:</label>
-      <input type="text" name="city" class="inputfield" placeholder="Type new City here">
-    </div>
-    <br>
+      <div>
+        <label class="menulabels profile_email">Current Email: <%= user.email %></label>
+
+      </div>
+      <br>
+      <div>
+        <label class="menulabels">Change email:</label>
+        <input type="email" name="email" class="inputfield" placeholder="Type new email here">
+      </div>
+      <br>
+      <div>
+        <% const city = []; %>
+        <% user.location.split(" ").forEach(word => {  %>
+        <%  city.push((word[0].toUpperCase() + word.slice(1)))  %>
+        <% }) %>
+        <% const cityString = city.join(" ") %>
+        <label class="menulabels profile_city">Current City: <%= cityString %> </label>
+      </div>
+
+      <div>
+        <br>
+        <label class="menulabels">Change City:</label>
+        <input type="text" name="city" class="inputfield" placeholder="Type new City here">
+      </div>
+      <br>
       <button type="submit">Submit</button>
-  </form>
+    </form>
+
+
+
   </main>
 
 </body>

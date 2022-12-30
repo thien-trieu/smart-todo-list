@@ -45,30 +45,6 @@ const addUser = function(user) {
 
 };
 
-// const editUserEmail = (newEmail, userID) => {
-
-//   const queryString = `
-//     UPDATE users
-//     SET email = $1
-//     WHERE ID = $2
-//     RETURNING *;
-//     `
-
-//     return db
-//     .query(queryString, [newEmail, userID])
-//     .then((result) => {
-
-//       console.log('result rows', result.rows)
-
-//       return result.rows[0];
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//       return null;
-//     });
-
-// }
-
 const editUser = (options, userID)  =>  {
 
   const values = [];

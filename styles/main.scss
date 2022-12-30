@@ -13,16 +13,6 @@ body {
     #448dfa 95%
   )
 
-//   background: linear-gradient(
-//     180deg,
-//     #F2BBCF 0%,
-//     #C9BBF2 12%,
-//     #DEBDE6 26%,
-//     #E1C2FC 50%,
-//     #C9BBF2 74%,
-//     #E1C2FC 100%
-//   );
-// }
 }
 
 // Styling for main container
@@ -94,6 +84,7 @@ main.container:hover {
   width: 20vw;
 }
 
+// Capitalizes all city names on the profile edit page
 .profile_city {
   text-transform: capitalize;
 }

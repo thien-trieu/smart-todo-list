@@ -168,19 +168,4 @@ const getUserFromDB = (userId) => {
     });
 };
 
-//     async function task() {
-//       const categoryName = await selectCategoryWithApi(req.body.newTodo, user);
-
-//       const newTask = {
-//         memo_details: req.body.newTodo,
-//         userId,
-//         categoryName
-//       };
-//       console.log(categoryName);
-//       return newTask;
-
-//     }
-//   }
-// };
-
 module.exports = { selectCategory, selectCategoryWithApi };
