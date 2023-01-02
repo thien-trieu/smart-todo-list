@@ -49,11 +49,13 @@ $(document).ready(function() {
       $(this).closest('article').remove();
     });
 
-    $('.fa-pen').click(function() {
+    $('.fa-pen').click(function(e) {
+      console.log(e.target);
       const $todoItem = $(this).closest('article');
-      const memo = $(this).parent().parent().prev().find('.memo-text');
+      const memo = $todoItem.find('.memo-text').text();
 
       console.log('MEMO', memo);
+      console.log('MEMO', $todoItem.find('.memo-text').text());
       todoId = $todoItem.attr("id");
       todoClass = $(this).attr("class");
 
