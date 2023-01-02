@@ -6,7 +6,7 @@
 $(document).ready(function() {
 
   window.renderTodos = function(todos) {
-
+    $('.spinner').hide();
     for (const index in todos) {
       const id = todos[index].id;
       const status = todos[index].completion_status;
@@ -23,7 +23,6 @@ $(document).ready(function() {
       const todoElement = createTodo(todo);
       $("#todos-container").prepend(todoElement);
     }
-
     todoEdits();
   };
 
@@ -47,11 +46,7 @@ $(document).ready(function() {
       <div class="right-side">
         <div class="todo-category">
           <select name="" class="categories-dropdown">
-            <option catid="${todo.categoryId}" value="${todo.categoryName}" selected>${todo.categoryName}</option>
-            <option value="watch">watch</option>
-            <option value="eat">eat</option>
-            <option value="read">read</option>
-            <option value="buy">buy</option>
+            ${createCategoryDropdown(todo)}
           </select>
         </div>
         <div class="todo-options">
@@ -65,6 +60,17 @@ $(document).ready(function() {
     return $todo;
   };
 
+  const createCategoryDropdown = (todo) => {
+    const categories = ['watch', 'eat', 'read', 'buy'];
+    let dropdowns = `<option catid="${todo.categoryId}" value="${todo.categoryName}" selected>${todo.categoryName}</option>`;
+    categories.forEach(category => {
+      if (category !== todo.categoryName) {
+        dropdowns += `<option value="${category}">${category}</option>`;
+      }
+    });
+    return dropdowns;
+  };
+
   $("#todo-form").submit(function(e) {
     e.preventDefault();
     const memo = $("#newTodo").val().trim();
@@ -72,7 +78,7 @@ $(document).ready(function() {
     if (!memo) return;
 
     const data = $("#todo-form").serialize();
-
+    $('.spinner').show();
     $.post("/api/todos", data,
       function(data) {
         console.log(data);

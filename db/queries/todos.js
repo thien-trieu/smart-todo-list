@@ -106,17 +106,14 @@ const updateTodoItem = (options) => {
 
   // Updates class to include strikethrough text on completion status true
   if (options.completion_status === true) {
-    $(".memo-text").addClass("completed-todo")
+    $(".memo-text").addClass("completed-todo");
   } else if (options.completion_status === false) {
-    $(".memo-text").removeClass()
+    $(".memo-text").removeClass();
   }
 
   return db
     .query(queryString, queryParams)
     .then((result) => {
-
-      console.log('result rows', result.rows);
-
       return result.rows[0];
     })
     .catch((err) => {
@@ -136,17 +133,12 @@ const deleteToDo = (todoId) => {
   return db
     .query(queryString, [todoId])
     .then((result) => {
-
-      console.log('result rows', result.rows);
-
       return result.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
       return null;
     });
-
-
 };
 
 module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };

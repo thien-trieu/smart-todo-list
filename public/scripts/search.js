@@ -14,8 +14,8 @@ $(document).ready(function() {
 
   $('#searchBox').keyup(function() {
     clearTimeout(timeoutID);
+    $('.spinner').show();
     const value = $(this).val();
     timeoutID = setTimeout(() => searchTodos(value), 500);
   });
-
 });

@@ -5,7 +5,7 @@ const { getUserById } = require('../db/queries/users');
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();
 
-  let category = 'uncategorized';
+  let category = null;
 
   if (
     input.includes('buy') ||
@@ -78,7 +78,7 @@ const selectCategoryWithApi = (taskString, userId) => {
   }
   console.log('END OF BASIC SELECT CATEGORY. Now lets call API... Current Category:', category);
 
-  if (category === 'uncategorized') {
+  if (!category) {
     return callWolfram(input)
       .then(res => {
         console.log('Wolfram Response:', res);
@@ -125,7 +125,7 @@ const selectCategoryWithApi = (taskString, userId) => {
             .then(user => {
               return callYelp(input, user)
                 .then(res => {
-
+                  if (!res) return category = 'uncategorized';
                   console.log('Got back the yelp categories object: ', res);
                   for (const result of res) {
                     console.log('Yelp, Before running through selectCategory function..', category);
