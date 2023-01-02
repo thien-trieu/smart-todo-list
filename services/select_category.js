@@ -72,7 +72,6 @@ const selectCategoryWithApi = (taskString, userId) => {
   let category = selectCategory(input);
 
 
-
   if (category) {
     console.log('BASIC select category:', category);
     return Promise.resolve(category);
