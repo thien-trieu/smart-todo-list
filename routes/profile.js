@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 // update profile email
 router.post('/', [
-  // check("email").notEmpty().withMessage("The email field cannot be empty!"),
+
   body("email")
     .custom((value) => {
       const result = getUserByEmail(value)
@@ -88,6 +88,5 @@ router.post('/', [
   }
 
 });
-
 
 module.exports = router;

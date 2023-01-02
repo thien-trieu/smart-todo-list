@@ -1,3 +1,4 @@
+// This script handles the category sorting nav bar selections
 $(document).ready(function() {
 
   $('#nav-categories').click(function(e) {

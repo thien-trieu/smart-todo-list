@@ -101,12 +101,6 @@ const selectCategoryWithApi = (taskString, userId) => {
           return category;
         }
 
-        // if (res.includes('Financial')) {
-        //   category = 'buy';
-        //   console.log('Wolfram - Category Selected:', category);
-        //   return category;
-        // }
-
         if (res.includes('Movie')) {
           category = 'watch';
           console.log('Wolfram - Category Selected:', category);

@@ -1,4 +1,4 @@
--- Drop and recreate Users table (Example)
+-- Drop and recreate Users table
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS todo_items CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
