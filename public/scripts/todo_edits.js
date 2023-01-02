@@ -45,11 +45,59 @@ $(document).ready(function() {
     // Deletes the todo once the delete icons is clicked on
     $('.fa-trash-can').click(function() {
       todoId = $(this).closest('article').attr("id");
-
       $.post('/api/todos/delete', {todoId});
-      $(this).closest('article').hide()
+      $(this).closest('article').remove();
+    });
+
+    $('.fa-pen').click(function(e) {
+      console.log(e.target);
+      const $todoItem = $(this).closest('article');
+      const memo = $todoItem.find('.memo-text').text();
+
+      console.log('MEMO', memo);
+      console.log('MEMO', $todoItem.find('.memo-text').text());
+      todoId = $todoItem.attr("id");
+      todoClass = $(this).attr("class");
+
+      const todo = {
+        id: todoId,
+        todoClass
+      };
+
+      $('#editForm').show();
+      $('#editForm').html(createEditForm(todo));
 
     });
+  };
+
+  const createEditForm = (todo)=> {
+    let $editForm = `
+      <form id="${todo.id}" class="edit-form">
+          <div class="edit-form-header">
+            <label> Update Todo Item</label>
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="edit-form-main">
+            <div class="todo-memo class">
+              <label class="memo-text">Title</label>
+              <input class="clickedit" type="text" value="categoryName"/>
+            </div>
+            <div class="todo-category">
+              <label class="memo-text">Category</label>
+              <select name="" class="categories-dropdown">
+                <option catid="catId" value="categoryName" selected>categoryName</option>
+                <option value="watch">watch</option>
+                <option value="eat">eat</option>
+                <option value="read">read</option>
+                <option value="buy">buy</option>
+              </select>
+            </div>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      `;
+
+    return $editForm;
   };
 
   const updateTodoStatus = function($this) {

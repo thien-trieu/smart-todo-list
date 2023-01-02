@@ -21,7 +21,7 @@ const callYelp = (taskString, user) => {
       // console.log('RESPONSE BUSINESS NAME', res.data.businesses[0].name.toLowerCase());
       console.log('RESPONSE CATEGORIES', res.data.businesses[0].categories);
 
-      return categories;
+      return categories || [];
 
 
     })
