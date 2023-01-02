@@ -126,6 +126,10 @@ const selectCategoryWithApi = (taskString, userId) => {
               return callYelp(input, user)
                 .then(res => {
 
+                  if (res === undefined){
+                    return category = 'uncategorized'
+                  }
+                  
                   console.log('Got back the yelp categories object: ', res);
                   for (const result of res) {
                     console.log('Yelp, Before running through selectCategory function..', category);
