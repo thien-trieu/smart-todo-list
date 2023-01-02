@@ -1,0 +1,50 @@
+.spinner {
+  position: fixed;
+  left: 45%;
+  top: 25%;
+  z-index: 9999;
+  width: 2rem;
+  height: 2rem;
+  margin: 2rem;
+  border-radius: 50%;
+  border: 0.3rem solid rgb(75 130 250);
+  border-top-color: #be4df1;
+  animation: 1.5s spin infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+#editForm {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  width: 50%;
+  padding: 1em 0;
+  height: 7em;
+  background: white;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5em;
+
+  .edit-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em 1em;
+    border-bottom: 1px solid grey;
+  }
+
+  .edit-form-main {
+    padding: 1em;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+}

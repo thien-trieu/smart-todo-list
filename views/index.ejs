@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <%- include('partials/_meta_tags') %>
@@ -9,6 +10,7 @@
   <title>Home Page</title>
 
 </head>
+
 <body>
 
   <%- include('partials/_header') %>
@@ -20,9 +22,21 @@
     <% } else { %>
     <%- include('partials/_todos_page_header') %>
     <section id="todos-container"></section>
+    <div class="spinner"></div>
+
+    <section id="editForm">
+    </section>
+
+
+
+
+
+
+
     <% } %>
 
   </main>
 
 </body>
+
 </html>

@@ -1,4 +1,3 @@
-const { query } = require('express');
 const db = require('../connection');
 
 const getUsers = () => {
@@ -41,8 +40,6 @@ const addUser = function(user) {
       console.log(err.message);
       return null;
     });
-
-
 };
 
 const editUser = (options, userID)  =>  {
@@ -58,7 +55,7 @@ const editUser = (options, userID)  =>  {
     values.push(options.email);
     queryString += `
     email = $${values.length}
-    `
+    `;
   }
 
   if (options.city) {
@@ -68,7 +65,7 @@ const editUser = (options, userID)  =>  {
     values.push(options.city);
     queryString += `
     location = $${values.length}
-    `
+    `;
   }
 
   values.push(userID);
@@ -80,9 +77,6 @@ const editUser = (options, userID)  =>  {
   return db
     .query(queryString, values)
     .then((result) => {
-
-      console.log('result rows', result.rows)
-
       return result.rows[0];
     })
     .catch((err) => {
