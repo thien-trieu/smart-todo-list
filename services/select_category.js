@@ -5,7 +5,7 @@ const { getUserById } = require('../db/queries/users');
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();
 
-  let category = null;
+  let category = 'uncategorized';
 
   if (
     input.includes('buy') ||
@@ -78,7 +78,7 @@ const selectCategoryWithApi = (taskString, userId) => {
   }
   console.log('END OF BASIC SELECT CATEGORY. Now lets call API... Current Category:', category);
 
-  if (!category) {
+  if (category === 'uncategorized') {
     return callWolfram(input)
       .then(res => {
         console.log('Wolfram Response:', res);

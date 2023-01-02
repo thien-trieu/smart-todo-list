@@ -15,13 +15,13 @@ const callYelp = (taskString, user) => {
       }
     })
     .then(res => {
-      const businessName = res.data.businesses[0].name.toLowerCase();
-      const categories = res.data.businesses[0].categories;
+      const businessName = res.data.businesses[0]?.name?.toLowerCase();
+      const categories = res.data.businesses[0]?.categories;
 
-      console.log('RESPONSE BUSINESS NAME', res.data.businesses[0].name.toLowerCase());
-      console.log('RESPONSE CATEGORIES', res.data.businesses[0].categories);
+      console.log('RESPONSE BUSINESS NAME', res.data.businesses[0]?.name.toLowerCase());
+      console.log('RESPONSE CATEGORIES', res.data.businesses[0]?.categories);
 
-      return categories;
+      return categories || [];
 
 
     })

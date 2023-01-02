@@ -1,3 +1,5 @@
+$logofont: 'Montserrat', sans-serif;
+
 header {
   height: 120px;
   width: 100%;
@@ -18,11 +20,9 @@ a.logo {
 }
 
 h1.logo {
-  font-family: 'Bungee', cursive;
-  color: linear-gradient( 86deg,
-  #c74fef 0%,
-  #7f3fff 45%,
-  #448dfa 95%);
+  font-family: $logofont;
+  font-weight: 800;
+  font-size: 3.2em;
 }
 
 i.fa-clipboard {

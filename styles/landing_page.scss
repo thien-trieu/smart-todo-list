@@ -1,4 +1,4 @@
-// Update this file as needed
+$logofont: 'Montserrat', sans-serif;
 
 .landing-page {
   display: flex;
@@ -17,21 +17,21 @@
   }
 
   .landingimg {
-    width: 35vw;
+    width: 75vmin;
     position:relative;
     top: 3.5vw;
   }
 
   h1 {
     color: aliceblue;
-    font-size: 3vw;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 6vmin;
+    font-family: $logofont;
   }
 
   h2 {
     color: aliceblue;
-    font-size: 1.5vw;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3vmin;
+    font-family: $logofont;
   }
 
 }
@@ -40,7 +40,7 @@
   background-color: white;
   padding: .5em;
   font-size: 1.5vw;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: $logofont;
   border-radius: 25px;
   opacity: 0.7;
 }
