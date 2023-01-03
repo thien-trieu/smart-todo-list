@@ -6,10 +6,14 @@
 /* Screen Style - Mobile/Tablet View */
 @media only screen and (max-width: 1024px)  {
 
-  // This is responsible for widening the registration packground on shrinkage
+  // This is responsible for widening the registration background on shrinkage
   #registerblock {
     width:100%;
-    border-radius: none;
+  }
+
+  // This is responsible for widening the login background on shrinkage
+  #loginblock {
+    width:100%;
   }
 
   // Visual adjustments to main container
