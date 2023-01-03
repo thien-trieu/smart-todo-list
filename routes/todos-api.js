@@ -43,7 +43,11 @@ router.post('/update', (req, res) => {
 
 router.post('/delete', (req, res) => {
   // sends delete query to database
-  deleteToDo(req.body.todoId);
+  deleteToDo(req.body.todoId)
+    .then((task)=> {
+      res.json('Task deleted!');
+      return;
+    });
 });
 
 
@@ -51,10 +55,10 @@ router.post('/', (req, res) => {
   const userId = req.session.userID;
   const results = selectCategoryWithApi(req.body.newTodo, userId);
 
-  console.log('RESULTS: ', results)
+  console.log('RESULTS: ', results);
 
   results.then(categoryName => {
-    console.log('Got the category name back from the selectCategoryWithApi:', categoryName)
+    console.log('Got the category name back from the selectCategoryWithApi:', categoryName);
     const newTask = {
       'memo_details': req.body.newTodo,
       userId,

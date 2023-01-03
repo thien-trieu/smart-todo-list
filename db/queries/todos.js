@@ -113,6 +113,9 @@ const updateTodoItem = (options) => {
   return db
     .query(queryString, queryParams)
     .then((result) => {
+
+      console.log('result rows', result.rows);
+
       return result.rows[0];
     })
     .catch((err) => {
@@ -132,12 +135,17 @@ const deleteToDo = (todoId) => {
   return db
     .query(queryString, [todoId])
     .then((result) => {
+
+      console.log('result rows', result.rows);
+
       return result.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
       return null;
     });
+
+
 };
 
 module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };

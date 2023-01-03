@@ -1,5 +1,6 @@
 const { callWolfram } = require('./apis/wolfram');
 const { callYelp } = require('./apis/yelp');
+const { callImdb } = require('./apis/rapidapi_imdb');
 const { getUserById } = require('../db/queries/users');
 
 const selectCategory = (taskString) => {
@@ -33,14 +34,17 @@ const selectCategory = (taskString) => {
     input.includes('dish') ||
     input.includes('meal') ||
     input.includes('dinner') ||
+    input.includes('soup') ||
     input.includes('breakfast') ||
     input.includes('sushi') ||
     input.includes('cafes') ||
     input.includes('bakery') ||
     input.includes('bakeries') ||
     input.includes('lunch') ||
+    input.includes('salad') ||
     input.includes('brunch') ||
     input.includes('pizza') ||
+    input.includes('sandwiches') ||
     input.includes('burgers')
   ) {
     category = 'eat';
@@ -68,96 +72,30 @@ const selectCategory = (taskString) => {
 
 const selectCategoryWithApi = (taskString, userId) => {
   const input = taskString.toLowerCase();
+  const category = selectCategory(input);
 
-  let category = selectCategory(input);
+  if (category) return Promise.resolve(category);
 
+  return callWolfram(input)
+    .then(res => {
+      console.log('WOLFRAM:', res);
+      if (res) return res;
 
+      return callImdb(input).then(res => {
+        console.log('IMDB:', res);
+        if (res) return res;
 
-  if (category) {
-    console.log('BASIC select category:', category);
-    return Promise.resolve(category);
-  }
-  console.log('END OF BASIC SELECT CATEGORY. Now lets call API... Current Category:', category);
-
-  if (!category) {
-    return callWolfram(input)
-      .then(res => {
-        console.log('Wolfram Response:', res);
-
-        if (res.includes('ExpandedFood')) {
-          category = 'buy';
-          console.log('Wolfram - Category Selected:', category);
-          return category;
-        }
-
-        if (res.includes('Book')) {
-          category = 'read';
-          console.log('Wolfram - Category Selected:', category);
-          return category;
-        }
-
-        if (res.includes('ConsumerProductsPTE')) {
-          category = 'buy';
-          console.log('Wolfram - Category Selected:', category);
-          return category;
-        }
-
-        // if (res.includes('Financial')) {
-        //   category = 'buy';
-        //   console.log('Wolfram - Category Selected:', category);
-        //   return category;
-        // }
-
-        if (res.includes('Movie')) {
-          category = 'watch';
-          console.log('Wolfram - Category Selected:', category);
-          return category;
-        }
-
-        if (res.includes('Invention')) {
-          category = 'buy';
-          console.log('Wolfram - Category Selected:', category);
-          return category;
-        }
-
-        if (res.includes('')) {
-
-          console.log('DONE WITH Wolfram - Current category:', category);
-
-          console.log('Passing user to yelp', userId);
-
-          console.log('Time to call yelp...');
-
-          return getUserFromDB(userId)
-            .then(user => {
-              return callYelp(input, user)
-                .then(res => {
-
-                  console.log('Got back the yelp categories object: ', res);
-                  for (const result of res) {
-                    console.log('Yelp, Before running through selectCategory function..', category);
-                    console.log('Yelp alias:', result.alias);
-
-                    category = selectCategory(result.alias);
-
-                    console.log('After:', category);
-
-                    if (category) {
-
-                      console.log('Got a category: ', category);
-                      return category;
-                    }
-
-                  }
-                  console.log('End of Yelp loop....', category);
-                  return category;
-                });
-            });
-        }
-        return category;
+        return getUserFromDB(userId)
+          .then(user => {
+            return callYelp(input, user, selectCategory)
+              .then(res => {
+                console.log('YELP:', res);
+                if (res) return res;
+                return 'uncategorized';
+              });
+          });
       });
-
-  }
+    });
 };
 
 const getUserFromDB = (userId) => {
