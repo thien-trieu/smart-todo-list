@@ -50,32 +50,42 @@ $(document).ready(function() {
       $(this).closest('article').remove();
     });
 
+    // When the 'PENCIL' icon is clicked, show TODO edit form
     $('.fa-pen').click(function(e) {
-      console.log(e.target);
+
       const $todoItem = $(this).closest('article');
       const memo = $todoItem.find('.memo-text').text();
       const categoryName = $todoItem.find(":selected").val();
       const categoryId = $todoItem.find('option').attr('catid');
 
-      console.log('catID', categoryId);
-
-      console.log('Cat', categoryName);
-      console.log('MEMO', memo);
-      console.log('MEMO', $todoItem.find('.memo-text').text());
       todoId = $todoItem.attr("id");
       todoClass = $(this).attr("class");
 
-      const todo = {
-        id: todoId,
-        todoClass,
+      // check we got the correct TODO item to edit.
+      console.log(
+        `Pencil clicked to edit this MEMO: ${memo}.
+      The current category for this is ${categoryName}.
+      The category ID# is ${categoryId}`
+      );
+
+
+      const currentTodo = {
         memo,
+        todoId,
+        todoClass,
         categoryName,
         categoryId
       };
 
-      $('#editForm').show();
-      $('#editForm').html(createEditForm(todo));
+      console.log('Details of the current TODO item you want to edit: ', currentTodo);
+
+      // Show the edit form after the 'Pencil' icon is clicked and update the html in the Editform to match current TODO details
+      $('#editForm').show().html(createEditForm(currentTodo));
+
+      // Close edit form if user clicks 'X' or outside the edit form
       closeEditform();
+
+      //
       submitEditForm();
     });
 
@@ -84,14 +94,20 @@ $(document).ready(function() {
   const submitEditForm = function() {
     $(".edit-form").submit(function(e) {
       e.preventDefault();
+
       const memo_details = $("#newMemo").val().trim();
-      category_name = $(this).find(":selected").val();
       const todoId = $(this).attr('id');
 
-      console.log('TODO ID!', todoId);
+      category_name = $(this).find(":selected").val();
 
-      console.log('MEMO', memo_details);
-      console.log('CAT NAME', category_name);
+      // check we got new edit details to submit
+      console.log(
+        `NEW EDIT DETAILS to submit
+              The new memo_details for TODO item is: ${memo_details}.
+              The new category is ${category_name}.
+              The TODO ID# is ${todoId}`
+      );
+
 
       if (!memo_details) return;
 
@@ -138,11 +154,11 @@ $(document).ready(function() {
 
   const closeEditform = () => {
     $(document).mouseup(function(e) {
-    const container = $("#editForm");
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-      container.hide();
-    }
-  })
+      const container = $("#editForm");
+      if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+      }
+    });
     $('.fa-xmark').click(function() {
       console.log('clicked!');
       $('#editForm').hide();
@@ -151,7 +167,7 @@ $(document).ready(function() {
 
   const createEditForm = (todo) => {
     let $editForm = `
-      <form id="${todo.id}" class="edit-form">
+      <form id="${todo.todoId}" class="edit-form">
           <div class="edit-form-header">
             <label> Update Todo Item</label>
             <i class="fa-solid fa-xmark"></i>
@@ -179,7 +195,7 @@ $(document).ready(function() {
     console.log('this', $this.children());
     const dbColumn = 'completion_status';
     let status;
-  
+
     if (todoClass === 'fa-regular fa-circle') {
       status = true;
       $this.children().removeClass('fa-circle').addClass('fa-circle-check');

@@ -127,7 +127,7 @@ const updateTodoItem = (options) => {
 
 };
 
-// This handles deletion of existing tasks when the trash can button is clicked
+// This handles deletion of existing TODO item when the trash can button is clicked
 const deleteToDo = (todoId) => {
 
   console.log('TODO TASK ID', todoId);

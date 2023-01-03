@@ -9,9 +9,14 @@ router.get('/', (req, res) => {
   const categoryName = req.query.categoryName;
   const userId = req.session.userID;
 
-  if (!userId) return res.redirect("/login");
+  if (!userId) {
+    return res.redirect("/login");
+  }
 
-  const options = {searchStr, categoryName};
+  const options = {
+    searchStr,
+    categoryName
+  };
 
   // Shows TODO item(s) based on SEARCH BAR option or CATEGORY ICON FILTER option
   getTodosByOptions(options, userId)
@@ -26,42 +31,51 @@ router.get('/', (req, res) => {
 });
 
 router.post('/update', (req, res) => {
-  console.log('TODO UPDATED 1', req.body);
 
-  updateTodoItem(req.body)
-    .then((task)=> {
-      console.log('TASK', task)
-      res.json(task);
+  const options = req.body;
+  console.log('OPTIONS for updating the TODO item:', options);
+
+  /*
+  Edit an existing TODO item's memo text, completion status or category through SINGLE edit fields(input field, circle icon or category dropdown) or 'Pencil' Edit Form
+ */
+
+  updateTodoItem(options)
+    .then((details) => {
+      console.log('NEW updated TODO item details:', details);
+      res.json(details);
       return;
     });
 });
 
 router.post('/delete', (req, res) => {
-  // sends delete query to database
+  // This handles deletion of existing TODO item when the trash can button is clicked
   deleteToDo(req.body.todoId);
 });
 
 
 router.post('/', (req, res) => {
   const userId = req.session.userID;
-  const results = selectCategoryWithApi(req.body.newTodo, userId);
+  const memo_details = req.body.newTodo;
 
-  console.log('RESULTS: ', results)
+  // Sends NEW TODO item's memo details to get categorized
+  selectCategoryWithApi(memo_details, userId)
+    .then(categoryName => {
 
-  results.then(categoryName => {
-    console.log('Got the category name back from the selectCategoryWithApi:', categoryName)
-    const newTask = {
-      'memo_details': req.body.newTodo,
-      userId,
-      categoryName
-    };
+      console.log('CATEGORY NAME RESULTS from selectCategoryWithApi call:', categoryName);
 
-    addTodo(newTask)
-      .then((task)=> {
-        res.json(task);
-        return;
-      });
-  });
+      const newTodoItem = {
+        memo_details,
+        userId,
+        categoryName
+      };
+
+      // Once a category has been determined, details of the NEW TODO item is added to the database
+      addTodo(newTodoItem)
+        .then((task) => {
+          res.json(task);
+          return;
+        });
+    });
 });
 
 module.exports = router;
