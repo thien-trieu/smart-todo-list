@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const { body, check, validationResult } = require("express-validator");
 const { getUserByEmail, getUserById, editUser } = require('../db/queries/users');
 
-
 router.get('/', (req, res) => {
 
   const userId = req.session.userID;

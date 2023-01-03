@@ -75,8 +75,7 @@ app.post("/logout", (req,res) =>  {
   res.redirect(`/login`);
 });
 
-
-
+// App listening setting and confirmation log
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
