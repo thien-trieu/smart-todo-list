@@ -60,6 +60,7 @@
     .todo-nav-right {
       border-radius: 0px;
       height: 2em;
+      padding-left: 0px;
     }
 
     // This does the same thing for the searchbar joining it visually with the right sidebar
@@ -79,6 +80,7 @@
     // This does the same thing for the searchbar joining it visually with the nav sidebars
     #searchBox {
       height: 3em;
+      width: 20em;
     }
   }
 
@@ -92,7 +94,7 @@
   // not part of the main nav bar but below it (for mobile resizing)
   .todo-nav-mobileview {
     display: flex;
-    padding-right: 1em;
+    padding-right: .5em;
     gap: .5em;
     font-size:1.5em;
     color: #113b64;
