@@ -1,14 +1,6 @@
-/*
- * All routes for User Data are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /api/users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
-
 const express = require('express');
 const router = express.Router();
-const { getTodos, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
+const { getTodos: getTodosByOptions, addTodo, updateTodoItem, deleteToDo } = require('../db/queries/todos');
 const { selectCategoryWithApi } = require('../services/select_category');
 
 
@@ -16,11 +8,18 @@ router.get('/', (req, res) => {
   const searchStr = req.query.search;
   const categoryName = req.query.categoryName;
   const userId = req.session.userID;
-  if (!userId) return res.redirect("/login");
 
-  const options = {searchStr, categoryName};
+  if (!userId) {
+    return res.redirect("/login");
+  }
 
-  getTodos(options, userId)
+  const options = {
+    searchStr,
+    categoryName
+  };
+
+  // Shows TODO item(s) based on SEARCH BAR option or CATEGORY ICON FILTER option
+  getTodosByOptions(options, userId)
     .then(todos => {
       res.json({ todos });
     })
@@ -32,11 +31,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/update', (req, res) => {
-  console.log('TODO UPDATED 1', req.body);
 
-  updateTodoItem(req.body)
-    .then((task)=> {
-      res.json(task);
+  const options = req.body;
+  console.log('OPTIONS for updating the TODO item:', options);
+
+  /*
+  Edit an existing TODO item's memo text, completion status or category through SINGLE edit fields(input field, circle icon or category dropdown) or 'Pencil' Edit Form
+ */
+
+  updateTodoItem(options)
+    .then((details) => {
+      console.log('NEW updated TODO item details:', details);
+      res.json(details);
       return;
     });
 });
@@ -53,24 +59,27 @@ router.post('/delete', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.session.userID;
-  const results = selectCategoryWithApi(req.body.newTodo, userId);
+  const memo_details = req.body.newTodo;
 
-  console.log('RESULTS: ', results);
+  // Sends NEW TODO item's memo details to get categorized
+  selectCategoryWithApi(memo_details, userId)
+    .then(categoryName => {
 
-  results.then(categoryName => {
-    console.log('Got the category name back from the selectCategoryWithApi:', categoryName);
-    const newTask = {
-      'memo_details': req.body.newTodo,
-      userId,
-      categoryName
-    };
+      console.log('CATEGORY NAME RESULTS from selectCategoryWithApi call:', categoryName);
 
-    addTodo(newTask)
-      .then((task)=> {
-        res.json(task);
-        return;
-      });
-  });
+      const newTodoItem = {
+        memo_details,
+        userId,
+        categoryName
+      };
+
+      // Once a category has been determined, details of the NEW TODO item is added to the database
+      addTodo(newTodoItem)
+        .then((task) => {
+          res.json(task);
+          return;
+        });
+    });
 });
 
 module.exports = router;

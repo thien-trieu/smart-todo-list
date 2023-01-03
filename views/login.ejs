@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/variableviews.css">
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 
@@ -31,7 +32,7 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container">
+    <main class="container" id="loginblock">
 
       <h1 class="loginlabel">Please Log In</h1>
       <br>
@@ -39,9 +40,6 @@
         <% for (let error in errors) { %>
           <div class="errMessageOff">
             <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
-              <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button> -->
           </div>
           <% } %>
             <% } %>
@@ -64,13 +62,11 @@
               </form>
 
               <p class="menulabels">
+                <br>
                 Not a member? <a href="/register">Click Here</a>
               </p>
 
-
     </main>
-
-
 
 </body>
 

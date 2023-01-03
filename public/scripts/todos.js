@@ -60,7 +60,7 @@ $(document).ready(function() {
     return $todo;
   };
 
-  const createCategoryDropdown = (todo) => {
+  window.createCategoryDropdown = (todo) => {
     const categories = ['watch', 'eat', 'read', 'buy'];
     let dropdowns = `<option catid="${todo.categoryId}" value="${todo.categoryName}" selected>${todo.categoryName}</option>`;
     categories.forEach(category => {

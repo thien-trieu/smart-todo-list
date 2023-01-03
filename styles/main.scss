@@ -13,16 +13,6 @@ body {
     #448dfa 95%
   )
 
-//   background: linear-gradient(
-//     180deg,
-//     #F2BBCF 0%,
-//     #C9BBF2 12%,
-//     #DEBDE6 26%,
-//     #E1C2FC 50%,
-//     #C9BBF2 74%,
-//     #E1C2FC 100%
-//   );
-// }
 }
 
 // Styling for main container
@@ -71,9 +61,15 @@ main.container:hover {
   background-color:rgb(224, 133, 133);
 }
 
-// set register block width as an ID so that it is not affected by main width container
+// set register block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
 #registerblock {
-  width: 30%;
+  width: 35%;
+}
+
+// set login page block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
+// aligned with above registration block styling
+#loginblock {
+  width: 35%;
 }
 
 // Spacing for login inputs
@@ -91,5 +87,20 @@ main.container:hover {
   flex-direction: column;
   opacity: 0.7;
   border-radius: 25px;
-  width: 20vw;
+  width: 35%;
+}
+
+// Capitalizes all city names on the profile edit page
+.profile_city {
+  text-transform: capitalize;
+}
+
+.fa-magnifying-glass {
+  color: #113a64e0;
+  font-size: 1.1em;
+}
+
+.fa-plus {
+  color: #113a64e0;
+  font-size: 1.2em;
 }

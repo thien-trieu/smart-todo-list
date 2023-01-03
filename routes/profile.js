@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const { body, check, validationResult } = require("express-validator");
 const { getUserByEmail, getUserById, editUser } = require('../db/queries/users');
 
-
 router.get('/', (req, res) => {
 
   const userId = req.session.userID;
@@ -27,7 +26,7 @@ router.get('/', (req, res) => {
 
 // update profile email
 router.post('/', [
-  // check("email").notEmpty().withMessage("The email field cannot be empty!"),
+
   body("email")
     .custom((value) => {
       const result = getUserByEmail(value)
@@ -88,6 +87,5 @@ router.post('/', [
   }
 
 });
-
 
 module.exports = router;

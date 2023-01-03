@@ -1,3 +1,4 @@
+// This script handles the category sorting nav bar selections
 $(document).ready(function() {
 
   $('#nav-categories').click(function(e) {
@@ -10,6 +11,12 @@ $(document).ready(function() {
     const actionLabel = categoryName !== 'inbox' ? 'To' : '';
 
     $(".todo-nav-left").html(
+      `<i class="${childClass}"></i>
+      <span> ${actionLabel} ${upperCategoryName}</span>`
+    );
+
+    // Do not move/remove - this is responsible for hidden mobileview category revealed on screen resize
+    $(".todo-nav-mobileview").html(
       `<i class="${childClass}"></i>
       <span> ${actionLabel} ${upperCategoryName}</span>`
     );
