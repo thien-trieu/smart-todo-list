@@ -15,6 +15,12 @@ $(document).ready(function() {
       <span> ${actionLabel} ${upperCategoryName}</span>`
     );
 
+
+    $(".todo-nav-mobileview").html(
+      `<i class="${childClass}"></i>
+      <span> ${actionLabel} ${upperCategoryName}</span>`
+    );
+
     let data;
 
     if (categoryName !== 'inbox') {
