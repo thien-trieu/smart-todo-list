@@ -70,60 +70,6 @@ const addTodo = (newTask) => {
     });
 };
 
-// // This handles any editing of an existing to do memo text
-// const updateTodoItem = (options) => {
-//   const queryParams = [];
-//   let queryString = `
-//     UPDATE todo_items
-//     `;
-
-//   if (options.memo_details) {
-//     queryParams.push(options.memo_details);
-//     queryString += `
-//         SET memo_details = $${queryParams.length}
-//         `;
-//   }
-
-//   if (options.completion_status) {
-//     queryParams.push(options.completion_status);
-//     queryString += `
-//       SET completion_status = $${queryParams.length}
-//     `;
-//   }
-
-//   if (options.category_name) {
-//     queryParams.push(options.category_name);
-//     queryString += `
-//       SET category_id = (SELECT id FROM categories WHERE name = $${queryParams.length})
-//     `;
-//   }
-
-//   queryParams.push(options.todoId);
-//   queryString += `
-//   WHERE id = $${queryParams.length}
-//   RETURNING *;
-//   `;
-
-//   // Updates class to include strikethrough text on completion status true
-//   if (options.completion_status === true) {
-//     $(".memo-text").addClass("completed-todo");
-//   } else if (options.completion_status === false) {
-//     $(".memo-text").removeClass();
-//   }
-
-//   return db
-//     .query(queryString, queryParams)
-//     .then((result) => {
-//       return result.rows[0];
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//       return null;
-//     });
-
-// };
-
-
 const updateTodoItem = (options) => {
 
 
@@ -141,7 +87,7 @@ const updateTodoItem = (options) => {
   }
 
   if (options.completion_status) {
-    if (queryParams.length >= 1)  {
+    if (queryParams.length >= 1) {
       queryString += `, `;
     }
     queryParams.push(options.completion_status);
@@ -151,7 +97,7 @@ const updateTodoItem = (options) => {
   }
 
   if (options.category_name) {
-    if (queryParams.length >= 1)  {
+    if (queryParams.length >= 1) {
       queryString += `, `;
     }
     queryParams.push(options.category_name);
@@ -165,8 +111,8 @@ const updateTodoItem = (options) => {
   WHERE id = $${queryParams.length}
   RETURNING *
   `;
-  console.log('Param', )
-  console.log(queryString)
+  console.log('Param',);
+  console.log(queryString);
 
   return db
     .query(queryString, queryParams)
@@ -198,4 +144,4 @@ const deleteToDo = (todoId) => {
     });
 };
 
-module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo};
+module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };
