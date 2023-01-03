@@ -24,11 +24,10 @@
     border-radius: none;
   }
 
-  // Header adjustments including font sizing changes
+  // Header adjustments including font sizing changes, header size change
   header {
-    background-color: none;
-    box-shadow: none;
     margin-bottom: .25em;
+    height: 4em;
 
     .logo {
       font-size: 5vw;

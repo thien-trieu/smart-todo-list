@@ -15,7 +15,7 @@ $(document).ready(function() {
       <span> ${actionLabel} ${upperCategoryName}</span>`
     );
 
-
+    // Do not move/remove - this is responsible for hidden mobileview category revealed on screen resize
     $(".todo-nav-mobileview").html(
       `<i class="${childClass}"></i>
       <span> ${actionLabel} ${upperCategoryName}</span>`
