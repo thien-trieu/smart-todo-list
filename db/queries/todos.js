@@ -1,8 +1,11 @@
 const db = require('../connection');
+// view routes/todo-apis.js for routes
+// view public/scripts/todo_edits.js for event listeners
 
-// This pulls all of the existing todo memo data
-const getTodos = (options, userId) => {
-  // console.log('OPTIONS', options);
+
+// Shows TODO item(s) based on SEARCH BAR option or CATEGORY ICON FILTER option
+const getTodosByOptions = (options, userId) => {
+
   const queryParams = [userId];
   let queryString = `
     SELECT todo_items.*, categories.name AS category_name
@@ -12,7 +15,7 @@ const getTodos = (options, userId) => {
     WHERE users.id = $1
   `;
 
-  // This reveals only todos matching search bar strings
+  // This reveals only TODO items matching search bar strings
   if (options.searchStr) {
     queryParams.push(options.searchStr.toLowerCase());
     queryString += `
@@ -21,7 +24,7 @@ const getTodos = (options, userId) => {
       `;
   }
 
-  // This filters memo items by category type
+  // This filters TODO items by category type
   if (options.categoryName) {
     queryParams.push(options.categoryName);
     queryString += `
@@ -41,27 +44,26 @@ const getTodos = (options, userId) => {
 
 };
 
-// This creates variables to store what's being added into the query string below
-const addTodo = (newTask) => {
-  const values = [
-    newTask.memo_details,
-    newTask.userId,
-    newTask.categoryName
+// Adds new TODO item to the database
+const addTodo = (options) => {
+  const queryParams = [
+    options.memo_details,
+    options.userId,
+    options.categoryName
   ];
 
-  // Inserts updated todo memo data into the database
   const queryString = `
       INSERT INTO todo_items (memo_details, user_id, category_id)
       VALUES ($1, $2, (SELECT id FROM categories WHERE name = $3))
       RETURNING *;`;
 
   return db
-    .query(queryString, values)
+    .query(queryString, queryParams)
     .then((result) => {
       console.log("RESULT FROM DB", result.rows[0]);
 
       const newTodo = result.rows[0];
-      newTodo['category_name'] = newTask.categoryName;
+      newTodo['category_name'] = options.categoryName;
       return newTodo;
     })
     .catch((err) => {
@@ -70,8 +72,9 @@ const addTodo = (newTask) => {
     });
 };
 
+// Edit an existing TODO item's memo text, completion status or category
+// through SINGLE edit fields(input field, circle icon or category dropdown) or 'Pencil' Edit Form
 const updateTodoItem = (options) => {
-
 
   const queryParams = [];
   let queryString = `
@@ -111,8 +114,6 @@ const updateTodoItem = (options) => {
   WHERE id = $${queryParams.length}
   RETURNING *
   `;
-  console.log('Param',);
-  console.log(queryString);
 
   return db
     .query(queryString, queryParams)
@@ -144,4 +145,4 @@ const deleteToDo = (todoId) => {
     });
 };
 
-module.exports = { getTodos, addTodo, updateTodoItem, deleteToDo };
+module.exports = { getTodos: getTodosByOptions, addTodo, updateTodoItem, deleteToDo };

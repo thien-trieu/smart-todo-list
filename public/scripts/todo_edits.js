@@ -5,7 +5,7 @@ $(document).ready(function() {
   let todoClass;
   let category_name;
 
-  //
+
   window.todoEdits = function() {
     $('.memo-text, .todo-status').click(function() {
 
@@ -110,10 +110,9 @@ $(document).ready(function() {
         function(data) {
           console.log('Data back', data);
           console.log('Category Name back?', data.category_name);
-          // $("#newMemo").val('');
+
           formUpdate(data);
 
-          // renderTodos([data]);
         }
       );
     });
@@ -180,7 +179,7 @@ $(document).ready(function() {
     console.log('this', $this.children());
     const dbColumn = 'completion_status';
     let status;
-    // if (todoClass === 'fa-regular fa-circle') status = true;
+  
     if (todoClass === 'fa-regular fa-circle') {
       status = true;
       $this.children().removeClass('fa-circle').addClass('fa-circle-check');
