@@ -105,4 +105,9 @@
     color: #113b64;
   }
 
+  // This is responsible for edit form not clipping on shrink
+  #editForm {
+    width: 90%
+  }
+
 }
