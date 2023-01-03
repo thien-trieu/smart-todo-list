@@ -6,41 +6,69 @@
 /* Screen Style - Mobile/Tablet View */
 @media only screen and (max-width: 1024px)  {
 
-// This is responsible for widening the registration packground on shrinkage
-#registerblock {
-  width:100%;
-  border-radius: none;
-}
+  // This is responsible for widening the registration packground on shrinkage
+  #registerblock {
+    width:100%;
+    border-radius: none;
+  }
+
+  // Visual adjustments to main container
+  main.container {
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  //adjustments specific to main
+  main {
+    width: 100%;
+    border-radius: none;
+  }
+
+  // Header adjustments
+  header {
+    box-shadow: none;
+    background-color: none;
+  }
+
+  // Main to-do's container sizing adjustments on variable screen size
+  .todolist {
+    border-radius: 0px;
+  }
+
+  // Multiple adjustments to nav bar above main body of To Do's
+  .todo-nav {
+
+    // This removes the round borders on the edges of the nav icons in order to join the navbar with the searchbar visually
+    .todo-nav-right {
+      border-radius: 0px;
+      height: 2em;
+    }
+
+    // This does the same thing for the searchbar joining it visually with the nav sidebars
+    form {
+      border-radius: 0px;
+      width:65%;
+      height: 3em;
+    }
+
+    // Left category icon adjustments to join into nav bar
+    .todo-nav-left {
+      border-radius: 0px;
+      height: 2em;
+    }
+
+    // This does the same thing for the searchbar joining it visually with the nav sidebars
+    #searchBox {
+      height: 3em;
+    }
+  }
+
+  // Profile editing page view adjustments
+  .profilecontainer {
+    border-radius: 0px;
+    width: 100%;
+  }
 
 
-main.container {
-  border-radius: 0px;
-  width: 100%;
-}
-
-main {
-  width: 100%;
-  border-radius: none;
-}
-
-header {
-  box-shadow: none;
-  background-color: none;
-}
-
-// Main to-do's container sizing adjustments on variable screen size
-.todolist {
-  border-radius: 0px;
-}
-
-.todo-nav-right {
-  border-radius: 0 25px 0  25px;
-}
-
-// Profile editing page view adjustments
-.profilecontainer {
-  border-radius: 0px;
-  width: 100%;
-}
 
 }
