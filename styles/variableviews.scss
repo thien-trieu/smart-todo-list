@@ -1,0 +1,113 @@
+/*
+* This SCSS page is responsible for changing the styling when the resolution of the page shrinks or enlargens.
+*/
+
+
+/* Screen Style - Mobile/Tablet View */
+@media only screen and (max-width: 1024px)  {
+
+  // This is responsible for widening the registration background on shrinkage
+  #registerblock {
+    width:100%;
+  }
+
+  // This is responsible for widening the login background on shrinkage
+  #loginblock {
+    width:100%;
+  }
+
+  // Visual adjustments to main container
+  main.container {
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  //adjustments specific to main
+  main {
+    width: 100%;
+    border-radius: none;
+  }
+
+  // Header adjustments including font sizing changes, header size change
+  header {
+    margin-bottom: .25em;
+    height: 4em;
+    padding-left: 0px;
+    padding-right: 2.5vw;
+
+    .logo {
+      font-size: 5vw;
+    }
+
+    .navLinks {
+      font-size: 4vw;
+    }
+
+    .welcometext {
+      font-size: 5vw;
+      display: none;
+    }
+
+  }
+
+  // Main to-do's container sizing adjustments on variable screen size
+  .todolist {
+    border-radius: 0px;
+  }
+
+  // Multiple adjustments to nav bar above main body of To Do's
+  .todo-nav {
+
+    // Reduces the space between search/nav and main todo list container on shrinkage
+    padding-bottom: .25em;
+
+    // This removes the round borders on the edges of the nav icons in order to join the navbar with the searchbar visually
+    .todo-nav-right {
+      border-radius: 0px;
+      height: 2em;
+      padding-left: 0px;
+    }
+
+    // This does the same thing for the searchbar joining it visually with the right sidebar
+    form {
+      border-radius: 0px;
+      width:80%;
+      height: 3em;
+    }
+
+    // Left category icon gets hidden on shrink (reappears built into new todo zone)
+    .todo-nav-left {
+      display: none;
+      // border-radius: 0px;
+      // height: 2em;
+    }
+
+    // This does the same thing for the searchbar joining it visually with the nav sidebars
+    #searchBox {
+      height: 3em;
+      width: 20em;
+    }
+  }
+
+  // Profile editing page view adjustments
+  .profilecontainer {
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  // This is outside of the form SCSS block on purpose because this specific view is
+  // not part of the main nav bar but below it (for mobile resizing)
+  .todo-nav-mobileview {
+    display: flex;
+    padding-right: .5em;
+    gap: .5em;
+    font-size:1.5em;
+    color: #113b64;
+  }
+
+  // This is responsible for edit form not clipping on shrink
+  #editForm {
+    width: 90%
+  }
+
+}

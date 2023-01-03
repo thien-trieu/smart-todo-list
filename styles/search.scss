@@ -18,24 +18,41 @@
   }
 }
 
+// This styling is for the task edit popup window
 #editForm {
   display: none;
   position: fixed;
   left: 50%;
-  top: 40%;
+  top: 27%;
   width: 50%;
-  padding: 1em 0;
-  height: 7em;
-  background: white;
+  background: #754dfe;
   transform: translate(-50%, -50%);
-  border-radius: 0.5em;
+  border-radius: 25px;
+  font-family: 'Montserrat';
+
 
   .edit-form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1em 1em;
+    padding: .8em .7em .7em 1em;
     border-bottom: 1px solid grey;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: aliceblue;
+  }
+
+  .edit-title {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: aliceblue;
+    padding-left: .2em;
+  }
+
+  .edit-category {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: aliceblue;
   }
 
   .edit-form-main {
@@ -44,13 +61,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 
   .fa-xmark {
+    font-size: 1.5em;
+    color: aliceblue;
+    font-weight: 600;
+    padding-right: 0.5em;
     cursor: pointer;
     &:hover {
       color: rgb(75 130 250);
     }
+  }
+
+  .edit-save {
+    padding-right: .2em;
   }
 }

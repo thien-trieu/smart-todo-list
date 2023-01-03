@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/variableviews.css">
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 
@@ -31,7 +32,7 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container">
+    <main class="container" id="loginblock">
 
       <h1 class="loginlabel">Please Log In</h1>
       <br>
@@ -61,6 +62,7 @@
               </form>
 
               <p class="menulabels">
+                <br>
                 Not a member? <a href="/register">Click Here</a>
               </p>
 

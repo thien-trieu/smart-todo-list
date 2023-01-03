@@ -194,21 +194,21 @@ $(document).ready(function() {
     let $editForm = `
       <form id="${todo.todoId}" class="edit-form">
           <div class="edit-form-header">
-            <label> Update Todo Item</label>
+            <label class="edit-header"> Update Smart To-Do Task </label>
             <i class="fa-solid fa-xmark"></i>
           </div>
           <div class="edit-form-main">
             <div class="todo-memo">
-              <label class="memo-text">Title</label>
+              <label class="edit-title">Title </label>
               <input id="newMemo" class="clickedit" type="text" value="${todo.memo}"/>
             </div>
             <div class="todo-category">
-              <label class="memo-text">Category</label>
+              <label class="edit-category">Category </label>
               <select name="" class="categories-dropdown">
               ${createCategoryDropdown(todo)}
               </select>
             </div>
-            <button type="submit">Save</button>
+            <button type="submit" class="edit-save">Save</button>
           </div>
         </form>
       `;
