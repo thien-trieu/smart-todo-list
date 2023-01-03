@@ -1,6 +1,6 @@
 const db = require('../connection');
-// view routes/todo-apis.js for routes
-// view public/scripts/todo_edits.js for event listeners
+// routes/todo-apis.js for routes
+// public/scripts/todo_edits.js for event listeners
 
 
 // Shows TODO item(s) based on SEARCH BAR option or CATEGORY ICON FILTER option
