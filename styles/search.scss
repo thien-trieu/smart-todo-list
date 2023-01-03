@@ -47,4 +47,11 @@
     align-items: center;
 
   }
+
+  .fa-xmark {
+    cursor: pointer;
+    &:hover {
+      color: rgb(75 130 250);
+    }
+  }
 }

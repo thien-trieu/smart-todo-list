@@ -36,6 +36,7 @@ router.post('/update', (req, res) => {
 
   updateTodoItem(req.body)
     .then((task)=> {
+      console.log('TASK', task)
       res.json(task);
       return;
     });

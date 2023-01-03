@@ -3,6 +3,7 @@ $(document).ready(function() {
   let originalText;
   let todoId;
   let todoClass;
+  let category_name;
 
   //
   window.todoEdits = function() {
@@ -45,7 +46,7 @@ $(document).ready(function() {
     // Deletes the todo once the delete icons is clicked on
     $('.fa-trash-can').click(function() {
       todoId = $(this).closest('article').attr("id");
-      $.post('/api/todos/delete', {todoId});
+      $.post('/api/todos/delete', { todoId });
       $(this).closest('article').remove();
     });
 
@@ -53,7 +54,12 @@ $(document).ready(function() {
       console.log(e.target);
       const $todoItem = $(this).closest('article');
       const memo = $todoItem.find('.memo-text').text();
+      const categoryName = $todoItem.find(":selected").val();
+      const categoryId = $todoItem.find('option').attr('catid');
 
+      console.log('catID', categoryId);
+
+      console.log('Cat', categoryName);
       console.log('MEMO', memo);
       console.log('MEMO', $todoItem.find('.memo-text').text());
       todoId = $todoItem.attr("id");
@@ -61,16 +67,90 @@ $(document).ready(function() {
 
       const todo = {
         id: todoId,
-        todoClass
+        todoClass,
+        memo,
+        categoryName,
+        categoryId
       };
 
       $('#editForm').show();
       $('#editForm').html(createEditForm(todo));
+      closeEditform();
+      submitEditForm();
+    });
 
+  };
+
+  const submitEditForm = function() {
+    $(".edit-form").submit(function(e) {
+      e.preventDefault();
+      const memo_details = $("#newMemo").val().trim();
+      category_name = $(this).find(":selected").val();
+      const todoId = $(this).attr('id');
+
+      console.log('TODO ID!', todoId);
+
+      console.log('MEMO', memo_details);
+      console.log('CAT NAME', category_name);
+
+      if (!memo_details) return;
+
+      const data = {
+        memo_details,
+        category_name,
+        todoId
+      };
+
+
+      $('#editForm').hide();
+      console.log('DATA', data);
+
+      $('.spinner').show();
+      $.post("/api/todos/update", data,
+        function(data) {
+          console.log('Data back', data);
+          console.log('Category Name back?', data.category_name);
+          // $("#newMemo").val('');
+          formUpdate(data);
+
+          // renderTodos([data]);
+        }
+      );
+    });
+
+  };
+
+
+  const formUpdate = function(data) {
+
+    const $todoitem = $(`#${data.id}`);
+
+    $todoitem.find('label').text(data.memo_details).show();
+    $todoitem.find('select').html(createCategoryDropdown(
+      {
+        categoryId: data.category_id,
+        categoryName: category_name
+      }
+    ));
+
+
+    $('.spinner').hide();
+  };
+
+  const closeEditform = () => {
+    $(document).mouseup(function(e) {
+    const container = $("#editForm");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      container.hide();
+    }
+  })
+    $('.fa-xmark').click(function() {
+      console.log('clicked!');
+      $('#editForm').hide();
     });
   };
 
-  const createEditForm = (todo)=> {
+  const createEditForm = (todo) => {
     let $editForm = `
       <form id="${todo.id}" class="edit-form">
           <div class="edit-form-header">
@@ -78,18 +158,14 @@ $(document).ready(function() {
             <i class="fa-solid fa-xmark"></i>
           </div>
           <div class="edit-form-main">
-            <div class="todo-memo class">
+            <div class="todo-memo">
               <label class="memo-text">Title</label>
-              <input class="clickedit" type="text" value="categoryName"/>
+              <input id="newMemo" class="clickedit" type="text" value="${todo.memo}"/>
             </div>
             <div class="todo-category">
               <label class="memo-text">Category</label>
               <select name="" class="categories-dropdown">
-                <option catid="catId" value="categoryName" selected>categoryName</option>
-                <option value="watch">watch</option>
-                <option value="eat">eat</option>
-                <option value="read">read</option>
-                <option value="buy">buy</option>
+              ${createCategoryDropdown(todo)}
               </select>
             </div>
             <button type="submit">Save</button>

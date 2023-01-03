@@ -143,7 +143,7 @@ const selectCategoryWithApi = (taskString, userId) => {
 
                   }
                   console.log('End of Yelp loop....', category);
-                  return category;
+                  return category = 'uncategorized';
                 });
             });
         }
