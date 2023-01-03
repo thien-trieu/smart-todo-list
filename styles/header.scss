@@ -10,7 +10,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 6px 8px 0 rgba(0,0,0,.2);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, .2);
+  
 }
 
 a.logo {
@@ -34,7 +35,7 @@ a.navLinks {
   margin: 0.5em;
   text-decoration: none;
   color: #FFFFFF;
-  font-family: "Optima";
+  // font-family: "Optima";
   font-size: 2em;
   z-index: 9998;
   position: relative;
@@ -42,25 +43,25 @@ a.navLinks {
 
 a.navLinks:hover {
   font-weight: bold;
-  font-family: "Optima";
+  // font-family: "Optima";
 }
 
 .welcometext {
-  font-family: "Optima";
+  // font-family: "Optima";
   font-size: 2em;
 }
 
 .logoutbutton {
-  font-family: "Optima";
+  // font-family: "Optima";
   font-size: 1.15em;
+  background-color: #FFFFFF;
 }
 
 .menulabels {
-  font-family: "Optima";
+  // font-family: "Optima";
   padding-top: 0.5em;
 }
 
 .inputfield {
   margin-top: 0.2em;
 }
-
