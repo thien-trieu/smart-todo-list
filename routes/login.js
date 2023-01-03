@@ -23,13 +23,33 @@ router.get('/', (req, res) => {
 let user;
 
 // express validator
-const validator = [
+// const validator = [
+//   check("email").notEmpty().withMessage("The email field cannot be empty!"),
+//   body("password")
+//     .custom((value, { req }) => {
+//       const email = req.body.email;
+//       const result = getUserByEmail(email).then((data)=>{
+//         user = data[0];
+//         if (user === undefined) {
+//           throw new Error("Invalid credentials.");
+//         }
+//         const passwordMatch = bcrypt.compareSync(value, user.password);
+//         if (!passwordMatch) {
+//           throw new Error("Invalid credentials.");
+//         }
+//         return Promise.resolve(true);
+//       });
+//       return result;
+//     })
+// ];
+
+router.post('/', [
   check("email").notEmpty().withMessage("The email field cannot be empty!"),
   body("password")
     .custom((value, { req }) => {
       const email = req.body.email;
       const result = getUserByEmail(email).then((data)=>{
-        user = data[0];
+         user = data[0];
         if (user === undefined) {
           throw new Error("Invalid credentials.");
         }
@@ -41,10 +61,11 @@ const validator = [
       });
       return result;
     })
-];
-
-router.post('/', validator, (req, res) => {
+], (req, res) => {
+  console.log('Email?', req.body.email)
   const errors = validationResult(req);
+  console.log('VAlidation rsult', errors)
+
   if (!errors.isEmpty()) {
     const templateVars = {
 
