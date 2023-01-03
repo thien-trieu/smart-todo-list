@@ -37,6 +37,8 @@ a.navLinks {
   color: #FFFFFF;
   font-family: "Optima";
   font-size: 2.4em;
+  z-index: 9998;
+  position: relative;
 }
 
 a.navLinks:hover {

@@ -1,0 +1,22 @@
+/*
+* This SCSS page is responsible for changing the styling when the resolution of the page shrinks or enlargens.
+*/
+
+
+/* Screen Style - Mobile/Tablet View */
+@media only screen and (max-width: 1024px)  {
+
+
+#registerblock {
+  width:100%;
+}
+
+main.container {
+  border-radius: none;
+}
+
+main {
+  width: 100%;
+}
+
+}
