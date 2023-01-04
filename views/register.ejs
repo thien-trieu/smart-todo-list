@@ -12,24 +12,16 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container" id="registerblock">
-
+  <main class="container" id="registerblock">
   <h1 class="signup">Sign Up For Free <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
-
-
-  <!-- Error handling test -->
+  <!-- POST Express Validator - Displaying any errors to user -->
   <% if(errors) { %>
-
     <% for (let error in errors) { %>
-
       <p class="errMessageOff" id="errMsg">
         <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
       </p>
-      </div>
-      <% } %>
-        <% } %>
-
-
+    <% } %>
+  <% } %>
   <form method="POST"  action="/register">
     <div>
       <label class="menulabels">Your Name:</label>
@@ -52,11 +44,8 @@
     <div>
       <label class="menulabels">Location:</label>
       <br>
-
       <input type="text" name="location" class="inputfield" placeholder="Loading location..." id="locationField">
     </div>
-
-
     <br>
       <button type="submit">Submit</button>
   </form>
@@ -64,9 +53,7 @@
   <p class="menulabels">
   Already have an account? <a href="/login" class="hyperlogin">Click here</a>
   </p>
-
   </main>
-
 </body>
 
 </html>

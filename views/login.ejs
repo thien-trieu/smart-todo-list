@@ -12,43 +12,37 @@
 
 <body>
   <%- include('partials/_header') %>
-
     <main class="container" id="loginblock">
-
       <h1 class="loginlabel">Please Log In</h1>
       <br>
+      <!-- POST Express Validator - Displaying any errors to user -->
       <% if(errors) { %>
         <% for (let error in errors) { %>
           <div class="errMessageOff">
             <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
           </div>
           <% } %>
-            <% } %>
+     <% } %>
+      <form method="POST" action="/login" class="login_form">
+        <div>
+          <label for="email" class="menulabels">Email:</label>
+          <br>
+          <input type="email" name="email" class="logininput">
+        </div>
+        <br>
+        <div>
+          <label for="password" class="menulabels">Password:</label>
+          <br>
+          <input type="password" name="password" class="logininput">
+        </div>
+        <br>
+        <button type="submit" class="loginbutton">Login</button>
+      </form>
 
-
-              <form method="POST" action="/login" class="login_form">
-                <div>
-                  <label for="email" class="menulabels">Email:</label>
-                  <br>
-                  <input type="email" name="email" class="logininput">
-                </div>
-                <br>
-                <div>
-                  <label for="password" class="menulabels">Password:</label>
-                  <br>
-                  <input type="password" name="password" class="logininput">
-                </div>
-                <br>
-                <button type="submit" class="loginbutton">Login</button>
-              </form>
-
-              <p class="menulabels">
-                <br>
-                Not a member? <a href="/register" class="hyperlogin">Click Here</a>
-              </p>
-
+      <p class="menulabels">
+        <br>
+        Not a member? <a href="/register" class="hyperlogin">Click Here</a>
+      </p>
     </main>
-
 </body>
-
 </html>
