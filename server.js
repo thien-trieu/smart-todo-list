@@ -36,7 +36,6 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-// const userApiRoutes = require('./routes/users-api');
 const todoApiRoutes = require('./routes/todos-api');
 // const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
@@ -45,7 +44,6 @@ const profileRoutes = require('./routes/profile');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-// app.use('/api/users', userApiRoutes);
 app.use('/api/todos', todoApiRoutes);
 // app.use('/users', usersRoutes);
 app.use('/login', loginRoutes);
