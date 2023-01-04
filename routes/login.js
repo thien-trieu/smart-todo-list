@@ -2,62 +2,77 @@ const express = require('express');
 const router = express.Router();
 const { body, check, validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
-const { getUserByEmail, getUserById } = require('../db/queries/users');
+const { getUserByEmail } = require('../db/queries/users');
 
+// LOGIN Get request:
 router.get('/', (req, res) => {
 
+  // If user is already logged in, we will redirect to main index page
   const userId = req.session.userID;
-  if (userId) return res.redirect("/");
-  console.log('USER ID', req.session.userID);
+  if (userId) {
+    return res.redirect("/");
+  }
 
-  getUserById(userId).then((user)=>{
-    console.log('USER', user);
-    const templateVars = {
-      user,
-      errors: null
-    };
-    res.render('login', templateVars);
-  });
+  // 'user' and 'error' variables required to login render page.
+  // data is 'null' as user is not logged yet and no error.
+  const templateVars = {
+    user: null,
+    errors: null
+  };
+  res.render('login', templateVars);
 });
 
-let user;
-
-// express validator
-const validator = [
+// LOGIN Post request: Express Validator will check user email and password
+router.post('/', [
   check("email").notEmpty().withMessage("The email field cannot be empty!"),
   body("password")
     .custom((value, { req }) => {
       const email = req.body.email;
-      const result = getUserByEmail(email).then((data)=>{
-        user = data[0];
-        if (user === undefined) {
-          throw new Error("Invalid credentials.");
-        }
-        const passwordMatch = bcrypt.compareSync(value, user.password);
-        if (!passwordMatch) {
-          throw new Error("Invalid credentials.");
-        }
-        return Promise.resolve(true);
-      });
+      // Get user from database to check credentials
+      const result = getUserByEmail(email)
+        .then((data) => {
+          const user = data[0];
+          // check if the user exist
+          if (user === undefined) {
+            throw new Error("Invalid credentials.");
+          }
+          // check if user password matches
+          const passwordMatch = bcrypt.compareSync(value, user.password);
+
+          if (!passwordMatch) {
+            throw new Error("Invalid credentials.");
+          }
+          return Promise.resolve(true);
+        });
+      // return result from express validator
       return result;
     })
-];
+], (req, res) => {
+  const email = req.body.email;
 
-router.post('/', validator, (req, res) => {
+  // receive any error from express validator
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const templateVars = {
 
+  // if any errors, render the login in page and display the errors
+  if (!errors.isEmpty()) {
+
+    const templateVars = {
       errors: errors.array(),
-      user: undefined
+      user: null
     };
+
     res.status(403);
     return res.render("login", templateVars);
   }
 
-  req.session.userID = user.id;
-
-  res.redirect('/');
+  // if no errors, get user info
+  getUserByEmail(email).then((data) => {
+    return data[0];
+  }) // then create cookie with user ID
+    .then((user) => {
+      req.session.userID = user.id;
+      res.redirect('/');
+    });
 });
 
 
