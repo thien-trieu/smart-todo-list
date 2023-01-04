@@ -1,10 +1,10 @@
 // See: https://sass-lang.com/
-$logofont: 'Montserrat', sans-serif;
+$mainFont: 'Montserrat', sans-serif;
 $base-color: #c6538c;
 
 html {
   box-sizing: border-box;
-  font-family: $logofont;
+  font-family: $mainFont;
 }
 
 *,
@@ -33,4 +33,15 @@ h6,
 .h6 {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+body {
+  display: grid;
+  overflow-y: scroll;
+  justify-items: center;
+  background: #C9BBF2;
+  background: linear-gradient(86deg,
+      #c74fef 0%,
+      #7f3fff 45%,
+      #448dfa 95%)
 }

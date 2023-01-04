@@ -1,20 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  overflow-y: scroll;
-
-  background: #C9BBF2;
-  background: linear-gradient(
-    86deg,
-    #c74fef 0%,
-    #7f3fff 45%,
-    #448dfa 95%
-  )
-
-}
-
 // Styling for main container
 main.container {
   background-color: white;
@@ -26,11 +9,12 @@ main.container {
   flex-direction: column;
   opacity: 0.7;
   border-radius: 25px;
+
+  &:hover {
+    box-shadow: 6px 4px 9px #635197;
+  }
 }
 
-main.container:hover {
-  box-shadow: 6px 4px 9px #635197;
-}
 
 // Styling for login form
 .login_form {
@@ -38,17 +22,10 @@ main.container:hover {
   flex-direction: column;
 }
 
-// Signup and Login header styling
-.signup {
-  padding-bottom: 0.5em;
-  color:#635197;
-  font-size: 2em;
-  line-height: 100%;
-  margin: 0;
-}
+
 
 .loginlabel {
-  color:#635197;
+  color: #635197;
   font-size: 2em;
   margin: 0;
 }
@@ -59,11 +36,11 @@ main.container:hover {
   border: 3px solid rgb(154, 13, 41);
   border-radius: 10px;
   padding: .25em;
-  justify-content:space-around;
+  justify-content: space-around;
   text-align: center;
   color: rgb(154, 13, 41);
   font-weight: bold;
-  background-color:rgb(224, 133, 133);
+  background-color: rgb(224, 133, 133);
 }
 
 // set register block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
@@ -84,25 +61,14 @@ main.container:hover {
 .logininput {
   margin-top: 0.2em;
 
-  &:focus{
+  &:focus {
     box-shadow: none;
     -webkit-box-shadow: none;
   }
 
 }
 
-.profilecontainer {
-  background-color: white;
-  padding: 1.5em;
-  padding-right: 2em;
-  padding-left: 2em;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0.7;
-  border-radius: 25px;
-  width: 35%;
-}
+
 
 // Capitalizes all city names on the profile edit page
 .profile_city {
@@ -127,14 +93,13 @@ main.container:hover {
 // Footer styling
 .footercontainer {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  align-items: center;
+  padding-left: 1em;
 
 }
 
-// Footer bottom spacing
-.footer-copyright {
-  margin-bottom: 1em;
+.page-footer {
+  padding-top: 0;
 }
 
 // Gap between footer links and direction set to vertical for footer menu

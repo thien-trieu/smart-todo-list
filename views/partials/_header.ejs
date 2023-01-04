@@ -4,16 +4,39 @@
       <i class="fa-solid fa-clipboard fa-bounce"></i>
       <a href="/" class="logo">Smart To-Do</a>
     </div>
-    <div class="nav-right hide-on-med-and-down" id="nav-mobile">
+
+    <div class="nav-right" id="nav-mobile">
       <% if(!user){ %>
-      <!-- <ul id="nav-mobile" class="hide-on-med-and-down">
-        <li><a href="sass.html">My Profile</a></li>
-        <li><a href="badges.html">Logout</a></li>
-      </ul> -->
-      <a class="navLinks" href="/register">Register</a>
-      <a class="navLinks" href="/login">Login</a>
+      <!-- Menu for small screens -->
+      <div class="mobile-menu">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="fa-solid fa-bars"></i></a>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a class="mobile-dropdowns" href="/register">Register</a></li>
+          <li><a class="mobile-dropdowns" href="/login">Login</a></li>
+        </ul>
+      </div>
+      <!-- Menu for large screens -->
+      <a class="navLinks hide-on-med-and-down" href="/register">Register</a>
+      <a class="navLinks hide-on-med-and-down" href="/login">Login</a>
       <% } else { %>
-      <form class="logout-form" action="/logout" method="post">
+      <!-- Menu for small screens -->
+      <div class="mobile-menu">
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="fa-solid fa-bars"></i></a>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a class="mobile-dropdowns" href="/profile">My Profile</a></li>
+          <li>
+            <form action="/logout" method="post">
+              <button class="mobile-btn" type="submit">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <form class="logout-form hide-on-med-and-down" action="/logout" method="post">
         <div class="">
           <span class="welcometext">
             Welcome,

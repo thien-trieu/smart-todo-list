@@ -4,66 +4,67 @@
 <head>
 
   <%- include('partials/_meta_tags') %>
-    <%- include('partials/_styles') %>
-      <%- include('partials/_scripts') %>
-        <title>Register</title>
+  <%- include('partials/_styles') %>
+  <%- include('partials/_scripts') %>
+  <title>Register</title>
 </head>
 
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container" id="registerblock">
+  <main class="container" id="registerblock">
 
-  <h1 class="signup">Sign Up For Free <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
+    <h1 class="signup">Sign Up For Free <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
 
 
-  <!-- Error handling test -->
-  <% if(errors) { %>
+    <!-- Error handling test -->
+    <% if(errors) { %>
 
     <% for (let error in errors) { %>
 
-      <p class="errMessageOff" id="errMsg">
-        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
-      </p>
+    <p class="errMessageOff" id="errMsg">
+      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
+        class="fa-solid fa-triangle-exclamation"></i>
+    </p>
+    </div>
+    <% } %>
+    <% } %>
+
+
+    <form method="POST" action="/register">
+      <div>
+        <label class="menulabels">Your Name:</label>
+        <br>
+        <input type="text" name="name" class="inputfield">
       </div>
-      <% } %>
-        <% } %>
-
-
-  <form method="POST"  action="/register">
-    <div>
-      <label class="menulabels">Your Name:</label>
       <br>
-      <input type="text" name="name" class="inputfield">
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Email:</label>
+      <div>
+        <label class="menulabels">Email:</label>
+        <br>
+        <input type="email" name="email" class="inputfield">
+      </div>
       <br>
-      <input type="email" name="email" class="inputfield">
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Password:</label>
+      <div>
+        <label class="menulabels">Password:</label>
+        <br>
+        <input type="password" name="password" class="inputfield">
+      </div>
       <br>
-      <input type="password" name="password" class="inputfield">
-    </div>
-    <br>
-    <div>
-      <label class="menulabels">Location:</label>
-      <br>
+      <div>
+        <label class="menulabels">Location:</label>
+        <br>
 
-      <input type="text" name="location" class="inputfield" placeholder="Loading location..." id="locationField">
-    </div>
+        <input type="text" name="location" class="inputfield" placeholder="Loading location..." id="locationField">
+      </div>
 
 
-    <br>
+      <br>
       <button type="submit">Submit</button>
-  </form>
+    </form>
 
-  <p class="menulabels">
-  Already have an account? <a href="/login" class="hyperlogin">Click here</a>
-  </p>
+    <p class="menulabels">
+      Already have an account? <a href="/login" class="hyperlogin">Click here</a>
+    </p>
 
   </main>
 
