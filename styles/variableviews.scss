@@ -2,6 +2,14 @@
 * This SCSS page is responsible for changing the styling when the resolution of the page shrinks or enlargens.
 */
 
+@media only screen and (max-width: 601px)  {
+
+  nav .nav-wrapper {
+    display: none;
+
+  }
+
+}
 
 /* Screen Style - Mobile/Tablet View */
 @media only screen and (max-width: 1024px)  {
@@ -41,6 +49,7 @@
 
     .navLinks {
       font-size: 4vw;
+      display: none;
     }
 
     .welcometext {
@@ -110,4 +119,9 @@
     width: 90%
   }
 
+  // This is to change display for logout button
+  .logoutbutton {
+    display: none;
+  }
 }
+
