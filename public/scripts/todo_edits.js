@@ -204,7 +204,7 @@ $(document).ready(function() {
             </div>
             <div class="todo-category">
               <label class="edit-category">Category </label>
-              <select name="" class="categories-dropdown">
+              <select name="" class="categories-dropdown" id="dropmenu">
               ${createCategoryDropdown(todo)}
               </select>
             </div>
