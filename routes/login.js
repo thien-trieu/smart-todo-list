@@ -7,7 +7,7 @@ const { getUserByEmail } = require('../db/queries/users');
 // LOGIN Get request:
 router.get('/', (req, res) => {
 
-  // If user is already logged in, we will redirect to main index page
+  // If user is already logged in, they will redirected to main index page
   const userId = req.session.userID;
   if (userId) {
     return res.redirect("/");
@@ -53,7 +53,7 @@ router.post('/', [
   // receive any error from express validator
   const errors = validationResult(req);
 
-  // if any errors, render the login in page and display the errors
+  // if any errors, render the LOGIN page and display the errors
   if (!errors.isEmpty()) {
 
     const templateVars = {
