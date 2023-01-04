@@ -71,7 +71,7 @@ const selectCategory = (taskString) => {
   return category;
 };
 
-// function which calls the BASIC 'selectCategory' first, if result is 'null' it will then call APIs
+// function which calls the BASIC 'selectCategory' first, if category is 'null' it will then call APIs
 const selectCategoryWithApi = (taskString, userId) => {
   const input = taskString.toLowerCase();
   const category = selectCategory(input);
@@ -93,6 +93,7 @@ const selectCategoryWithApi = (taskString, userId) => {
               .then(res => {
                 console.log('YELP:', res);
                 if (res) return res;
+                // After checking all APIs if category is still 'null', set category as 'uncategorized'
                 return 'uncategorized';
               });
           });
