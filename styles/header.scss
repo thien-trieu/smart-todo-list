@@ -10,23 +10,26 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 6px 8px 0 rgba(0,0,0,.2);
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, .2);
 }
 
 a.logo {
   text-decoration: none;
   color: #FFFFFF;
+  position: inherit;
+  display: inline-block;
+  font-size: 2.1rem;
+  font-weight: 800;
 }
 
-h1.logo {
-  font-family: $logofont;
-  font-weight: 800;
-  font-size: 3.2em;
-}
+// h1.logo {
+//   font-family: $logofont;
+//   font-weight: 800;
+//   font-size: 3.2em;
+// }
 
 i.fa-clipboard {
   margin: 0.5em;
-  font-size: 1em;
   color: #d6cdf2;
 }
 
@@ -34,33 +37,96 @@ a.navLinks {
   margin: 0.5em;
   text-decoration: none;
   color: #FFFFFF;
-  font-family: "Optima";
-  font-size: 2em;
+  font-size: 1.2em;
   z-index: 9998;
   position: relative;
+  padding-bottom: 3px;
+
+  &:hover {
+    border-bottom: 2px solid white;
+  }
 }
 
-a.navLinks:hover {
-  font-weight: bold;
-  font-family: "Optima";
-}
 
 .welcometext {
-  font-family: "Optima";
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
+// Styling for top nav logout button and icon
 .logoutbutton {
-  font-family: "Optima";
+  outline: none;
   font-size: 1.15em;
+  color: white;
+  background-color: transparent;
+  border: transparent;
+  padding-bottom: 4px;
+  padding-right: .6em;
+  height: 2.6em;
+
+  &:hover {
+  border-bottom: 2px solid white;
+}
 }
 
 .menulabels {
-  font-family: "Optima";
   padding-top: 0.5em;
+  font-size: 1.2em;
 }
 
-.inputfield {
+// Adjusts spacing on input fields on registration screen, also removes ugly framework default lines
+input.inputfield {
+  height: 2rem;
   margin-top: 0.2em;
+  box-shadow: 0 1px 0 0 darkslategray;
+  -webkit-box-shadow: 0 1px 0 0 darkslategray;
+  border-bottom: 2px solid darkslategray;
+
+  &:focus{
+    box-shadow: 0 1px 0 0 darkslategray;
+    -webkit-box-shadow: 0 1px 0 0 darkslategray;
+    border-bottom: 2px solid darkslategray;
+  }
+
 }
 
+.inputfield:focus {
+    box-shadow: 0 1px 0 0 darkslategray;
+    -webkit-box-shadow: 0 1px 0 0 darkslategray;
+    border-bottom: 2px solid darkslategray;
+
+}
+
+
+.nav-left {
+  padding: 0 1em;
+}
+
+.nav-right {
+  padding: 0 1em;
+}
+
+nav {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.682);
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  height: 56px;
+  line-height: 56px;
+}
+
+nav .nav-wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// nav .brand-logo {
+//   position: inherit;
+//   color: #fff;
+//   display: inline-block;
+//   font-size: 2.1rem;
+//   font-weight: 800;
+// }

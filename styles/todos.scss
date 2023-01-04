@@ -1,7 +1,8 @@
 main {
   width: 90%;
-  margin: 0 2em;
+  margin: 5em 2em;
 }
+
 .todolist {
   background-color: white;
   padding: 1em;
@@ -15,6 +16,7 @@ main {
     box-shadow: 6px 4px 9px #635197;
   }
 }
+
 .todo-nav {
   display: flex;
   justify-content: space-between;
@@ -32,8 +34,9 @@ main {
     opacity: 0.7;
     border-radius: 25px;
     gap: .5em;
-    font-size:1.5em;
+    font-size: 1.5em;
     color: #113b64;
+    height: 1.9em;
 
 
     &:hover {
@@ -51,10 +54,17 @@ main {
     width: 60%;
 
     #searchBox {
-      width: 60vw;
+      width: 10em;
       border: none;
       outline: none;
       padding: 0.3em 0 0.3em 2em;
+      margin: 0;
+      height: 1em;
+
+      &:focus {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
     }
 
     i {
@@ -120,10 +130,14 @@ main {
       width: 18em;
       padding: 0.4em 0 0.3em 2em;
       border: none;
+      height: 0.5em;
+      margin: 0;
 
-      // Removes outline of new memo bar when adding a new to do note
+      // Removes outline of new memo bar when adding a new to do note. overrides Materialize framework messiness.
       &:focus {
         outline: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
       }
     }
 
@@ -141,7 +155,7 @@ main {
     border-width: 1px 2.5px 2.5px 1px;
     border-style: solid;
     margin: 1em 0;
-    padding: .5em 1em .35em 1em;
+    padding: 0.1em 1em 0em 1em;
     background-color: white;
     border-radius: 25px;
     opacity: 0.7;
@@ -157,7 +171,7 @@ main {
       gap: 0.3em;
 
       .todo-status {
-        font-size: 1.1em;
+        font-size: 1.2em;
         cursor: pointer;
 
         .fa-circle-check {
@@ -165,11 +179,14 @@ main {
         }
       }
 
+      // Sets the styling for to do task memos on the main page
       .todo-memo {
 
         .memo-text {
           border: 1px solid transparent;
           padding: 0 0.3em;
+          font-size: 1.1em;
+          color: #000000DE;
 
           &:hover {
             border: 1px solid rgb(63, 63, 63);
@@ -179,16 +196,22 @@ main {
 
         input {
           border: none;
+          height: auto;
+          margin: 0;
 
+          // Overrides issues caused by framework Materialize
           &:focus {
             outline: none;
             background-color: rgb(231, 231, 231);
             padding: 2px;
+            box-shadow: none;
+            height: 1.1em;
           }
         }
       }
     }
 
+    // Responsible for individual to do task categories
     .right-side {
       display: flex;
       justify-content: center;
@@ -203,12 +226,14 @@ main {
           border: none;
           appearance: none;
           color: rgb(63, 63, 63);
+          font-size: 1.1em
         }
       }
 
       .todo-options {
         display: flex;
         gap: 0.5em;
+        font-size: 1.2em;
 
         // Edit and Delete icons
         i {
@@ -232,4 +257,9 @@ main {
 
 .categories-dropdown {
   text-align: right;
+  opacity: 10;
+}
+
+.fa-sign-out {
+  font-size: 0.7em;
 }

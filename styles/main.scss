@@ -42,10 +42,15 @@ main.container:hover {
 .signup {
   padding-bottom: 0.5em;
   color:#635197;
+  font-size: 2em;
+  line-height: 100%;
+  margin: 0;
 }
 
 .loginlabel {
   color:#635197;
+  font-size: 2em;
+  margin: 0;
 }
 
 // Error message handling (toggles on and off)
@@ -64,17 +69,26 @@ main.container:hover {
 // set register block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
 #registerblock {
   width: 35%;
+  margin-top: 7em;
 }
 
 // set login page block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
 // aligned with above registration block styling
 #loginblock {
   width: 35%;
+  margin-top: 7em;
 }
 
 // Spacing for login inputs
+// Also overrides ugly default box input shadow and line from framework Materialize
 .logininput {
   margin-top: 0.2em;
+
+  &:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
 }
 
 .profilecontainer {
@@ -103,4 +117,36 @@ main.container:hover {
 .fa-plus {
   color: #113a64e0;
   font-size: 1.2em;
+}
+
+// Overrides ugly default hyperlink text from framework Materialize
+.hyperlogin {
+  color: #551A8B;
+}
+
+// Footer styling
+.footercontainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+}
+
+// Footer bottom spacing
+.footer-copyright {
+  margin-bottom: 1em;
+}
+
+// Gap between footer links and direction set to vertical for footer menu
+.footermenu {
+  gap: .5em;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.footer-link {
+  padding-right: 1em;
+  font-size: 1.3em;
+  color: aliceblue;
 }
