@@ -3,6 +3,7 @@ const { callYelp } = require('./apis/yelp');
 const { callImdb } = require('./apis/rapidapi_imdb');
 const { getUserById } = require('../db/queries/users');
 
+// BASIC 'selectCategory' function that will filter out key words to categorize the TODO item's string
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();
 
@@ -70,12 +71,13 @@ const selectCategory = (taskString) => {
   return category;
 };
 
+// function which calls the BASIC 'selectCategory' first, if result is 'null' it will then call APIs
 const selectCategoryWithApi = (taskString, userId) => {
   const input = taskString.toLowerCase();
   const category = selectCategory(input);
 
   if (category) return Promise.resolve(category);
-
+  // if category is null, start calling APIs
   return callWolfram(input)
     .then(res => {
       console.log('WOLFRAM:', res);
