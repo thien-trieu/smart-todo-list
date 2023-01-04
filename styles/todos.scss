@@ -196,11 +196,16 @@ main {
 
         input {
           border: none;
+          height: auto;
+          margin: 0;
 
+          // Overrides issues caused by framework Materialize
           &:focus {
             outline: none;
             background-color: rgb(231, 231, 231);
             padding: 2px;
+            box-shadow: none;
+            height: 1.1em;
           }
         }
       }
