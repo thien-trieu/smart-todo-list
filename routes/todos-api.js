@@ -8,11 +8,12 @@ router.get('/', (req, res) => {
   const searchStr = req.query.search;
   const categoryName = req.query.categoryName;
   const userId = req.session.userID;
-
+  // If user is not logged in, they will be redirected to login
   if (!userId) {
     return res.redirect("/login");
   }
 
+  // Searchbar / Icon filter options
   const options = {
     searchStr,
     categoryName
