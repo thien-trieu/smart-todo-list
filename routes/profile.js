@@ -47,13 +47,12 @@ router.post('/', [
 ], (req, res) => {
 
   const userId = req.session.userID;
-  const newEmail = req.body.email;
-
-  const newCity = req.body.city;
+  const email = req.body.email;
+  const city = req.body.city;
 
   const userUpdates = {
-    email: req.body.email,
-    city: req.body.city
+    email,
+    city,
   };
 
   const errors = validationResult(req);
