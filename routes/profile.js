@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { body, check, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const { getUserByEmail, getUserById, editUser } = require('../db/queries/users');
 
 router.get('/', (req, res) => {
@@ -50,14 +50,13 @@ router.post('/', [
   const email = req.body.email;
   const city = req.body.city;
 
-  const userUpdates = {
+  const profileUpdates = {
     email,
     city,
   };
-
+  // receive any error from express validator
   const errors = validationResult(req);
 
-  // if errors, display them
   if (!errors.isEmpty()) {
 
     getUserById(userId).then((result) => {
@@ -78,7 +77,7 @@ router.post('/', [
 
   } else {
 
-    editUser(userUpdates, userId).then(() =>  {
+    editUser(profileUpdates, userId).then(() =>  {
 
       res.redirect('profile');
     });

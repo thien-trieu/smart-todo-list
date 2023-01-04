@@ -53,19 +53,22 @@ router.post('/', [
   // receive any error from express validator
   const errors = validationResult(req);
 
+  // if any errors, render the login in page and display the errors
   if (!errors.isEmpty()) {
-    const templateVars = {
 
+    const templateVars = {
       errors: errors.array(),
-      user: undefined
+      user: null
     };
+
     res.status(403);
     return res.render("login", templateVars);
   }
 
+  // if no errors, get user info
   getUserByEmail(email).then((data) => {
     return data[0];
-  })
+  }) // then create cookie with user ID
     .then((user) => {
       req.session.userID = user.id;
       res.redirect('/');
