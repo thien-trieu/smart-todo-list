@@ -86,7 +86,7 @@ const selectCategoryWithApi = (taskString, userId) => {
       return callImdb(input).then(res => {
         console.log('IMDB:', res);
         if (res) return res;
-
+        // Get user from database first, to pass user location for yelp API search
         return getUserFromDB(userId)
           .then(user => {
             return callYelp(input, user, selectCategory)
