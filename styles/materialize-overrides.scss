@@ -1,0 +1,22 @@
+$mainFont: 'Montserrat', sans-serif;
+
+select {
+  height: 2em;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: black;
+  opacity: 10;
+}
+
+input {
+  font-family: $mainFont;
+  line-height: 0;
+  color: black;
+
+}

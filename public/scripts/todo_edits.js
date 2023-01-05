@@ -198,12 +198,12 @@ $(document).ready(function() {
             <i class="fa-solid fa-xmark"></i>
           </div>
           <div class="edit-form-main">
-            <div class="todo-memo">
-              <label class="edit-title">Title </label>
+            <div class="edit-todo-memo">
+              <label class="edit-title">Title: </label>
               <input id="newMemo" class="clickedit" type="text" value="${todo.memo}"/>
             </div>
-            <div class="todo-category">
-              <label class="edit-category">Category </label>
+            <div class="edit-todo-category">
+              <label class="edit-category">Category: </label>
               <select name="" class="categories-dropdown" id="dropmenu">
               ${createCategoryDropdown(todo)}
               </select>
@@ -216,7 +216,7 @@ $(document).ready(function() {
     return $editForm;
   };
 
-   // Edits completion status when user clicks on 'CIRCLE' icon to add a check mark to update as completed.
+  // Edits completion status when user clicks on 'CIRCLE' icon to add a check mark to update as completed.
   const updateTodoStatus = function($this) {
     console.log('this', $this.children());
     const dbColumn = 'completion_status';
@@ -237,7 +237,7 @@ $(document).ready(function() {
     updateDatabase(status, dbColumn);
   };
 
- // Edits the TODO item's orginal text to the new input that user enters
+  // Edits the TODO item's orginal text to the new input that user enters
   const updateMemoDetails = function(e) {
     const input = $(e.target);
     const label = input && input.prev();

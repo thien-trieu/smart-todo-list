@@ -7,7 +7,7 @@ nav {
   height: 56px;
   line-height: 56px;
 
-  
+
 
   .nav-wrapper {
     position: relative;
@@ -18,6 +18,9 @@ nav {
 
     .nav-left {
       padding: 0 1em;
+      height: 56px;
+      display: flex;
+      align-items: center;
 
       .fa-clipboard {
         margin: 0.5em;

@@ -21,7 +21,6 @@ input.inputfield {
 
 }
 
-
 .profilecontainer {
   background-color: white;
   padding: 1.5em;
@@ -50,4 +49,19 @@ input.inputfield {
       color: #202124;
     }
   }
+}
+
+
+input:not(.browser-default):focus:not([readonly]) {
+
+  border-bottom: none;
+  // -webkit-box-shadow: 0 1px 0 0 #26a69a;
+  box-shadow: none;
+
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: none;
+  -webkit-box-shadow: none;
+  box-shadow: 0 0px 0 0 transparent;
 }

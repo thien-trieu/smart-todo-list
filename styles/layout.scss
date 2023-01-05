@@ -1,10 +1,8 @@
 // See: https://sass-lang.com/
 $mainFont: 'Montserrat', sans-serif;
-$base-color: #c6538c;
 
 html {
   box-sizing: border-box;
-  font-family: $mainFont;
 }
 
 *,
@@ -16,7 +14,6 @@ html {
 * {
   margin: 0;
   padding: 0;
-  font: inherit;
 }
 
 h1,
@@ -36,12 +33,18 @@ h6,
 }
 
 body {
+  font-family: $mainFont;
   display: grid;
   overflow-y: scroll;
   justify-items: center;
   background: #C9BBF2;
+  color: black;
+  height: 100vh;
   background: linear-gradient(86deg,
       #c74fef 0%,
       #7f3fff 45%,
       #448dfa 95%)
 }
+
+
+

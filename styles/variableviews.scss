@@ -2,15 +2,6 @@
 * This SCSS page is responsible for changing the styling when the resolution of the page shrinks or enlargens.
 */
 
-// @media only screen and (max-width: 601px)  {
-
-//   nav .nav-wrapper {
-//     display: none;
-
-//   }
-
-// }
-
 @media only screen and (min-width: 992px) {
   .mobile-menu {
     display: none;
@@ -20,7 +11,16 @@
 /* Screen Style - Mobile/Tablet View */
 @media only screen and (max-width: 992px) {
 
+  body {
+    background: #c74fef;
+  }
+
   nav {
+
+    i {
+      height: 0;
+    }
+
     .nav-wrapper {
       i.fa-bars {
         height: 64px;
@@ -138,12 +138,70 @@
   main.container {
     border-radius: 0px;
     width: 100%;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
 
   //adjustments specific to main
   main {
     width: 100%;
     border-radius: none;
+    margin: 4.38em 2em;
+
+    // Multiple adjustments to nav bar above main body of To Do's
+    .todo-nav {
+
+      // Reduces the space between search/nav and main todo list container on shrinkage
+      padding-bottom: 0;
+
+      // This removes the round borders on the edges of the nav icons in order to join the navbar with the searchbar visually
+      .todo-nav-right {
+        border-radius: 0px;
+        height: 2em;
+        padding-left: 26px;
+        position: relative;
+        top: -.26em;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+
+      // This does the same thing for the searchbar joining it visually with the right sidebar
+      form {
+        border-radius: 0px;
+        width: 80%;
+        height: 3em;
+        position: relative;
+        top: -.35em;
+
+        &:hover {
+          box-shadow: none;
+        }
+      }
+
+      // Left category icon gets hidden on shrink (reappears built into new todo zone)
+      .todo-nav-left {
+        display: none;
+      }
+
+      // This does the same thing for the searchbar joining it visually with the nav sidebars
+      #searchBox {
+        height: 3em;
+        width: 20em;
+      }
+    }
+
+    // Main to-do's container sizing adjustments on variable screen size
+    .todolist {
+      border-radius: 0px;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
   }
 
   // Header adjustments including font sizing changes, header size change
@@ -169,46 +227,9 @@
 
   // }
 
-  // Main to-do's container sizing adjustments on variable screen size
-  .todolist {
-    border-radius: 0px;
-  }
 
-  // Multiple adjustments to nav bar above main body of To Do's
-  .todo-nav {
 
-    // Reduces the space between search/nav and main todo list container on shrinkage
-    padding-bottom: .25em;
 
-    // This removes the round borders on the edges of the nav icons in order to join the navbar with the searchbar visually
-    .todo-nav-right {
-      border-radius: 0px;
-      height: 2em;
-      padding-left: 26px;
-      position: relative;
-      top: -.26em;
-    }
-
-    // This does the same thing for the searchbar joining it visually with the right sidebar
-    form {
-      border-radius: 0px;
-      width: 80%;
-      height: 3em;
-      position: relative;
-      top: -.35em;
-    }
-
-    // Left category icon gets hidden on shrink (reappears built into new todo zone)
-    .todo-nav-left {
-      display: none;
-    }
-
-    // This does the same thing for the searchbar joining it visually with the nav sidebars
-    #searchBox {
-      height: 3em;
-      width: 20em;
-    }
-  }
 
   // Profile editing page view adjustments
   .profilecontainer {
@@ -218,13 +239,14 @@
 
   // This is outside of the form SCSS block on purpose because this specific view is
   // not part of the main nav bar but below it (for mobile resizing)
-  // .todo-nav-mobileview {
-  //   display: flex;
-  //   padding-right: .5em;
-  //   gap: .5em;
-  //   font-size: 1.5em;
-  //   color: #113b64;
-  // }
+  .todo-nav-mobileview {
+    display: flex;
+    align-items: center;
+    padding-right: .5em;
+    gap: .5em;
+    font-size: 1.5em;
+    color: #113b64;
+  }
 
   // This is responsible for edit form not clipping on shrink
   #editForm {
