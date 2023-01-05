@@ -32,25 +32,25 @@ input.inputfield {
   opacity: 0.7;
   border-radius: 25px;
   width: 35%;
-
-  // Signup and Login header styling
-  .signup {
-    padding-bottom: 0.5em;
-    color: #635197;
-    font-size: 2em;
-    line-height: 100%;
-    margin: 0;
-  }
-
-  form {
-    .menulabels {
-      padding-top: 0.5em;
-      font-size: 1em;
-      color: #202124;
-    }
-  }
+  height: 45%;
 }
 
+// Signup and Login header styling
+.signup {
+  padding-bottom: 0.5em;
+  color: #635197;
+  font-size: 2em;
+  line-height: 100%;
+  margin: 0;
+}
+
+form {
+  .menulabels {
+    padding-top: 0.5em;
+    font-size: 1em;
+    color: #202124;
+  }
+}
 
 input:not(.browser-default):focus:not([readonly]) {
 

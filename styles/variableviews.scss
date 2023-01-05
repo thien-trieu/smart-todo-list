@@ -204,33 +204,6 @@
     }
   }
 
-  // Header adjustments including font sizing changes, header size change
-  // header {
-  //   // margin-bottom: .25em;
-  //   // height: 4em;
-  //   // padding-left: 0px;
-  //   // padding-right: 2.5vw;
-
-  //   .logo {
-  //     font-size: 5vw;
-  //   }
-
-  //   .navLinks {
-  //     font-size: 4vw;
-  //     display: none;
-  //   }
-
-  //   .welcometext {
-  //     font-size: 1.2em;
-  //     display: none;
-  //   }
-
-  // }
-
-
-
-
-
   // Profile editing page view adjustments
   .profilecontainer {
     border-radius: 0px;
@@ -257,4 +230,39 @@
   .logoutbutton {
     display: none;
   }
+}
+
+
+
+// Responsible for managing height adjustments
+@media only screen and (max-height: 992px) {
+
+  .profilecontainer {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  #loginblock {
+    height: 50%;
+  }
+
+}
+
+// Responsible for managing further height adjustments
+@media only screen and (max-height: 725px) {
+
+  #loginblock {
+    height: 65%;
+  }
+
+}
+
+// Responsible for managing further height adjustments
+@media only screen and (max-height: 550px) {
+
+  #loginblock {
+    height: 90%;
+  }
+
 }
