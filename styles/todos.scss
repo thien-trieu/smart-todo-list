@@ -20,9 +20,9 @@ main {
       border-radius: 25px;
       gap: .5em;
       font-size: 1.5em;
-      color: #113b64;
+      color: #002448;
       height: 1.9em;
-
+      min-width: 180px;
 
       &:hover {
         box-shadow: 6px 4px 9px #635197;
@@ -74,7 +74,7 @@ main {
       border-radius: 25px;
       gap: .56em;
       font-size: 1.5em;
-      color: #113b64;
+      color: #002448;
 
 
       &:hover {
@@ -185,6 +185,12 @@ main {
               }
             }
 
+            .completed-todo {
+              text-decoration: line-through;
+              font-size: inherit;
+              color: rgb(140 135 144);
+            }
+
             input {
               border: none;
               height: auto;
@@ -201,10 +207,7 @@ main {
             }
           }
 
-          .completed-todo {
-            text-decoration: line-through;
-            color: rgb(140 135 144);
-          }
+
         }
 
         // Responsible for individual to do task categories

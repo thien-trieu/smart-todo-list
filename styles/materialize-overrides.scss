@@ -10,7 +10,8 @@ select {
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: black;
+  color: #ccc;
+  font: inherit;
 }
 
 input {
@@ -18,4 +19,8 @@ input {
   line-height: 0;
   color: black;
 
+}
+
+label {
+  font-size: inherit;
 }

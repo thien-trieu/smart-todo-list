@@ -51,10 +51,10 @@ router.post('/', [
     .notEmpty()
     .withMessage(" Please create a strong password "),
   check('location')
-  .trim()
-  .notEmpty()
-  .withMessage(" Please enter your city ")
-  .toLowerCase()
+    .trim()
+    .notEmpty()
+    .withMessage(" Please enter your city ")
+    .toLowerCase()
 ], (req, res) => {
 
   const errors = validationResult(req);

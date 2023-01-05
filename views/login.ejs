@@ -13,40 +13,53 @@
 <body>
   <%- include('partials/_header') %>
 
-  <div class="card large">
-    <h4>Please Log In</h4>
-    <% if(errors) { %>
-    <% for (let error in errors) { %>
-    <div class="errMessageOff">
-      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
-        class="fa-solid fa-triangle-exclamation"></i>
-    </div>
-    <% } %>
-    <% } %>
-
-    <form method="POST" action="/login" class="col s12">
-      <br>
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="email">Email</label>
-          <input type="email" name="email" class="validate">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="validate">
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
-    </form>
-    <br>
+  <div class="card row">
     <div class="row">
-      <p>Not a member? <a href="/register" class="hyperlogin">Click Here</a> </p>
+      <div class="col s12">
+        <h4>Please Log In</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <% if(errors) { %>
+        <% for (let error in errors) { %>
+        <div class="errMessageOff">
+          <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
+            class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <% } %>
+        <% } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <form method="POST" action="/login" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="validate">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="validate">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <p>Not a member? <a href="/register" class="hyperlogin">Click Here</a> </p>
+      </div>
     </div>
   </div>
-
-
 </body>
 
 </html>

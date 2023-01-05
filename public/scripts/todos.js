@@ -38,8 +38,8 @@ $(document).ready(function() {
         <div class="todo-status">
           ${ status }
         </div>
-        <div class="todo-memo ${statusClass}">
-          <label class="memo-text">${ todo.memo }</label>
+        <div class="todo-memo">
+          <label class="memo-text ${statusClass}">${ todo.memo }</label>
           <input class="clickedit" type="text" />
         </div>
       </div>

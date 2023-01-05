@@ -225,13 +225,13 @@ $(document).ready(function() {
     if (todoClass === 'fa-regular fa-circle') {
       status = true;
       $this.children().removeClass('fa-circle').addClass('fa-circle-check');
-      $this.next().addClass('completed-todo');
+      $this.next().find('label').addClass('completed-todo');
     }
 
     if (todoClass === 'fa-regular fa-circle-check') {
       status = false;
       $this.children().removeClass('fa-circle-check').addClass('fa-circle');
-      $this.next().removeClass('completed-todo');
+      $this.next().find('label').removeClass('completed-todo');
     }
 
     updateDatabase(status, dbColumn);

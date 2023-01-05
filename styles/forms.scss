@@ -1,61 +1,63 @@
 // Adjusts spacing on input fields on registration screen, also removes ugly framework default lines
-input.inputfield {
-  height: 2rem;
-  margin-top: 0.2em;
-  box-shadow: 0 1px 0 0 darkslategray;
-  -webkit-box-shadow: 0 1px 0 0 darkslategray;
-  border-bottom: 2px solid darkslategray;
+// input.inputfield {
+//   height: 2rem;
+//   margin-top: 0.2em;
+//   box-shadow: 0 1px 0 0 darkslategray;
+//   -webkit-box-shadow: 0 1px 0 0 darkslategray;
+//   border-bottom: 2px solid darkslategray;
 
-  &:focus {
-    box-shadow: 0 1px 0 0 darkslategray;
-    -webkit-box-shadow: 0 1px 0 0 darkslategray;
-    border-bottom: 2px solid darkslategray;
-  }
+//   &:focus {
+//     box-shadow: 0 1px 0 0 darkslategray;
+//     -webkit-box-shadow: 0 1px 0 0 darkslategray;
+//     border-bottom: 2px solid darkslategray;
+//   }
 
-}
+// }
 
-.inputfield:focus {
-  box-shadow: 0 1px 0 0 darkslategray;
-  -webkit-box-shadow: 0 1px 0 0 darkslategray;
-  border-bottom: 2px solid darkslategray;
+// .inputfield:focus {
+//   box-shadow: 0 1px 0 0 darkslategray;
+//   -webkit-box-shadow: 0 1px 0 0 darkslategray;
+//   border-bottom: 2px solid darkslategray;
 
-}
+// }
 
-.profilecontainer {
-  background-color: white;
-  padding: 1.5em;
-  padding-right: 2em;
-  padding-left: 2em;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0.7;
-  border-radius: 25px;
-  width: 35%;
+// .profilecontainer {
+//   background-color: white;
+//   padding: 1.5em;
+//   padding-right: 2em;
+//   padding-left: 2em;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   opacity: 0.7;
+//   border-radius: 25px;
+//   width: 35%;
 
-  // Signup and Login header styling
-  .signup {
-    padding-bottom: 0.5em;
-    color: #635197;
-    font-size: 2em;
-    line-height: 100%;
-    margin: 0;
-  }
+//   // Signup and Login header styling
+//   .signup {
+//     padding-bottom: 0.5em;
+//     color: #635197;
+//     font-size: 2em;
+//     line-height: 100%;
+//     margin: 0;
+//   }
 
-  form {
-    .menulabels {
-      padding-top: 0.5em;
-      font-size: 1em;
-      color: #202124;
-    }
-  }
-}
+//   form {
+//     .menulabels {
+//       padding-top: 0.5em;
+//       font-size: 1em;
+//       color: #202124;
+//     }
+//   }
+// }
 
-.card.large {
+.card {
   top: 6em;
   padding: 2em;
   opacity: 0.7;
   border-radius: 1em;
+  height: fit-content;
+  min-width: 40%;
 
   input:not(.browser-default):focus:not([readonly]) {
     border-bottom: 1px solid #458bfa;
@@ -74,8 +76,6 @@ input.inputfield {
 
     &:hover {
       background-color: #bf4ef1;
-
     }
-
   }
 }
