@@ -40,15 +40,6 @@
 
       .nav-right {
 
-        .dropdown-content {
-          // background-color: #000000;
-          // color: white;
-
-
-        }
-
-
-
         .dropdown-content li>a,
         .dropdown-content li>span {
 
@@ -232,37 +223,3 @@
   }
 }
 
-
-
-// Responsible for managing height adjustments
-@media only screen and (max-height: 992px) {
-
-  .profilecontainer {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  #loginblock {
-    height: 50%;
-  }
-
-}
-
-// Responsible for managing further height adjustments
-@media only screen and (max-height: 725px) {
-
-  #loginblock {
-    height: 65%;
-  }
-
-}
-
-// Responsible for managing further height adjustments
-@media only screen and (max-height: 550px) {
-
-  #loginblock {
-    height: 90%;
-  }
-
-}

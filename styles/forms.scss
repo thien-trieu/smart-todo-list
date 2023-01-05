@@ -31,13 +31,13 @@ input.inputfield {
   flex-direction: column;
   opacity: 0.7;
   border-radius: 25px;
-  width: 35%;
-  height: 45%;
+  width: 35rem;
+  height: 31rem;
 }
 
 // Signup and Login header styling
 .signup {
-  padding-bottom: 0.5em;
+  padding-bottom: 1em;
   color: #635197;
   font-size: 2em;
   line-height: 100%;
@@ -48,8 +48,17 @@ form {
   .menulabels {
     padding-top: 0.5em;
     font-size: 1em;
-    color: #202124;
+    color: #000000DE;
+
+    .profile_name {
+      color: #000000DE;
+    }
+
+    .profile_email {
+      color: #000000DE;
+    }
   }
+
 }
 
 input:not(.browser-default):focus:not([readonly]) {

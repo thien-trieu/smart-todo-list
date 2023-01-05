@@ -22,21 +22,14 @@
     </div>
       <% } %>
     <% } %>
-    <div>
-      <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
-    </div>
-    <br>
-    <div>
-      <label class="menulabels profile_email">Current Email: <%= user.email %></label>
-    </div>
-    <br>
-    <form method="POST" action="/profile">
-      <!-- User will have option to update PROFILE email or city -->
+    <div id="menulabeltext">
       <div>
-        <label class="menulabels">Change email:</label>
-        <input type="email" name="email" class="inputfield" placeholder="Type new email here">
+        <label class="menulabels profile_name"><%= user.name %>'s current settings: </label>
       </div>
       <br>
+      <div>
+        <label class="menulabels profile_email">Current Email: <%= user.email %></label>
+      </div>
       <div>
         <!-- Function to make first letter of City Uppercase -->
         <% const city = []; %>
@@ -45,6 +38,14 @@
         <% }) %>
         <% const cityString = city.join(" ") %>
         <label class="menulabels profile_city">Current City: <%= cityString %> </label>
+      </div>
+    </div>
+    <br>
+    <form method="POST" action="/profile">
+      <!-- User will have option to update PROFILE email or city -->
+      <div>
+        <label class="menulabels">Change email:</label>
+        <input type="email" name="email" class="inputfield" placeholder="Type new email here">
       </div>
       <div>
         <br>
