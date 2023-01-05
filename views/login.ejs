@@ -13,41 +13,39 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container" id="loginblock">
+  <div class="card large">
+    <h4>Please Log In</h4>
+    <% if(errors) { %>
+    <% for (let error in errors) { %>
+    <div class="errMessageOff">
+      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
+        class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    <% } %>
+    <% } %>
 
-      <h1 class="loginlabel">Please Log In</h1>
+    <form method="POST" action="/login" class="col s12">
       <br>
-      <% if(errors) { %>
-        <% for (let error in errors) { %>
-          <div class="errMessageOff">
-            <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-          <% } %>
-            <% } %>
+      <div class="row">
+        <div class="input-field col s12">
+          <label for="email">Email</label>
+          <input type="email" name="email" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="validate">
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+    </form>
+    <br>
+    <div class="row">
+      <p>Not a member? <a href="/register" class="hyperlogin">Click Here</a> </p>
+    </div>
+  </div>
 
-
-              <form method="POST" action="/login" class="login_form">
-                <div>
-                  <label for="email" class="menulabels">Email:</label>
-                  <br>
-                  <input type="email" name="email" class="logininput">
-                </div>
-                <br>
-                <div>
-                  <label for="password" class="menulabels">Password:</label>
-                  <br>
-                  <input type="password" name="password" class="logininput">
-                </div>
-                <br>
-                <button type="submit" class="loginbutton">Login</button>
-              </form>
-
-              <p class="menulabels">
-                <br>
-                Not a member? <a href="/register" class="hyperlogin">Click Here</a>
-              </p>
-
-    </main>
 
 </body>
 

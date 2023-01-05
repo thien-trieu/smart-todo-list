@@ -13,60 +13,52 @@
 <body>
   <%- include('partials/_header') %>
 
-  <main class="profilecontainer">
 
-    <h1 class="signup">My Profile</h1>
-
-
-    <!-- Error handling test -->
-    <% if(errors) { %>
-
-    <% for (let error in errors) { %>
-
-    <p class="errMessageOff" id="errMsg">
-      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
-        class="fa-solid fa-triangle-exclamation"></i>
-    </p>
-    </div>
-    <% } %>
-    <% } %>
-
-
-    <form method="POST" action="/profile">
+  <div class="card large">
+    <div class="row">
+      <h4>My Profile</h4>
+      <br>
       <div>
-        <label class="menulabels profile_name">Your Name: <%= user.name %> </label>
-
+        <p class="menulabels profile_name">Your Name: <%= user.name %> </p>
       </div>
       <br>
       <div>
-        <label class="menulabels profile_email">Current Email: <%= user.email %></label>
+        <p class="menulabels profile_email">Current Email: <%= user.email %></p>
+      </div>
+      <br>
 
-      </div>
-      <br>
       <div>
-        <label class="menulabels">Change email:</label>
-        <input type="email" name="email" class="inputfield" placeholder="Type new email here">
-      </div>
-      <br>
-      <div>
+        <!-- Function to make first letter of City Uppercase -->
         <% const city = []; %>
         <% user.location.split(" ").forEach(word => {  %>
         <%  city.push((word[0].toUpperCase() + word.slice(1)))  %>
         <% }) %>
         <% const cityString = city.join(" ") %>
-        <label class="menulabels profile_city">Current City: <%= cityString %> </label>
+        <p class="menulabels profile_city">Current City: <%= cityString %> </p>
       </div>
 
-      <div>
-        <br>
-        <label class="menulabels">Change City:</label>
-        <input type="text" name="city" class="inputfield" placeholder="Type new City here">
-      </div>
       <br>
-      <button type="submit">Submit</button>
-    </form>
 
-  </main>
+      <form method="POST" action="/profile" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="email">Change Email</label>
+            <input id="email" name="email" type="email" class="validate">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="city">Change City</label>
+            <input name="city" id="city" type="text" class="validate">
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+      </form>
+    </div>
+  </div>
+
 
 </body>
+
 </html>
