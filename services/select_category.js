@@ -3,6 +3,7 @@ const { callYelp } = require('./apis/yelp');
 const { callImdb } = require('./apis/rapidapi_imdb');
 const { getUserById } = require('../db/queries/users');
 
+// BASIC 'selectCategory' function that will filter out key words to categorize the TODO item's string
 const selectCategory = (taskString) => {
   const input = taskString.toLowerCase();
 
@@ -70,12 +71,13 @@ const selectCategory = (taskString) => {
   return category;
 };
 
+// function which calls the BASIC 'selectCategory' first, if category is 'null' it will then call APIs
 const selectCategoryWithApi = (taskString, userId) => {
   const input = taskString.toLowerCase();
   const category = selectCategory(input);
 
   if (category) return Promise.resolve(category);
-
+  // if category is null, start calling APIs
   return callWolfram(input)
     .then(res => {
       console.log('WOLFRAM:', res);
@@ -84,13 +86,14 @@ const selectCategoryWithApi = (taskString, userId) => {
       return callImdb(input).then(res => {
         console.log('IMDB:', res);
         if (res) return res;
-
+        // Get user from database first, to pass user location for yelp API search
         return getUserFromDB(userId)
           .then(user => {
             return callYelp(input, user, selectCategory)
               .then(res => {
                 console.log('YELP:', res);
                 if (res) return res;
+                // After checking all APIs if category is still 'null', set category as 'uncategorized'
                 return 'uncategorized';
               });
           });

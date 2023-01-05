@@ -13,61 +13,47 @@
   <%- include('partials/_header') %>
 
   <main class="container" id="registerblock">
-
-    <h1 class="signup">Sign Up For Free <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
-
-
-    <!-- Error handling test -->
-    <% if(errors) { %>
-
+  <h1 class="signup">Sign Up For Free <i class="fa-solid fa-circle-down fa-bounce"></i></h1>
+  <!-- POST Express Validator - Displaying any errors to user -->
+  <% if(errors) { %>
     <% for (let error in errors) { %>
-
-    <p class="errMessageOff" id="errMsg">
-      <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i
-        class="fa-solid fa-triangle-exclamation"></i>
-    </p>
+      <p class="errMessageOff" id="errMsg">
+        <i class="fa-solid fa-triangle-exclamation"></i><%= errors[error].msg %> <i class="fa-solid fa-triangle-exclamation"></i>
+      </p>
+    <% } %>
+  <% } %>
+  <form method="POST"  action="/register">
+    <div>
+      <label class="menulabels">Your Name:</label>
+      <br>
+      <input type="text" name="name" class="inputfield">
     </div>
-    <% } %>
-    <% } %>
-
-
-    <form method="POST" action="/register">
-      <div>
-        <label class="menulabels">Your Name:</label>
-        <br>
-        <input type="text" name="name" class="inputfield">
-      </div>
+    <br>
+    <div>
+      <label class="menulabels">Email:</label>
       <br>
-      <div>
-        <label class="menulabels">Email:</label>
-        <br>
-        <input type="email" name="email" class="inputfield">
-      </div>
+      <input type="email" name="email" class="inputfield">
+    </div>
+    <br>
+    <div>
+      <label class="menulabels">Password:</label>
       <br>
-      <div>
-        <label class="menulabels">Password:</label>
-        <br>
-        <input type="password" name="password" class="inputfield">
-      </div>
+      <input type="password" name="password" class="inputfield">
+    </div>
+    <br>
+    <div>
+      <label class="menulabels">Location:</label>
       <br>
-      <div>
-        <label class="menulabels">Location:</label>
-        <br>
-
-        <input type="text" name="location" class="inputfield" placeholder="Loading location..." id="locationField">
-      </div>
-
-
-      <br>
+      <input type="text" name="location" class="inputfield" placeholder="Loading location..." id="locationField">
+    </div>
+    <br>
       <button type="submit">Submit</button>
     </form>
 
-    <p class="menulabels">
-      Already have an account? <a href="/login" class="hyperlogin">Click here</a>
-    </p>
-
+  <p class="menulabels">
+  Already have an account? <a href="/login" class="hyperlogin">Click here</a>
+  </p>
   </main>
-
 </body>
 
 </html>
