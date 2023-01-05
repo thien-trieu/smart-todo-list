@@ -8,19 +8,18 @@ const getTodosByOptions = (options, userId) => {
 
   const queryParams = [userId];
   let queryString = `
-    SELECT todo_items.*, categories.name AS category_name
-    FROM todo_items
-    JOIN categories ON categories.id = category_id
-    JOIN users ON users.id = user_id
-    WHERE users.id = $1
+  SELECT todo_items.*, categories.name AS category_name
+  FROM todo_items
+  JOIN categories ON categories.id = category_id
+  WHERE user_id = $1
   `;
 
   // This reveals only TODO items matching search bar strings
   if (options.searchStr) {
     queryParams.push(options.searchStr.toLowerCase());
     queryString += `
-      AND LOWER(memo_details) LIKE '%' || $${queryParams.length} || '%'
-      OR LOWER(categories.name) LIKE '%' || $${queryParams.length} || '%'
+      AND category_id = (SELECT categories.id FROM categories WHERE LOWER(name) LIKE '%' || $${queryParams.length} || '%')
+      OR LOWER(memo_details) LIKE '%' || $${queryParams.length} || '%'
       `;
   }
 
@@ -32,7 +31,7 @@ const getTodosByOptions = (options, userId) => {
       `;
   }
 
-  queryString += ` ORDER BY date_added`;
+  queryString += `ORDER BY date_added`;
 
   return db.query(queryString, queryParams)
     .then(data => {
