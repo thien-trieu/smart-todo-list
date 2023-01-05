@@ -24,13 +24,13 @@
   position: fixed;
   left: 50%;
   top: 27%;
-  width: 50%;
+  width: 65%;
   background: #202124;
   transform: translate(-50%, -50%);
   border-radius: 25px;
   font-family: 'Montserrat';
   box-shadow: 6px 4px 9px #635197;
-
+  padding: 0.5em 1em;
 
   .edit-form-header {
     display: flex;
