@@ -23,8 +23,15 @@ main.container {
 }
 
 
-
+// specificity for login page header
 .loginlabel {
+  color: #635197;
+  font-size: 2em;
+  margin: 0;
+}
+
+// Specificity for register page header
+.registerlabel {
   color: #635197;
   font-size: 2em;
   margin: 0;
@@ -45,15 +52,19 @@ main.container {
 
 // set register block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
 #registerblock {
-  width: 35%;
+  width: 35rem;
+  height: 40rem;
   margin-top: 7em;
+  opacity: 0.7;
 }
 
 // set login page block width as an ID so that it is not affected by main width container (note: adjusted in mobile view)
 // aligned with above registration block styling
 #loginblock {
-  width: 35%;
+  width: 35rem;
+  height: 25rem;
   margin-top: 7em;
+  opacity: 0.7;
 }
 
 // Spacing for login inputs
@@ -114,4 +125,9 @@ main.container {
   padding-right: 1em;
   font-size: 1.3em;
   color: aliceblue;
+}
+
+#menulabeltext {
+    display: flex;
+    flex-direction: column;
 }

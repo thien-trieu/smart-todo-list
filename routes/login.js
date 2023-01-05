@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     return res.redirect("/");
   }
 
-  // 'user' and 'error' variables required to login render page.
+  // 'user' and 'error' variables required to render LOGIN page.
   // data is 'null' as user is not logged yet and no error.
   const templateVars = {
     user: null,
@@ -55,12 +55,10 @@ router.post('/', [
 
   // if any errors, render the LOGIN page and display the errors
   if (!errors.isEmpty()) {
-
     const templateVars = {
       errors: errors.array(),
       user: null
     };
-
     res.status(403);
     return res.render("login", templateVars);
   }
