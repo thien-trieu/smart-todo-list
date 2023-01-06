@@ -41,10 +41,6 @@ nav {
       padding: 0 1em;
       font-size: 1.2em; // Font size here to target all elements in the nav-right container
 
-      // .welcometext {
-      //   font-size: 1.1em;
-      // }
-
       .navLinks {
         margin: 0.5em;
         text-decoration: none;
@@ -62,12 +58,9 @@ nav {
       // Styling for top nav logout button and icon
       .logoutbutton {
         outline: none;
-        // font-size: 1.15em;
         color: white;
         background-color: transparent;
         border: transparent;
-        // padding-bottom: 4px;
-        // padding-right: .6em;
         height: 2.6em;
 
         &:hover {
